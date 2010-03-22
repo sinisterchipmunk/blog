@@ -1,0 +1,19 @@
+#categories {
+  padding-left: 3px;
+}
+
+#categories ul {
+  margin-bottom: 0;
+  padding-bottom: 5px;
+}
+
+.category {
+  font-size: 14pt;
+}
+
+div#categories-header {
+  font-size: 16pt;
+  text-align:center;
+  color:#93b4ff;
+  padding-bottom:10px;
+}

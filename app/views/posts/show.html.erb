@@ -1,0 +1,26 @@
+<%content_for :subtitle do%>
+  <%=h @post.title%>
+<%end%>
+<%content_for :extra_info do%>
+  <%=render :partial => 'extra_post_info', :locals => { :post => @post }%>
+<%end%>
+
+<%=post_body(@post)%>
+
+<div id="back-to-index">
+  <%if permitted_to?(:edit, :posts)%>
+    [<%= link_to 'Edit', edit_post_path(@post) %>] |
+  <%end%>
+  <%= link_to 'Back', posts_path %>
+</div>
+
+<div id="previous-or-next">
+  &nbsp;
+  <%if prev = @post.previous(permitted_to?(:edit, :posts))%>
+    <%=link_to "Previous Post", post_path(prev)%>
+  <%end%>
+  <%if nxt = @post.next(permitted_to?(:edit, :posts))%>
+    <%if prev%>|<%end%>
+    <%=link_to "Next Post", post_path(nxt)%>
+  <%end%>
+</div>

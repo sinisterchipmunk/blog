@@ -1,0 +1,12 @@
+[submodule "vendor/plugins/tiny_mce"]
+	path = vendor/plugins/tiny_mce
+	url = git://github.com/sinisterchipmunk/tiny_mce.git
+[submodule "vendor/plugins/open_id_authentication"]
+	path = vendor/plugins/open_id_authentication
+	url = git://github.com/rails/open_id_authentication.git
+[submodule "vendor/plugins/declarative_authorization"]
+	path = vendor/plugins/declarative_authorization
+	url = git://github.com/stffn/declarative_authorization.git
+[submodule "vendor/plugins/permalink_fu"]
+	path = vendor/plugins/permalink_fu
+	url = git://github.com/technoweenie/permalink_fu.git

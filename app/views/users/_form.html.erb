@@ -1,0 +1,45 @@
+<%form_for @user do |f|%>
+  <%=f.error_messages%>
+  <p>
+      <%=f.label :display_name%><br/>
+      <%=f.text_field :display_name%>
+  </p>
+  <p>
+      <%=f.label :username%><br/>
+      <%=f.text_field :username%>
+  </p>
+  <p>
+      <%=f.label :email%><br/>
+      <%=f.text_field :email%>
+  </p>
+  <%if permitted_to? :edit, :users%>
+    <p>
+      <%for role in Role.all%>
+        <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
+        <%= role.name %>
+      <%end%>
+    </p>
+  <%end%>
+  <%if @user.openid_identifier.blank?%>
+    <p>
+        <%=f.label :password%><br/>
+        <%=f.password_field :password%>
+    </p>
+    <p>
+        <%=f.label :password_confirmation%><br/>
+        <%=f.password_field :password_confirmation%>
+    </p>
+    <p>
+        <%=f.submit%>
+    </p>
+
+    <h2>Or use OpenID</h2>
+  <%end%>
+  <p>
+      <%=f.label :openid_identifier, "OpenID URL:"%><br/>
+      <%=f.text_field :openid_identifier%>
+  </p>
+  <p>
+      <%=f.submit%>
+  </p>
+<%end%>

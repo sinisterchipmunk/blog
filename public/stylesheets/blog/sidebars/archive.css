@@ -1,0 +1,19 @@
+#archive {
+}
+
+.archive-header {
+  font-size: 16pt;
+  text-align:center;
+}
+
+.archive {
+  margin-top: 10px;
+  margin-left:auto;
+  margin-right: auto;
+  width:190px;
+}
+
+.archive ul {
+  margin-bottom: 0;
+  padding-bottom: 5px;
+}

@@ -1,0 +1,33 @@
+div#sidebar {
+  margin-left:0;
+  padding-left:0;
+  padding-right:0;
+  float:left;
+}
+
+div.sidebar_item {
+  margin-bottom:8px;
+}
+
+div.sidebar_item .top {
+  width:195px;
+  height:5px;
+  background: url(/images/nav-blue-top.png) no-repeat;
+}
+
+div.sidebar_item .content {
+  padding-left:5px;
+  padding-right:5px;
+  width:185px;
+  background: url(/images/blue-trans.png) repeat;
+}
+
+div.sidebar_item .bottom {
+  height:5px;
+  width:195px;
+  background: url(/images/nav-blue-bottom.png) no-repeat;
+}
+
+div.sidebar_item a {
+  color: #93b4ff !important;
+}

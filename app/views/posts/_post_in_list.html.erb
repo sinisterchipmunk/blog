@@ -1,0 +1,10 @@
+<h2><%=link_to post.title, post%></h2>
+<div>
+  <%=render :partial => 'posts/extra_post_info', :locals => { :post => post }%>
+</div>
+<div class="post_body">
+  <%=post_body(post)%>
+  <%if permitted_to?(:edit, :posts)%>
+    [<%= link_to 'Edit', edit_post_path(post) %>]
+  <%end%>
+</div>

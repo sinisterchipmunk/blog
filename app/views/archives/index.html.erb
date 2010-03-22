@@ -1,0 +1,17 @@
+<%content_for :subtitle do%>
+  Archives
+<%end%>
+<%content_for :extra_info do%>
+  <%=range_of_all_posts%>
+<%end%>
+
+<div id="all-archives">
+  <%archives.each do |archive|%>
+    <div class='archive-header'><%=archive.first.strftime("%Y")%></div>
+    <div class="archive">
+      <%archive.each do |date|%>
+        <li><%=link_to date.strftime("%B"), :action => 'month_and_year', :year => date.year, :month => date.month.to_s.rjust(2, '0')%></li>
+      <%end%>
+    </div>
+  <%end%>
+</div>

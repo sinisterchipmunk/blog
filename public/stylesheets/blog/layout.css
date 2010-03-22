@@ -1,0 +1,250 @@
+body {
+  background-color: #ccc;
+  color: #333;
+  background-image: url(/images/body.jpg);
+}
+
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+div#post { /* in /posts/_form */
+  margin-left: 0;
+  margin-right: 0;
+}
+
+div.post-container {
+  display: table;
+  width: 100%;
+}
+
+div#post-title { /* in /posts/_form */
+  /* float: left; */
+  vertical-align: top;
+  border: 0 solid #00f;
+  display: table-cell;
+}
+
+div#post-publish_date { /* in /posts/_form */
+  /* margin-left: auto; */
+  vertical-align: top;
+  width: 50%;
+  border: 0 solid #0ff;
+  display: table-cell;
+}
+
+div#post-row1 {
+  display: table-row;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+div#post-row2 {
+  display: table-row;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+div#post-categories { /* in /posts/_form */
+  /* float: left; */
+  vertical-align: top;
+  border: 0 solid #f00;
+  display: table-cell;
+}
+
+div#post-tags { /* in /posts/_form */
+  vertical-align: top;
+  border: 0 solid #0f0;
+  display: table-cell;
+  width: 50%;
+}
+
+div#post-revision { /* in /posts/_form */
+  margin-left: 0;
+  margin-right: 0;
+  vertical-align: top;
+  text-align: left;
+  border: 0 solid #000;
+  display: table-row;
+}
+
+div#back-to-index { /* in /posts/show */
+  float:left;
+}
+
+div#previous-or-next { /* in /posts/show */
+  margin-left:auto;
+  text-align:right;
+}
+
+div#titlebar {
+  background: url(/images/titlebar.png) no-repeat;
+  width:1020px;
+  height:42px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align:center;
+  padding-top: 10px;
+  font-size:32px;
+  color: #bbb !important;
+}
+
+div#titlebar a { color: #bbb !important; }
+div#titlebar a { background-color: transparent; }
+
+div#content {
+  margin-left: auto;
+  margin-right: auto;
+  width:1020px;
+}
+
+div#inner-top {
+  background: url(/images/bg-trans-top.png) no-repeat;
+  width:820px;
+  padding: 0;
+  margin-left: auto;
+  padding-top: 2px;
+  height: 88px;
+}
+
+div#inner-content {
+  background: url(/images/bg-trans-middle.png) no-repeat;
+  width:820px;
+  padding: 0;
+  margin-left: auto;
+  min-height: 510px;
+  background-color: #fff;
+}
+
+div#inner-bottom {
+  height: 8px;
+  width:820px;
+  padding: 0;
+  margin-left: auto;
+  background: url(/images/bg-trans-bottom.png) no-repeat;
+}
+
+div#flash {
+  font-size:10px;
+  text-align:center;
+}
+
+div#flash_error {
+  color: #f00;
+  background-color:#400;
+}
+
+div#flash_warning {
+  color: #ff0;
+  background-color:#440;
+}
+
+div#flash_notice, div#flash_message {
+  color: #0f0;
+  background-color:#040;
+}
+
+div#main {
+  padding: 0.05in;
+  margin-right:auto;
+  margin-left: auto;
+  width: 780px;
+  text-align: justify;
+}
+
+div#main p {
+  text-indent: 25px;
+}
+
+div#post-info {
+  color: #bbb;
+  margin-top: 10px;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align:center;
+  vertical-align:middle;
+  width: 596px;
+  height: 70px;
+}
+
+div#subtitle {
+  background: url(/images/subtitle-bar.png) no-repeat;
+  font-size:24px;
+  padding-top:8px;
+  overflow:visible;
+  height:27px;
+}
+
+div#extra-info {
+  overflow:hidden;
+  background: url(/images/extra-info-bar.png) no-repeat;
+  width: 400px;
+  height: 35px;
+  vertical-align: middle;
+  font-size:10px;
+  line-size:10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div#user_nav {
+  text-align:center;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a { color: #000; text-decoration:none; }
+a:visited { color: #000; }
+a:hover { color: #fff; background-color:#000; }
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+/* embeds the openid image in the text field */
+input#user_openid_identifier, input#user_session_openid_identifier {
+  background: url(http://openid.net/images/login-bg.gif) no-repeat;
+  background-color: #fff;
+  background-position: 0 50%;
+  color: #000;
+  padding-left: 18px;
+}

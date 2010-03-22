@@ -1,0 +1,10 @@
+<%content_for :subtitle do%>
+  Showing Posts
+  <%if permitted_to? :create, :posts%>
+    [<%= link_to 'Create', new_post_path %>]
+  <%end%>
+<%end%>
+
+<% @posts.each do |post| %>
+  <%=render :partial => 'post_in_list', :locals => { :post => post }%>
+<% end %>

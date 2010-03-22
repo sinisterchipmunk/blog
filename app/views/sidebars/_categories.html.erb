@@ -1,0 +1,8 @@
+<div id="categories-header">Categories</div>
+<ul>
+  <%Category.find(:all, :order => 'name ASC').each do |category| -%>
+    <%unless category.posts.empty?%>
+      <li><%=link_to category.name, category%></li>
+    <%end%>
+  <%end -%>
+</ul>

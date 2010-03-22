@@ -1,0 +1,9 @@
+<div id="post_tag_<%=@tag.id%>" class="post_tag">
+  <%=check_box_tag "post[tag_ids][]", @tag.id, :checked => true%>
+  <%=@tag.name%>
+  [<%=link_to_remote "delete",
+                     :url => tag_path(@tag),
+                     :method => :delete,
+                     :update => "post_tag_#{@tag.id}",
+                     :confirm => "Are you sure you wish to remove this tag?"%>]<br/>
+</div>

@@ -1,0 +1,10 @@
+div#tags-header {
+  font-size: 16pt;
+  text-align:center;
+  color:#93b4ff;
+  padding-bottom:10px;
+}
+
+div#tags {
+  text-align:center;
+}

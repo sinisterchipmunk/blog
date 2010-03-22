@@ -1,0 +1,13 @@
+== A Blog
+
+Note: You should DEFINITELY NOT check out this repository. Feel free to do it anyway, but you've been warned.
+
+Essentially, I've decided to try my hand at writing a blogging engine from the ground-up as a new project. Mostly just
+for something to do, but if it turns out nicely, I'll make it a public repo with a proper name. If you want to clone
+this one at any time, go ahead, but I don't guarantee it'll work at any given time. If you want a working blog engine,
+wait for me to rename this repository to something more suitable. Until then, the "blog" project is most likely
+something you don't want to mess with.
+
+For what it's worth, it's released (or will be) under the MIT license.
+
+Copyright 2010 (c) Colin MacKenzie IV

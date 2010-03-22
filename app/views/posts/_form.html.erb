@@ -1,0 +1,96 @@
+<%content_for :head do%>
+  <%=javascript_tag 'function addCategorySuccess(request) {
+    showMessage("Success! " + request.responseText);
+  }'%>
+<%end%>
+
+<% form_for(@post) do |f| %>
+  <%= f.error_messages %>
+
+  <div id="post">
+    <div class="post-container">
+      <div id="post-row1">
+        <div id="post-title">
+          <h3>
+            <%=f.label :title%><br/>
+            <%=f.text_field :title%>
+          </h3>
+        </div>
+        <div id="post-publish_date">
+          <h3>
+            <%=f.label :publish_date%><br/>
+            <%=f.calendar_date_select :publish_date, :embedded => false, :time => false%>
+          </h3>
+        </div>
+      </div>
+    </div>
+
+    <div id="post-revision">
+      <%f.fields_for :current_revision do |i|%>
+        <h3>
+          <%=i.label :body%>
+        </h3>
+        <%=i.text_area :body%>
+        <%=i.hidden_field :number%>
+      <%end%>
+    </div>
+
+    <div class="post-container">
+      <div id="post-row2">
+        <div id="post-categories">
+          <h3>Categories</h3>
+          <%Category.all.each_with_index do |category, index|%>
+            <div id="post_category_<%=category.id%>" class="post_category">
+              <%=hidden_field_tag "post[category_ids][]", ''%>
+              <%=check_box_tag "post[category_ids][]", category.id, @post.category_ids.include?(category.id)%>
+              <%=category.name%>
+              [<%=link_to_remote "delete",
+                                 :url => category_path(category),
+                                 :method => :delete,
+                                 :update => "post_category_#{category.id}",
+                                 :confirm => "Are you sure you wish to remove this category?"%>]<br/>
+            </div>
+          <%end%>
+          <div id="new_post_category">
+            <div id="create_category_input">
+              <input type="text" name="category[name]" id="category_name" value="" />
+              <%=link_to_remote "add a category", :url => "/categories/create?in_post=true",
+                                :submit => "create_category_input",
+                                :update => 'new_post_category',
+                                :position => 'before'%>
+              <br/>
+            </div>
+          </div>
+        </div>
+        <div id="post-tags">
+          <h3>Tags</h3>
+          <%Tag.all.each_with_index do |tag, index|%>
+            <div id="post_tag_<%=tag.id%>" class="post_tag">
+              <%=check_box_tag "post[tag_ids][]", tag.id, @post.tag_ids.include?(tag.id)%>
+              <%=tag.name%>
+              [<%=link_to_remote "delete",
+                                 :url => tag_path(tag),
+                                 :method => :delete,
+                                 :update => "post_tag_#{tag.id}",
+                                 :confirm => "Are you sure you wish to remove this tag?"%>]<br/>
+            </div>
+          <%end%>
+          <div id="new_post_tag">
+            <div id="create_tag_input">
+              <input type="text" name="tag[name]" id="tag_name" value="" />
+              <%=link_to_remote "add a tag", :url => "/tags/create?in_post=true",
+                                :submit => "create_tag_input",
+                                :update => 'new_post_tag',
+                                :position => 'before'%>
+              <br/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p>
+    <%= f.submit 'Save' %>
+  </p>
+<% end %>

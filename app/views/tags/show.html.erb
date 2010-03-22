@@ -1,0 +1,10 @@
+<%content_for :subtitle do%>
+  Posts for tag: <%=@tag.name%>
+<%end%>
+<%content_for :extra_info do%>
+  <%=@posts.length%> post<%=(@posts.length != 1 ? 's' : '')%>
+<%end%>
+
+<%@posts.each do |post|%>
+  <%=render :partial => 'posts/post_in_list', :locals => { :post => post }%>
+<%end%>

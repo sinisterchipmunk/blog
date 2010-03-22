@@ -1,0 +1,14 @@
+<div class="archive-header">
+  <%=link_to "Archive", archive_path%>
+</div>
+
+<%archives.each do |archive| -%>
+  <div class="archive">
+    <ul>
+      <%archive.each do |date| -%>
+        <li><%=link_to date.strftime("%B %Y"), :controller => 'archives', :action => 'month_and_year',
+                   :month => date.month.to_s.rjust(2, "0"), :year => date.year%></li>
+      <%end -%>
+    </ul>
+  </div>
+<%end -%>

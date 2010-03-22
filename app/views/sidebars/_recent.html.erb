@@ -1,0 +1,6 @@
+<div id="recent-posts-header">Recent Posts</div>
+<ul style='margin-bottom:0;padding-bottom:5px;'>
+  <%recent_posts.each do |post|%>
+    <li><%=link_to post.title, post%></li>
+  <%end%>
+</ul>
