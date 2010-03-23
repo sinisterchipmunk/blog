@@ -39,7 +39,8 @@
       <div id="post-row2">
         <div id="post-categories">
           <h3>Categories</h3>
-          <%Category.all.each_with_index do |category, index|%>
+          <%Category.all.each_with_index do |category, index|
+            next if category.hidden?%>
             <div id="post_category_<%=category.id%>" class="post_category">
               <%=hidden_field_tag "post[category_ids][]", ''%>
               <%=check_box_tag "post[category_ids][]", category.id, @post.category_ids.include?(category.id)%>

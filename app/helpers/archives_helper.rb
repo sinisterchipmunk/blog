@@ -23,14 +23,16 @@ module ArchivesHelper
   #   "January 2010 through March 2011"
   def range_of_all_posts
     p = Post.one_per_month
-    first = p.first.publish_date
-    last = p.last.publish_date
-    if first.nil?
+    if p.empty?
       "(No posts)"
-    elsif first != last
-      "#{first.strftime("%B %Y")} through #{last.strftime("%B %Y")}"
     else
-      "#{first.strftime("%B %Y")}"
+      first = p.first.publish_date
+      last = p.last.publish_date
+      if first != last
+        "#{first.strftime("%B %Y")} through #{last.strftime("%B %Y")}"
+      else
+        "#{first.strftime("%B %Y")}"
+      end
     end
   end
 end

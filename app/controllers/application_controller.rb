@@ -27,4 +27,14 @@ class ApplicationController < ActionController::Base
     flash[:error] = "Sorry, you are not allowed to view this page"
     redirect_to root_url
   end
+
+  def no_tweetbacks!
+    @tweetbacks = false
+  end
+
+  class << self
+    def no_tweetbacks!
+      before_filter :no_tweetbacks!
+    end
+  end
 end

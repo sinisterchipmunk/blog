@@ -5,3 +5,7 @@
   <%=link_to "Register", new_user_path%> |
   <%=link_to "Log In", login_path%>
 <%end%>
+<br/>
+<%if permitted_to? :create, :posts%>
+  <%=link_to "New Post", :controller => 'posts', :action => 'new'%>
+<%end%>

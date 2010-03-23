@@ -1,13 +1,8 @@
 == A Blog
 
-Note: You should DEFINITELY NOT check out this repository. Feel free to do it anyway, but you've been warned.
+Essentially, I've decided to try my hand at writing a blogging engine from the ground-up as a new project. You're free
+to clone this project and use it yourself, if you wish. It's currently a full-fledged Rails application, but I'm hoping
+to turn it into a more modular Rails plugin or gem so that a blog can be easily added to any standard Rails app at some
+point in the future.
 
-Essentially, I've decided to try my hand at writing a blogging engine from the ground-up as a new project. Mostly just
-for something to do, but if it turns out nicely, I'll make it a public repo with a proper name. If you want to clone
-this one at any time, go ahead, but I don't guarantee it'll work at any given time. If you want a working blog engine,
-wait for me to rename this repository to something more suitable. Until then, the "blog" project is most likely
-something you don't want to mess with.
-
-For what it's worth, it's released (or will be) under the MIT license.
-
-Copyright 2010 (c) Colin MacKenzie IV
+Copyright (c) 2010 Colin MacKenzie IV

@@ -8,13 +8,19 @@
     <%=stylesheet_link_tag 'blog/layout'%>
     <%=stylesheet_link_tag 'blog/sidebars'%>
     <%=stylesheet_link_tag 'blog/syntax_highlighting'%>
+    <%=stylesheet_link_tag 'boastful'%>
     <%=tiny_mce%>
     <%=javascript_include_tag :defaults%>
-    <%= calendar_date_select_includes "red" # or "blue", or "silver", or nil for the default!
-    %>
+    <%=javascript_include_tag 'jquery.min.js'%>
+    <%=javascript_include_tag 'jquery.boastful.js'%>
+    <%= calendar_date_select_includes "blue"%>
     <%SIDEBARS.each { |sidebar| if File.exist?(File.join(RAILS_ROOT, "public/stylesheets/blog/sidebars/#{sidebar}.css")) -%>
         <%=stylesheet_link_tag "blog/sidebars/#{sidebar}"%>
     <%end }%>
+    <script>
+      jQuery.noConflict();
+      jQuery(document).ready(function() { jQuery('#boastful').boastful({limit: 50}); });
+    </script>
     <%=yield :head%>
   </head>
 
@@ -73,6 +79,13 @@
         </div>
         <div id="main">
           <%=yield%>
+
+          <%if !defined?(@tweetbacks) || @tweetbacks%>
+            <div id="boastful-container">
+              <h3>Tweets about this page:</h3>
+              <div id="boastful"></div>
+            </div>
+          <%end%>
         </div>
       </div>
       <div id="inner-bottom"></div>

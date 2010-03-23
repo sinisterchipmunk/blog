@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  no_tweetbacks!
+
   def new
     @user = User.new
   end

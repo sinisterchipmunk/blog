@@ -1,4 +1,6 @@
 class UserSessionsController < ApplicationController
+  no_tweetbacks!
+
   # GET /user_sessions/new
   # GET /user_sessions/new.xml
   def new

@@ -7,13 +7,38 @@ class CategoriesController < ApplicationController
   end
 
   def choose_layout
-    params[:action] == 'show' ? 'blog' : nil
+    %w(show index).include?(params[:action]) ? 'blog' : nil
   end
   private :choose_layout
+  def filter_posts!
+    @posts = @posts.select { |p| !p.publish_date.blank? } unless permitted_to?(:edit, :posts)
+  end
+  private :filter_posts!
+
+  def index
+    @category = Category.new(:name => 'All Posts')
+    @posts = Post.all(:order => 'publish_date DESC, updated_at DESC')
+    filter_posts!
+    @new_post_for_category = Post.new
+
+    respond_to do |fmt|
+      fmt.html { render :action => :show }
+      fmt.yaml { render :text   => @posts.to_yaml }
+      fmt.xml  { render :xml    => @posts }
+    end
+  end
 
   def show
-    @posts = @category.posts
-    @posts = @posts.select { |p| !p.publish_date.blank? } unless permitted_to?(:edit, :posts)
+    @posts = @category.posts.find(:all, :order => 'publish_date DESC, updated_at DESC')
+    filter_posts!
+    @new_post_for_category = Post.new
+    @new_post_for_category.post_categories.build(:category => @category)
+
+    respond_to do |fmt|
+      fmt.html
+      fmt.yaml { render :text => @posts.to_yaml }
+      fmt.xml  { render :xml  => @posts }
+    end
   end
 
   # POST /posts

@@ -12,9 +12,10 @@ class PostsController < ApplicationController
     unless permitted_to?(:edit, :posts)
       conditions = "NOT (publish_date IS NULL)"
     end
-    @posts = Post.all(:order => "publish_date DESC, id DESC", :conditions => conditions)
-    # move drafts to top of list, or remove them if user isn't an author
-    @posts.insert(0, *@posts.select { |p| p.publish_date.nil? })
+    @posts = Post.all(:order => "publish_date DESC, updated_at DESC", :conditions => conditions)
+    # drafts have been moved to their own "Drafts" category.
+    ## move drafts to top of list, or remove them if user isn't an author
+    #@posts.insert(0, *@posts.select { |p| p.publish_date.nil? })
     @posts.uniq!
 
     respond_to do |format|
@@ -27,6 +28,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
+    @post.attributes = params[:post] if params[:post]
     respond_to do |format|
       format.html # show.html.erb
       format.yaml { render :text => @post.to_yaml }
@@ -69,6 +71,7 @@ class PostsController < ApplicationController
   def update
     @post.author ||= current_user
     @post.current_revision.user = current_user
+    check_for_draft
     respond_to do |format|
       if @post.update_attributes(params[:post])
         flash[:notice] = 'Post was successfully updated.'
@@ -89,6 +92,16 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(posts_url) }
       format.xml  { head :ok }
+    end
+  end
+
+  private
+  def check_for_draft
+    params[:post][:category_ids] ||= []
+    if params[:post][:publish_date].blank?
+      params[:post][:category_ids] << Category.find_by_name('Drafts').id
+    else
+      params[:post][:category_ids].delete Category.find_by_name('Drafts').id.to_s
     end
   end
 end

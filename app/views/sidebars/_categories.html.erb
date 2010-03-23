@@ -1,7 +1,12 @@
 <div id="categories-header">Categories</div>
 <ul>
-  <%Category.find(:all, :order => 'name ASC').each do |category| -%>
-    <%unless category.posts.empty?%>
+  <%=link_to "All Posts", :controller => 'categories', :action => 'index'%><br/>
+  <%if permitted_to? :create, :posts%>
+    <%=link_to "Drafts", Category.find_by_name('Drafts')%><br/>
+  <%end%>
+  <br/>
+  <%Category.find(:all, :order => 'hidden, name ASC').each do |category| -%>
+    <%if !category.posts.empty? && !category.hidden?%>
       <li><%=link_to category.name, category%></li>
     <%end%>
   <%end -%>

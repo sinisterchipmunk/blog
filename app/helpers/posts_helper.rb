@@ -19,4 +19,9 @@ module PostsHelper
       CodeRay.scan(code, lang).div(options)
     end
   end
+
+  def link_to_new_post_with_categories(post)
+    link_to "Create", :controller => 'posts', :action => 'new',
+            'post[category_ids]' => @new_post_for_category.post_categories.collect { |i| i.category_id }
+  end
 end
