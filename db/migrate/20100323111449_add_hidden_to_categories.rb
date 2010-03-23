@@ -1,6 +1,6 @@
 class AddHiddenToCategories < ActiveRecord::Migration
   def self.up
-    add_column :categories, :hidden, :boolean, :default => :false
+    add_column :categories, :hidden, :boolean, :default => false
   end
 
   def self.down
