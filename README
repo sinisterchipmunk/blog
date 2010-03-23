@@ -5,4 +5,15 @@ to clone this project and use it yourself, if you wish. It's currently a full-fl
 to turn it into a more modular Rails plugin or gem so that a blog can be easily added to any standard Rails app at some
 point in the future.
 
+== Setting Up
+
+Bear in mind that this isn't exactly designed for 3rd party use, yet. That said, it's not too difficult to get off the
+ground:
+
+    git clone git://github.com/sinisterchipmunk/blog.git myblog
+    cd myblog
+    git submodule init
+    git submodule update
+    >> start tweaking <<
+
 Copyright (c) 2010 Colin MacKenzie IV
