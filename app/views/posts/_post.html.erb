@@ -1,6 +1,6 @@
 <h2><%=link_to post.title, post%></h2>
 <div>
-  <%=render :partial => 'posts/extra_post_info', :locals => { :post => post }%>
+  <%=render :partial => 'posts/extra_post_info.html.erb', :locals => { :post => post }%>
 </div>
 <div class="post_body">
   <%=post_body(post)%>

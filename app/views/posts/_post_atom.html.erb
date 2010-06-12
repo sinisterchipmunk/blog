@@ -1,0 +1,10 @@
+<div>
+  <%if post.publish_date%>
+    Published by <%=h post.author.display_name%> on <%=h post.publish_date.strftime("%a, %b %d, %Y")%>
+  <%else%>
+    <span style='font-weight:800;'>(Draft)</span>
+  <%end%>
+</div>
+<div class="post_body">
+  <%=post_body(post)%>
+</div>

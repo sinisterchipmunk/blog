@@ -6,5 +6,5 @@
 <%end%>
 
 <% @posts.each do |post| %>
-  <%=render :partial => 'post_in_list', :locals => { :post => post }%>
+  <%=render :partial => 'post', :locals => { :post => post }%>
 <% end %>

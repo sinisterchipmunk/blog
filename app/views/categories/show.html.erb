@@ -9,5 +9,5 @@
 <%end%>
 
 <%@posts.each do |post|%>
-  <%=render :partial => 'posts/post_in_list', :locals => { :post => post }%>
+  <%=render :partial => 'posts/post', :locals => { :post => post }%>
 <%end%>

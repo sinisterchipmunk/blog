@@ -22,6 +22,8 @@ class PostsController < ApplicationController
       format.html # index.html.erb
       format.yaml { render :text => @posts.to_yaml }
       format.xml  { render :xml => @posts }
+      format.atom
+      format.rss
     end
   end
 

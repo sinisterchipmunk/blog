@@ -4,7 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <title><%=Blog.first.name%> - <%=(yield :subtitle) || "Welcome"%></title>
+    <title><%=blog.name%> - <%=(yield :subtitle) || "Welcome"%></title>
+    <link rel="alternate" type="application/atom+xml" title="<%=blog.name%> - ATOM" href="<%=atom_feed_url%>">
+    <link rel="alternate" type="application/rss+xml" title="<%=blog.name%> - RSS" href="<%=rss_feed_url%>" />
     <%=stylesheet_link_tag 'blog/layout'%>
     <%=stylesheet_link_tag 'blog/sidebars'%>
     <%=stylesheet_link_tag 'blog/syntax_highlighting'%>
@@ -27,14 +29,14 @@
   <body>
     <div id="titlebar">
       <span id="blog_name_link">
-        <%=link_to Blog.first.name, :posts%>
+        <%=link_to blog.name, root_path%>
         <%if permitted_to? :edit, :blogs%>
           [<%=link_to_function "edit", "Element.toggle('blog_name_link');Element.toggle('blog_name_form');"%>]
         <%end%>
       </span>
       <%if permitted_to? :edit, :blogs%>
         <span id="blog_name_form" style='display:none;'>
-          <%form_for Blog.first do |f|%>
+          <%form_for blog do |f|%>
             <%=f.text_field :name%>
             <%=f.submit%>
           <%end%>

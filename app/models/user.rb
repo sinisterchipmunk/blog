@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def name; display_name; end
+  
   private
   def map_openid_registration(registration)
     self.username = registration[:nickname] if username.blank?
