@@ -1,28 +1,20 @@
-<h1>Log In</h1>
+<%content_for :subtitle do%>Log In<%end%>
 
-<% form_for(@user_session) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </p>
-  <p>
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </p>
-  <p>
-    <%= f.submit 'Log In' %>
-  </p>
-
-  <h2>Or use OpenID</h2>
-  <p>
-      <%=f.label :openid_identifier, "OpenID URL:"%><br/>
-      <%=f.text_field :openid_identifier%>
-  </p>
-  <p>
-    <%=f.submit 'Log In'%>
-  </p>
-<% end %>
-
-<%= link_to 'Back', user_sessions_path %>
+<div style='width:400px;margin-left:auto;margin-right:auto;'>
+  <% form_for(@user_session) do |f| %>
+    <%= f.error_messages %>
+  
+    <div style='float:left;'>
+      <%= f.label :username %><br />
+      <%= f.text_field :username %>
+    </div>
+    <div>
+      <%= f.label :password %><br />
+      <%= f.password_field :password %>
+    </div>
+    <div style='text-align:center;'>
+      <%= f.submit 'Log In' %>
+      <%= link_to 'Cancel', root_path %>
+    </div>
+  <% end %>
+</div>

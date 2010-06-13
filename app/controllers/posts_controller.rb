@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     unless permitted_to?(:edit, :posts)
       conditions = "NOT (publish_date IS NULL)"
     end
-    @posts = Post.all(:order => "publish_date DESC, updated_at DESC", :conditions => conditions)
+    @posts = filter_posts(Post.all(:order => "publish_date DESC, updated_at DESC", :conditions => conditions))
     # drafts have been moved to their own "Drafts" category.
     ## move drafts to top of list, or remove them if user isn't an author
     #@posts.insert(0, *@posts.select { |p| p.publish_date.nil? })

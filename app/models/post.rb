@@ -14,11 +14,24 @@ class Post < ActiveRecord::Base
   accepts_nested_attributes_for :post_categories, :allow_destroy => true
   accepts_nested_attributes_for :post_tags, :allow_destroy => true
   validates_presence_of :title
+  
+  class << self
+    def option(name, default = nil)
+      class_inheritable_accessor(name)
+      read_inheritable_attribute(name) || write_inheritable_attribute(name, default)
+    end
+  end
+  
+  option :summary_length, 128
+  
+  def draft?
+    publish_date.blank?
+  end
 
   def after_initialize
     self.current_revision ||= revisions.last || Revision.new(:number => 1)
   end
-
+  
   def before_save
     self.permalink = nil # to be regenerated
     if valid?
@@ -34,6 +47,15 @@ class Post < ActiveRecord::Base
   def next(include_drafts = false)
     c = include_drafts ? "" : sql_for_no_drafts
     @next ||= Post.find(:first, :conditions => "(id != #{id}) AND publish_date > '#{publish_date}'#{c}", :order => "publish_date ASC")
+  end
+  
+  def summary
+    return nil unless body
+    if body.length > Post.summary_length
+      body[0..Post.summary_length]+"..."
+    else
+      body
+    end
   end
 
   def sql_for_no_drafts

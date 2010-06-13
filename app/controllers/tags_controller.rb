@@ -12,8 +12,7 @@ class TagsController < ApplicationController
   private :choose_layout
 
   def show
-    @posts = @tag.posts
-    @posts = @posts.select { |p| !p.publish_date.blank? } unless permitted_to?(:edit, :posts)
+    @posts = filter_posts @tag.posts
   end
 
   # POST /posts

@@ -23,6 +23,19 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+  def filter_posts(posts)
+    if permitted_to?(:edit, :posts)
+      # Move drafts to front of list so user doesn't lose track of them.
+      drafts = posts.select { |p| p.draft? }
+      posts.reject! { |p| p.draft? }
+      posts = drafts + posts
+    else
+      # Remove drafts if current user isn't allowed to edit them.
+      posts.reject! { |p| p.draft? }
+    end
+    posts
+  end
+
   def permission_denied
     flash[:error] = "Sorry, you are not allowed to view this page"
     redirect_to root_url

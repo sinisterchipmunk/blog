@@ -27,21 +27,27 @@
   </head>
 
   <body>
-    <div id="titlebar">
-      <span id="blog_name_link">
-        <%=link_to blog.name, root_path%>
-        <%if permitted_to? :edit, :blogs%>
-          [<%=link_to_function "edit", "Element.toggle('blog_name_link');Element.toggle('blog_name_form');"%>]
-        <%end%>
-      </span>
-      <%if permitted_to? :edit, :blogs%>
-        <span id="blog_name_form" style='display:none;'>
-          <%form_for blog do |f|%>
-            <%=f.text_field :name%>
-            <%=f.submit%>
+    <div id="titlebar-container">
+      <div class="caption-container">
+        <div class="caption-left"><img src="/images/subtitle-bar-left.png" /></div>
+        <div class="caption-center" id="titlebar">
+          <span id="blog_name_link">
+            <%=link_to blog.name, root_path%>
+            <%if permitted_to? :edit, :blogs%>
+              [<%=link_to_function "edit", "Element.toggle('blog_name_link');Element.toggle('blog_name_form');"%>]
+            <%end%>
+          </span>
+          <%if permitted_to? :edit, :blogs%>
+            <span id="blog_name_form" style='display:none;'>
+              <%form_for blog do |f|%>
+                <%=f.text_field :name%>
+                <%=f.submit%>
+              <%end%>
+            </span>
           <%end%>
-        </span>
-      <%end%>
+        </div>
+        <div class="caption-right"><img src="/images/subtitle-bar-right.png" /></div>
+      </div>
     </div>
     
     <div id="content">
@@ -62,18 +68,27 @@
       <div id="inner-top">
         <div id="post-info">
           <%if content_given?(:subtitle)%>
-            <div id="subtitle">
-                <%=yield :subtitle%>
+            <div id="subtitle-container">
+              <div class="caption-container">
+                <div class="caption-left"><img src="/images/subtitle-bar-left.png" /></div>
+                <div class="caption-center" id="subtitle">
+                  <%=yield :subtitle%>
+                </div>
+                <div class="caption-right"><img src="/images/subtitle-bar-right.png" /></div>
+              </div>
             </div>
           <%end%>
           <%if content_given?(:extra_info)%>
-            <div id="extra-info">
-              <%=yield :extra_info%>
+            <div id="extra-info-container">
+              <div id="extra-info">
+                <%=yield :extra_info%>
+              </div>
             </div>
           <%end%>
         </div>
       </div>
       <div id="inner-content">
+        <%if content_given?(:extra_info)%><div id="spacer">&nbsp;</div><%end%>
         <div id="flash">
           <%-flash.each do |name, msg|-%>
             <%=content_tag :div, msg, :id => "flash_#{name}"%>

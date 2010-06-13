@@ -10,15 +10,10 @@ class CategoriesController < ApplicationController
     %w(show index).include?(params[:action]) ? 'blog' : nil
   end
   private :choose_layout
-  def filter_posts!
-    @posts = @posts.select { |p| !p.publish_date.blank? } unless permitted_to?(:edit, :posts)
-  end
-  private :filter_posts!
 
   def index
     @category = Category.new(:name => 'All Posts')
-    @posts = Post.all(:order => 'publish_date DESC, updated_at DESC')
-    filter_posts!
+    @posts = filter_posts Post.all(:order => 'publish_date DESC, updated_at DESC')
     @new_post_for_category = Post.new
 
     respond_to do |fmt|
@@ -29,8 +24,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @posts = @category.posts.find(:all, :order => 'publish_date DESC, updated_at DESC')
-    filter_posts!
+    @posts = filter_posts @category.posts.find(:all, :order => 'publish_date DESC, updated_at DESC')
     @new_post_for_category = Post.new
     @new_post_for_category.post_categories.build(:category => @category)
 

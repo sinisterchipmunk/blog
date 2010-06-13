@@ -1,45 +1,51 @@
-<%form_for @user do |f|%>
-  <%=f.error_messages%>
-  <p>
+<div style='width:450px;margin-left:auto;margin-right:auto;'>
+  <%form_for @user do |f|%>
+    <%=f.error_messages%>
+  
+    <div style='float:left;'>
       <%=f.label :display_name%><br/>
       <%=f.text_field :display_name%>
-  </p>
-  <p>
+    </div>
+    <div>
       <%=f.label :username%><br/>
       <%=f.text_field :username%>
-  </p>
-  <p>
+    </div>
+    
+    <div style='height:2em;'>&nbsp;</div>
+
+    <div style='float:left;'>
       <%=f.label :email%><br/>
       <%=f.text_field :email%>
-  </p>
-  <%if permitted_to? :edit, :users%>
-    <p>
-      <%for role in Role.all%>
-        <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
-        <%= role.name %>
-      <%end%>
-    </p>
-  <%end%>
-  <%if @user.openid_identifier.blank?%>
-    <p>
-        <%=f.label :password%><br/>
-        <%=f.password_field :password%>
-    </p>
-    <p>
-        <%=f.label :password_confirmation%><br/>
-        <%=f.password_field :password_confirmation%>
-    </p>
-    <p>
-        <%=f.submit%>
-    </p>
+    </div>
+    <div style='height:3em;'>&nbsp;</div>
+    <div style='height:2em;'>&nbsp;</div>
 
-    <h2>Or use OpenID</h2>
-  <%end%>
-  <p>
-      <%=f.label :openid_identifier, "OpenID URL:"%><br/>
-      <%=f.text_field :openid_identifier%>
-  </p>
-  <p>
+    <div style='float:left;'>
+      <%=f.label :password%><br/>
+      <%=f.password_field :password%>
+    </div>
+    <div>
+      <%=f.label :password_confirmation%><br/>
+      <%=f.password_field :password_confirmation%>
+    </div>
+
+    <%if permitted_to? :edit, :users%>
+      <div style='height:2em;'>&nbsp;</div>
+      <div>
+        &nbsp;<br/>
+        <%for role in Role.all%>
+          <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
+          <%= role.name %>
+        <%end%>
+        <br/>
+        &nbsp;
+      </div>
+    <%else%>
+      <div>&nbsp;</div>
+    <%end%>
+
+    <div style='text-align:center;'>
       <%=f.submit%>
-  </p>
-<%end%>
+    </div>
+  <%end%>
+</div>

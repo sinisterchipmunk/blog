@@ -1,3 +1,7 @@
+@import url("/stylesheets/blog/captions/generic-caption.css");
+@import url("/stylesheets/blog/captions/subtitle.css");
+@import url("/stylesheets/blog/captions/titlebar.css");
+
 body {
   background-color: #ccc;
   color: #333;
@@ -7,7 +11,7 @@ body {
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size:   13px;
-  line-height: 18px;
+  /*line-height: 18px;*/
 }
 
 div#post { /* in /posts/_form */
@@ -79,48 +83,74 @@ div#previous-or-next { /* in /posts/show */
   text-align:right;
 }
 
-div#titlebar {
-  background: url(/images/titlebar.png) no-repeat;
-  width:1020px;
-  height:42px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align:center;
-  padding-top: 10px;
-  font-size:32px;
-  color: #bbb !important;
-}
-
-div#titlebar a { color: #bbb !important; }
-div#titlebar a { background-color: transparent; }
 
 div#content {
   margin-left: auto;
   margin-right: auto;
-  width:1020px;
+  /*width:1020px;*/
+  width:10.75in;
 }
 
 div#inner-top {
   background: url(/images/bg-trans-top.png) no-repeat;
+  width: 8.55in;
+  /*
   width:820px;
+  */
   padding: 0;
   margin-left: auto;
   padding-top: 2px;
-  height: 88px;
+  min-height: 88px;
 }
 
 div#inner-content {
   background: url(/images/bg-trans-middle.png) no-repeat;
-  width:820px;
+  width: 8.55in;
+  /*width:820px;*/
   padding: 0;
   margin-left: auto;
-  min-height: 510px;
+  min-height: 5in;
   background-color: #fff;
+}
+
+
+div#post-info {
+  color: #bbb;
+  margin-top: 10px;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align:center;
+  vertical-align:middle;
+  min-height: 70px;
+  position:relative;
+}
+
+div#extra-info-container {
+  /*inner-content width is 8.55in**/
+  position:absolute;
+  left:2.275in;
+  width:4in;
+  /*background-color:#7c7c7c;*/
+}
+
+div#extra-info {
+  overflow:hidden;
+  background: url("/images/extra-info-bar.png") no-repeat;
+  width:4in;
+  /*width: 400px; */
+  height: 35px;
+  vertical-align: middle;
+  font-size:10px;
+  line-height:12px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 div#inner-bottom {
   height: 8px;
-  width:820px;
+  width: 8.55in;
+  /*width:820px;*/
   padding: 0;
   margin-left: auto;
   background: url(/images/bg-trans-bottom.png) no-repeat;
@@ -146,48 +176,22 @@ div#flash_notice, div#flash_message {
   background-color:#040;
 }
 
+/* makes room for #extra-info so that it isn't clashing with #flash or #main */
+div#spacer {
+  height:6px;
+}
+
 div#main {
   padding: 0.05in;
   margin-right:auto;
   margin-left: auto;
-  width: 780px;
+  width: 8in;
+  /*width: 780px;*/
   text-align: justify;
 }
 
 div#main p {
   text-indent: 25px;
-}
-
-div#post-info {
-  color: #bbb;
-  margin-top: 10px;
-  margin-bottom: 0;
-  margin-left: auto;
-  margin-right: auto;
-  text-align:center;
-  vertical-align:middle;
-  width: 596px;
-  height: 70px;
-}
-
-div#subtitle {
-  background: url(/images/subtitle-bar.png) no-repeat;
-  font-size:24px;
-  padding-top:8px;
-  overflow:visible;
-  height:27px;
-}
-
-div#extra-info {
-  overflow:hidden;
-  background: url(/images/extra-info-bar.png) no-repeat;
-  width: 400px;
-  height: 35px;
-  vertical-align: middle;
-  font-size:10px;
-  line-size:10px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 div#user_nav {
@@ -200,14 +204,14 @@ pre {
   font-size: 11px;
 }
 
-a { color: #000; text-decoration:none; }
-a:visited { color: #000; }
-a:hover { color: #fff; background-color:#000; }
+a { color: #003366; text-decoration:none; }
+a:visited { color: #003366; }
+a:hover { color: #fff; background-color:#003366; }
 
 .fieldWithErrors {
   padding: 2px;
   background-color: red;
-  display: table;
+  display: inline;
 }
 
 #errorExplanation {
