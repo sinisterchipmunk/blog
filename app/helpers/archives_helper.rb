@@ -1,4 +1,12 @@
 module ArchivesHelper
+  def archive_years
+    Post.one_per_month.collect { |p| p.publish_date.year }.uniq
+  end
+  
+  def archive_months(year)
+    Post.one_per_month.select { |p| p.publish_date.year == year }.collect { |p| p.publish_date }
+  end
+  
   # Splits Post.one_per_month into a set of arrays -- one array per year. Each year contains a date representing
   # one month out of that year. If there were no posts during a given month, that month is omitted.
   def archives

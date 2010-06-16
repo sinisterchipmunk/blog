@@ -6,11 +6,12 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :blogs
   map.resources :tags
-  map.resources :comments
+  #map.resources :comments
   map.resources :categories
   map.resources :user_sessions
   map.resources :users
-  map.resources :posts
+  map.resources :posts, :has_many => :comments
+  
   map.root :controller => 'posts'
   map.atom_feed '/atom', :controller => 'posts', :action => 'index', :format => 'atom'
   map.rss_feed  '/rss',  :controller => 'posts', :action => 'index', :format => 'rss'

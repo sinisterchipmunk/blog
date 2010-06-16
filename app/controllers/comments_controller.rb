@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   filter_resource_access
+  before_filter :find_post
 
   # GET /comments
   # GET /comments.xml
@@ -38,9 +39,11 @@ class CommentsController < ApplicationController
   # POST /comments.xml
   def create
     respond_to do |format|
+      @comment.author = current_user
+      @comment.post = @post
       if @comment.save
         flash[:notice] = 'Comment was successfully created.'
-        format.html { redirect_to(@comment) }
+        format.html { redirect_to(@post) }
         format.xml  { render :xml => @comment, :status => :created, :location => @comment }
       else
         format.html { render :action => "new" }
@@ -53,9 +56,14 @@ class CommentsController < ApplicationController
   # PUT /comments/1.xml
   def update
     respond_to do |format|
-      if @comment.update_attributes(params[:comment])
+      if @comment.author != current_user || @comment.post != @post
+        message = "Something about this comment's meta data doesn't add up, so I've prevented you from editing it. I'm looking into this. Sorry!"
+        flash[:error] = message
+        format.html { redirect_to(@post) }
+        format.xml { render :xml => message, :status => :unprocessable_entity }
+      elsif @comment.update_attributes(params[:comment])
         flash[:notice] = 'Comment was successfully updated.'
-        format.html { redirect_to(@comment) }
+        format.html { redirect_to(@post) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -70,8 +78,13 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to(comments_url) }
+      format.html { redirect_to(@post) }
       format.xml  { head :ok }
     end
+  end
+  
+  private
+  def find_post
+    @post = Post.find_by_permalink(params[:post_id])
   end
 end

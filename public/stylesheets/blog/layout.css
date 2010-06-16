@@ -1,6 +1,11 @@
 @import url("/stylesheets/blog/captions/generic-caption.css");
 @import url("/stylesheets/blog/captions/subtitle.css");
 @import url("/stylesheets/blog/captions/titlebar.css");
+@import url("/stylesheets/blog/captions/extra-info.css");
+
+textarea.comment {
+  width:7.9in;
+}
 
 body {
   background-color: #ccc;
@@ -91,7 +96,7 @@ div#content {
   width:10.75in;
 }
 
-div#inner-top {
+div#inner-top-background {
   background: url(/images/bg-trans-top.png) no-repeat;
   width: 8.55in;
   /*
@@ -100,7 +105,20 @@ div#inner-top {
   padding: 0;
   margin-left: auto;
   padding-top: 2px;
-  min-height: 88px;
+/*  height: 90px !important; */
+}
+
+div#inner-top {
+  background: url(/images/bg-top-offset.png) repeat-x;
+  background-position:0px 88px;
+  width: 8.55in;
+  /*
+  width:820px;
+  */
+  padding: 0;
+  margin-left: auto;
+  padding-top: 2px;
+/*  height: 90px !important; */
 }
 
 div#inner-content {
@@ -126,27 +144,6 @@ div#post-info {
   position:relative;
 }
 
-div#extra-info-container {
-  /*inner-content width is 8.55in**/
-  position:absolute;
-  left:2.275in;
-  width:4in;
-  /*background-color:#7c7c7c;*/
-}
-
-div#extra-info {
-  overflow:hidden;
-  background: url("/images/extra-info-bar.png") no-repeat;
-  width:4in;
-  /*width: 400px; */
-  height: 35px;
-  vertical-align: middle;
-  font-size:10px;
-  line-height:12px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 div#inner-bottom {
   height: 8px;
   width: 8.55in;
@@ -157,6 +154,7 @@ div#inner-bottom {
 }
 
 div#flash {
+  
   font-size:10px;
   text-align:center;
 }

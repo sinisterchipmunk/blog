@@ -24,3 +24,71 @@
     <%=link_to "Next Post", post_path(nxt)%>
   <%end%>
 </div>
+
+<%content_for :post_comments do%>
+  <div>
+    <%=@post.comments.length%> comments
+  </div>
+  
+  <%@post.comments.each do |comment|%>
+    <div style='border-top:1px solid #000;margin-top:2em;padding-top:1em;clear:right;'>
+      <div>
+        <div id="comment_<%=comment.id%>_div">
+          <div style='float:right;margin-left:0.25in;margin-bottom:0.1in;text-align:center;'>
+            <%=image_tag gravatar_image_path(comment.author.email), :width => 80, :height => 80%><br/>
+            <span style='font-size:8px;'><%=comment.author.name%></span>
+            <%if current_user == comment.author%>
+              <br/>
+              [<%=link_to_function "edit comment" do |page|
+                  page.visual_effect("toggle_slide", "comment_#{comment.id}_div")      
+                  page.visual_effect("toggle_slide", "edit_comment_#{comment.id}_div")      
+                end%>]
+            <%end%>
+          </div>
+          <%=comment.body%>
+        </div>
+        <div id="edit_comment_<%=comment.id%>_div" style='display:none;'>
+          <%form_for comment, :url => post_comment_path(@post, comment) do |f|%>
+            <p>
+              <%=f.label :body, "Edit Message"%><br/>
+              <%=f.text_area :body, :class => 'comment'%>
+            </p>
+            <div style='height:34px;vertical-align:middle;text-align:right;'>
+              <div style='float:right;'>
+                <%=f.submit "Update Comment"%>
+                <%=link_to_function "Cancel" do |page|
+                  page.visual_effect("toggle_slide", "comment_#{comment.id}_div")      
+                  page.visual_effect("toggle_slide", "edit_comment_#{comment.id}_div")      
+                end%>
+              </div>
+              <%=image_tag gravatar_image_path, :width => 32, :height => 32, :border => 0%>
+            </div>
+          <%end%>
+        </div>
+      </div>
+    </div>
+  <%end%>
+<%end%>
+
+<%content_for :post_comments_form do%>
+  <%if current_user%>
+    <%form_for @post.comments.build, :url => post_comments_path(@post) do |f|%>
+      <div style='clear:right;'>
+        <p>
+          <%=f.label :body, "Leave a Message"%><br/>
+          <%=f.text_area :body, :class => 'comment'%>
+        </p>
+        <div style='height:34px;vertical-align:middle;text-align:right;'>
+          <div style='float:right;'>
+            <%=f.submit "Post Comment"%>
+          </div>
+          <%=image_tag gravatar_image_path, :width => 32, :height => 32, :border => 0%>
+        </div>
+      </div>
+    <%end%>
+  <%else%>
+    Please <%=link_to "log in", login_path%> if you wish to leave a comment.
+  <%end%>
+  
+  <div style='clear:both;'>&nbsp;</div>
+<%end%>

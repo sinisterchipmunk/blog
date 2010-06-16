@@ -2,13 +2,18 @@
   <%=link_to "Archive", archive_path%>
 </div>
 
-<%archives.each do |archive| -%>
-  <div class="archive">
-    <ul>
-      <%archive.each do |date| -%>
-        <li><%=link_to date.strftime("%B %Y"), :controller => 'archives', :action => 'month_and_year',
-                   :month => date.month.to_s.rjust(2, "0"), :year => date.year%></li>
-      <%end -%>
-    </ul>
-  </div>
-<%end -%>
+<ul style='margin-bottom:0;'>
+  <%archive_years.each do |year|%>
+    <li><%=link_to_function(year.to_s) { |p| p.visual_effect("toggle_slide", "archive_year_#{year}", :duration => 0.35) }%>
+      <ul id="archive_year_<%=year%>">
+        <%archive_months(year).each do |post|%>
+          <li>
+            <%=link_to post.strftime("%B"), :controller => 'archives', :action => 'month_and_year',
+                       :month => post.month.to_s.rjust(2, "0"), :year => post.year%>
+          </li>
+        <%end%>
+      </ul>
+    </li>
+    <%=javascript_tag("$('archive_year_#{year}').style.display = 'none';")%>
+  <%end%>
+</ul>

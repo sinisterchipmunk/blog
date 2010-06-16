@@ -11,7 +11,7 @@
     <%=stylesheet_link_tag 'blog/sidebars'%>
     <%=stylesheet_link_tag 'blog/syntax_highlighting'%>
     <%=stylesheet_link_tag 'boastful'%>
-    <%=tiny_mce%>
+    <%=tiny_mce :editor_selector => "tiny_mce"%>
     <%=javascript_include_tag :defaults%>
     <%=javascript_include_tag 'jquery.min.js'%>
     <%=javascript_include_tag 'jquery.boastful.js'%>
@@ -65,35 +65,39 @@
         <%end%>
       </div>
 
-      <div id="inner-top">
-        <div id="post-info">
-          <%if content_given?(:subtitle)%>
-            <div id="subtitle-container">
-              <div class="caption-container">
-                <div class="caption-left"><img src="/images/subtitle-bar-left.png" /></div>
-                <div class="caption-center" id="subtitle">
-                  <%=yield :subtitle%>
+      <div id="inner-top-background">
+        <div id="inner-top">
+          <div id="post-info">
+            <%if content_given?(:subtitle)%>
+              <div id="subtitle-container">
+                <div class="caption-container">
+                  <div class="caption-left"><img src="/images/subtitle-bar-left.png" /></div>
+                  <div class="caption-center" id="subtitle">
+                    <%=yield :subtitle%>
+                  </div>
+                  <div class="caption-right"><img src="/images/subtitle-bar-right.png" /></div>
                 </div>
-                <div class="caption-right"><img src="/images/subtitle-bar-right.png" /></div>
               </div>
-            </div>
-          <%end%>
-          <%if content_given?(:extra_info)%>
-            <div id="extra-info-container">
-              <div id="extra-info">
-                <%=yield :extra_info%>
+            <%end%>
+            <%if content_given?(:extra_info)%>
+              <div id="extra-info-container">
+                <div id="extra-info">
+                  <%=yield :extra_info%>
+                </div>
               </div>
-            </div>
-          <%end%>
+            <%end%>
+          </div>
         </div>
       </div>
       <div id="inner-content">
         <%if content_given?(:extra_info)%><div id="spacer">&nbsp;</div><%end%>
+
         <div id="flash">
           <%-flash.each do |name, msg|-%>
             <%=content_tag :div, msg, :id => "flash_#{name}"%>
           <%-end-%>
         </div>
+
         <div id="main">
           <%=yield%>
 
@@ -103,6 +107,14 @@
               <div id="boastful"></div>
             </div>
           <%end%>
+          
+          <div id="post-comments">
+            <%=yield :post_comments%>
+          </div>
+          
+          <div id="post-comments-form">
+            <%=yield :post_comments_form%>
+          </div>
         </div>
       </div>
       <div id="inner-bottom"></div>
