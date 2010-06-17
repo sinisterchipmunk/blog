@@ -8,15 +8,26 @@ module PostsHelper
   end
 
   # sets up any syntax highlighting and returns the result
-  def post_body(post, options = { :line_numbers => :table, :css => :class })
+  def post_body(post, options = { :line_numbers => :table, :css => :class, :brief => false })
     p = post.body.to_s
     # do some stuff with <br>'s when they should just be newlines
     rx = /(<pre>.*?)<br\s*\/>(.*?<\/pre>)/m
     p.gsub!(rx, "\\1\n\\2") while p =~ rx
-    post.body.to_s.gsub(/<pre>\s*\[([^\s\[]+)\]\s*(.*?)\s*\[\/\1\]\s*<\/pre>/m) do |match|
+    body = post.body.to_s.gsub(/<pre>\s*\[([^\s\[]+)\]\s*(.*?)\s*\[\/\1\]\s*<\/pre>/m) do |match|
       lang = $~[1]
       code = CGI::unescapeHTML($~[2]).gsub(/\&nbsp;/m, ' ').gsub(/<br[\s\t\n]*\/[\s\t\n]*>/m, "\n").strip
       CodeRay.scan(code, lang).div(options)
+    end
+    options[:brief] ? brief_post_body(post, body) : body
+  end
+  
+  # You can use the body argument to override the post's body. Useful if you've applied syntax highlighting, etc.
+  def brief_post_body(post, body = post.body)
+    if body =~ /\A.*?<\/p>\s*<p>.*?(<\/p>\s*<p>)/m
+      offset = $~.offset(1)
+      body[0...offset[0]] + ".. " + link_to("(Read More...)", post_path(post)) + "</p>"
+    else
+      body
     end
   end
 

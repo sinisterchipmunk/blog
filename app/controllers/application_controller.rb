@@ -2,6 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+  before_filter :no_tweetbacks! # something's flaky with them, disabled until they're working properly again.
   before_filter { |c| Authorization.current_user = c.current_user }
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details

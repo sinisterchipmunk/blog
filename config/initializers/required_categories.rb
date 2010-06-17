@@ -13,5 +13,5 @@ begin
   else
     drafts.update_attribute(:hidden, true)
   end
-rescue NoMethodError
+rescue NoMethodError, ActiveRecord::StatementInvalid
 end

@@ -9,8 +9,8 @@ div#extra-info-container {
 div#extra-info {
   overflow:hidden;
   background: url("/images/extra-info-bar.png") no-repeat;
-  width:4in;
-  /*width: 400px; */
+  /*width:4in;*/
+  width: 400px;
   height: 35px;
   vertical-align: middle;
   font-size:10px;

@@ -93,15 +93,15 @@
         <%if content_given?(:extra_info)%><div id="spacer">&nbsp;</div><%end%>
 
         <div id="flash">
-          <%-flash.each do |name, msg|-%>
+          <%flash.each do |name, msg|%>
             <%=content_tag :div, msg, :id => "flash_#{name}"%>
-          <%-end-%>
+          <%end%>
         </div>
 
         <div id="main">
           <%=yield%>
 
-          <%if !defined?(@tweetbacks) || @tweetbacks%>
+          <%if tweetbacks?%>
             <div id="boastful-container">
               <h3>Tweets about this page:</h3>
               <div id="boastful"></div>

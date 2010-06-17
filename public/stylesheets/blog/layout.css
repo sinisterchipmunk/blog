@@ -153,6 +153,10 @@ div#inner-bottom {
   background: url(/images/bg-trans-bottom.png) no-repeat;
 }
 
+.image-link {
+  background-color:transparent !important;
+}
+
 div#flash {
   
   font-size:10px;

@@ -14,6 +14,10 @@ module ApplicationHelper
     @blog
   end
   
+  def tweetbacks?
+    !defined?(@tweetbacks) || @tweetbacks
+  end
+  
   def content_given?(symbol)
     content_var_name="@content_for_" +
       if symbol.kind_of? Symbol then symbol.to_s

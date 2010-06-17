@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :roles, :through => :user_roles
   has_many :comments, :foreign_key => 'author_id'
   has_many :blogs, :dependent => :destroy, :foreign_key => :owner_id
-
+  
   validates_presence_of :display_name
 
   acts_as_authentic do |config|

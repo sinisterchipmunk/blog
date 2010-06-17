@@ -1,10 +1,10 @@
 <%content_for :subtitle do%>
-  Showing Posts
+  Recent Posts
   <%if permitted_to? :create, :posts%>
     [<%= link_to 'Create', new_post_path %>]
   <%end%>
 <%end%>
 
 <% @posts.each do |post| %>
-  <%=render :partial => 'post', :locals => { :post => post }%>
+  <%=render :partial => 'post', :locals => { :post => post, :brief => @posts.first != post }%>
 <% end %>

@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def edit
     @user = current_user
   end
-
+  
   def create
     @user = User.new(params[:user])
     @user.save do |result|

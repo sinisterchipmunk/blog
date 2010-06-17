@@ -6,8 +6,8 @@
 <%if permitted_to? :destroy, :posts%>
   [<%=link_to "Delete", post_path(post), :method => :delete, :confirm => 'Are you sure you wish to permanently remove this post?'%>]
 <%end%>
-<br/>
-Last updated <%=h post.updated_at%>
+<!--<br/>
+Last updated <%=h post.updated_at%>-->
 <%if permitted_to? :edit, :posts %>
   [<%=link_to "Edit", edit_post_path(post)%>]
 <%end%>

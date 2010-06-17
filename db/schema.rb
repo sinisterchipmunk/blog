@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100612184233) do
+ActiveRecord::Schema.define(:version => 20100617172557) do
 
   create_table "blogs", :force => true do |t|
     t.string   "name"
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(:version => 20100612184233) do
     t.string   "openid_identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "twitter_name"
   end
 
 end
