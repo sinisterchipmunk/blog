@@ -26,4 +26,9 @@ module ApplicationHelper
       end
     !instance_variable_get(content_var_name).nil?
   end
+  
+  def plural_or_singular(count, word)
+    word = count != 1 ? word.pluralize : word.singularize
+    "#{count} #{word}"
+  end
 end

@@ -20,6 +20,7 @@ describe ArchivesHelper do
   end
   
   it "should retrieve months of archives for a particular year" do
-    helper.archive_months(2001).should == %w(December November October September August July June May April March February January)
+    helper.archive_months(2001).collect { |m| m.strftime("%B") } \
+      .should == %w(December November October September August July June May April March February January)
   end
 end

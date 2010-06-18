@@ -27,7 +27,7 @@
 
 <%content_for :post_comments do%>
   <div>
-    <%=@post.comments.length%> comments
+    <%=plural_or_singular(@post.comments.length, "comment")%>
   </div>
   
   <%@post.comments.each do |comment|%>

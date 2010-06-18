@@ -6,10 +6,9 @@ authorization do
 
   role :guest do
     has_permission_on [:posts, :categories, :tags, :comments], :to => [:index, :show]
-    #has_permission_on :comments, :to => [:new, :create]
-    has_permission_on :comments, :to => [:edit, :update, :new, :create] do
-      if_attribute :user => is { user }
-    end
+    # We already validate that the user is logged in. I don't really care who leaves a message, as long
+    # as they have an account.
+    has_permission_on :comments, :to => [:edit, :update, :new, :create]
   end
 
   role :moderator do
@@ -21,7 +20,7 @@ authorization do
     includes :guest
     has_permission_on [:posts, :categories, :tags], :to => [:new, :create]
     has_permission_on [:posts, :categories, :tags], :to => [:edit, :update] do
-      if_attribute :user => is { user }
+      if_attribute :user => is { current_user }
     end
   end
 end

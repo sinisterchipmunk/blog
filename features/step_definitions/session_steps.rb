@@ -1,12 +1,15 @@
 Given /^I am not logged in$/ do
-
+  delete user_session_path
+  follow_redirect! if response.redirect?
 end
 
 Given /^I have an account$/ do
-  u = User.new(:email => "generic@example.com",
-               :display_name => "Generic Example", :username => "generic", :twitter_name => "generic")
-  u.password = u.password_confirmation = "Password01"
-  u.save!
+  User.find_by_email("generic@example.com") || begin
+    u = User.new(:email => "generic@example.com",
+                 :display_name => "Generic Example", :username => "generic", :twitter_name => "generic")
+    u.password = u.password_confirmation = "Password01"
+    u.save!
+  end
 end
 
 Given /^I have an admin account$/ do
@@ -22,12 +25,4 @@ When /^I enter my credentials$/ do
     fill_in "password", :with => "Password01"
   end
   click_button "Sign In"
-end
-
-Given /^I am logged in as an admin$/ do
-  Given 'I have an admin account'
-  Given 'I am on the homepage'
-  When 'I follow "Log In"'
-  When 'I enter my credentials'
-  Then 'I should see "Signed in successfully."'
 end
