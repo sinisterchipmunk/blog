@@ -1,0 +1,19 @@
+1. Add the 'sparkly-auth' gem as a Rails dependency. Do NOT remove the Authlogic dependency, because you'll need it
+   in order to maintain your existing passwords.
+   
+2. Generate the Sparkly files. At a minimum, you need to generate sparkly config and sparkly migrations. Controllers
+   are optional (but I generated them).
+
+3. Edit config/initializers/sparkly_authentication.rb and set config.encryptor to whatever Authlogic encryptor you are
+   using. Or, if you're using some other encryptor, anything compatible with Authlogic (that is, anything implementing
+   both #encrypt(*tokens) and #matches?(crypted, *tokens)), you can use that. By default, Sha512 is used by both
+   Authlogic and Sparkly Authentication -- so if you've never changed it, you can skip this step.
+    Ex:
+      config.encryptor = Authlogic::CryptoProviders::Sha512
+      
+4. Run the rake task auth:migrate:authlogic, which will migrate the Authlogic database information into the data that
+   Sparkly Auth can make use of.
+
+5. Unless you're using one of the Authlogic crypto providers, you can go ahead and remove the Authlogic gem
+   dependencies.
+   

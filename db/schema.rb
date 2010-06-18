@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100617172557) do
+ActiveRecord::Schema.define(:version => 20100617221114) do
 
   create_table "blogs", :force => true do |t|
     t.string   "name"
@@ -47,6 +47,18 @@ ActiveRecord::Schema.define(:version => 20100617172557) do
     t.integer "timestamp",  :null => false
     t.string  "server_url"
     t.string  "salt",       :null => false
+  end
+
+  create_table "passwords", :force => true do |t|
+    t.string   "secret"
+    t.string   "salt"
+    t.string   "persistence_token"
+    t.string   "single_access_token"
+    t.string   "perishable_token"
+    t.integer  "authenticatable_id"
+    t.string   "authenticatable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "post_categories", :force => true do |t|

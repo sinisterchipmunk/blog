@@ -1,3 +1,6 @@
+## WHY?! Without this I get "...removed from module tree but is still active!"
+require_dependency "tag"
+
 module TagsHelper
   def tag_bubble(max_font_size = "0.5in", min_font_size = 0.1)
     unit = "in"

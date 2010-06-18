@@ -1,5 +1,5 @@
 <div style='width:450px;margin-left:auto;margin-right:auto;'>
-  <%form_for @user do |f|%>
+  <%form_for model, :url => user_path do |f|%>
     <%=f.error_messages%>
   
     <div style='float:left;'>
@@ -27,11 +27,11 @@
 
     <div style='float:left;'>
       <%=f.label :password%><br/>
-      <%=f.password_field :password%>
+      <%=f.password_field :password, :value => ''%>
     </div>
     <div>
       <%=f.label :password_confirmation%><br/>
-      <%=f.password_field :password_confirmation%>
+      <%=f.password_field :password_confirmation, :value => ''%>
     </div>
 
     <%if permitted_to? :edit, :users%>
@@ -39,7 +39,7 @@
       <div>
         &nbsp;<br/>
         <%for role in Role.all%>
-          <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
+          <%= check_box_tag "user[role_ids][]", role.id, model.roles.include?(role) %>
           <%= role.name %>
         <%end%>
         <br/>

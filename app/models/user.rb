@@ -7,9 +7,9 @@ class User < ActiveRecord::Base
   
   validates_presence_of :display_name
 
-  acts_as_authentic do |config|
-    config.openid_required_fields = [:nickname, :email]
-  end
+  #acts_as_authentic do |config|
+  #  config.openid_required_fields = [:nickname, :email]
+  #end
 
   def role_symbols
     roles.map do |role|

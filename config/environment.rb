@@ -14,13 +14,14 @@ Rails::Initializer.run do |config|
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
 
-  config.gem 'authlogic'
-  config.gem 'authlogic-oid', :lib => 'authlogic_openid'
+#  config.gem 'authlogic'
+#  config.gem 'authlogic-oid', :lib => 'authlogic_openid'
+  config.gem 'sparkly-auth', :version => '0.1.0'
   config.gem 'declarative_authorization'
-  config.gem "ruby-openid", :lib => "openid"
+  #config.gem "ruby-openid", :lib => "openid"
   config.gem "calendar_date_select"
   config.gem "coderay"
-  config.gem 'rack-openid', :lib => 'rack/openid'
+  #config.gem 'rack-openid', :lib => 'rack/openid'
   config.gem "gravatar-ultimate", :version => "1.0.1"
   # Specify gems that this application depends on and have them installed with rake gems:install
   # config.gem "bj"

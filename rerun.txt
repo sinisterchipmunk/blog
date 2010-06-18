@@ -1,1 +1,1 @@
-/Users/colin/projects/rails/blog/features/log_in.feature:3:10
+features/create_post.feature:6

@@ -1,15 +1,15 @@
 ActionController::Routing::Routes.draw do |map|
   map.archive "archive", :controller => 'archives'
   map.connect 'archive/:year/:month', :controller => "archives", :action => 'month_and_year'
-  map.login  "login",  :controller => 'user_sessions', :action => 'new'
-  map.logout "logout", :controller => 'user_sessions', :action => 'destroy'
+  map.login  "login",  :controller => 'sparkly_sessions', :action => 'new'
+  map.logout "logout", :controller => 'sparkly_sessions', :action => 'destroy'
 
   map.resources :blogs
   map.resources :tags
   #map.resources :comments
   map.resources :categories
-  map.resources :user_sessions
-  map.resources :users
+  #map.resources :user_sessions
+  #map.resources :users
   map.resources :posts, :has_many => :comments
   
   map.root :controller => 'posts'

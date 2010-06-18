@@ -9,13 +9,12 @@ admin = Role.create!(:name => 'admin')
 moderator = Role.create!(:name => 'moderator')
 author = Role.create!(:name => 'author')
 
-(user = User.new(:display_name => 'Your Name',
+user = User.new(:display_name => 'Your Name',
          :email => 'your@email.net',
          :username => 'admin',
-         :password => 'adminpw',
-         :password_confirmation => 'adminpw',
          :openid_identifier => nil
-        )).save!
+        )
+user.password = user.password_confirmation = 'Admin01'
 user.roles << admin << moderator << author
 user.save!
 
