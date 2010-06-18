@@ -112,6 +112,7 @@ div#inner-top {
   background: url(/images/bg-top-offset.png) repeat-x;
   background-position:0px 88px;
   width: 8.55in;
+  min-height:90px !important;
   /*
   width:820px;
   */
