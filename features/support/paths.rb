@@ -18,6 +18,8 @@ module NavigationHelpers
       post_path(Post.first)  
     when /the login page/, /the sign\s?in page/, /the new user session page/
       new_user_session_path
+    when /the post comments page/
+      post_comments_path(Post.first)  
     
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

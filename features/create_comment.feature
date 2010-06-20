@@ -15,3 +15,10 @@ Feature: Create comment
       And I should see "1 comment"
       And I should not see "1 comments"
     
+  Scenario: Invalid comment (no body)
+    Given I have published a post
+      And I am logged in as a user
+      And I am on the published post page
+    When I press "Post Comment"
+    Then I should be on the post comments page
+      And I should see "Body can't be blank"

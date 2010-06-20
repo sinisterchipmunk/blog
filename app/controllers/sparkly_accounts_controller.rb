@@ -8,6 +8,7 @@ class SparklyAccountsController < SparklyController
   # POST model_url
   def create
     if model.save
+      login! model
       redirect_back_or_default Auth.default_destination, Auth.account_created_message
     else
       render :action => 'new'
@@ -29,7 +30,9 @@ class SparklyAccountsController < SparklyController
       model.password_confirmation = model_params[:password_confirmation]
     end
     
+    model.attributes = model_params.without(:password, :password_confirmation)
     if model.save
+      login!(model)
       redirect_back_or_default user_path, Auth.account_updated_message
     else
       render :action => 'edit'

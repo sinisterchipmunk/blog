@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   filter_resource_access
+  layout 'blog'
   before_filter :find_post
 
   # GET /comments
