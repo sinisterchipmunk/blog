@@ -1,3 +1,4 @@
 #BotAway.show_honeypots = true
 #BotAway.dump_params = true
-ActionController::Request.accepts_unfiltered_params "role_ids", "category_ids", "tag_ids", "name"
+BotAway.accepts_unfiltered_params "role_ids", "category[name]", "category_ids"
+BotAway.accepts_unfiltered_params "tag_ids",  "tag[name]",      "publish_date"
