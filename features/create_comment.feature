@@ -14,6 +14,7 @@ Feature: Create comment
       And I should see "This is a comment"
       And I should see "1 comment"
       And I should not see "1 comments"
+      And the blog owner should receive an email
     
   Scenario: Invalid comment (no body)
     Given I have published a post

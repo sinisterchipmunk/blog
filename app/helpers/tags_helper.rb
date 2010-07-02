@@ -8,8 +8,8 @@ module TagsHelper
       unit = $~[2]
       max_font_size = $~[1]
     end
-    tags = Tag.find(:all, :order => 'name ASC')
-    tags.collect { |t| tag_bubble_item(tags, t, max_font_size, min_font_size, unit) }.join(" ")
+    @tags ||= Tag.find(:all, :order => 'name ASC')
+    @tags.collect { |t| tag_bubble_item(@tags, t, max_font_size, min_font_size, unit) }.join(" ")
   end
 
   def tag_bubble_item(all, which, max_font_size = '0.5', min_font_size = 0.1, font_unit = 'in')

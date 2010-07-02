@@ -12,15 +12,7 @@ class CategoriesController < ApplicationController
   private :choose_layout
 
   def index
-    @category = Category.new(:name => 'All Posts')
-    @posts = filter_posts Post.all(:order => 'publish_date DESC, updated_at DESC')
-    @new_post_for_category = Post.new
-
-    respond_to do |fmt|
-      fmt.html { render :action => :show }
-      fmt.yaml { render :text   => @posts.to_yaml }
-      fmt.xml  { render :xml    => @posts }
-    end
+    redirect_to root_path
   end
 
   def show

@@ -83,7 +83,7 @@ Auth.configure do |config|
     # The NAME of the controller to be extended by SparklyController. Also, this is the
     # controller that will be imbued with helpers such as #current_user.
   
-  config.session_duration = 30.minutes
+  config.session_duration = nil
     # How long can the user be inactive before being signed out automatically? Set to nil
     # for "forever".
   

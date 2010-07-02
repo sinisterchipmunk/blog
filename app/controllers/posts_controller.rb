@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   filter_resource_access :load_method => :load_post
 
   def load_post
-    @post = (Post.find_by_permalink(params[:id]) rescue Post.find(params[:id]))
+    options = { :include => { :comments => :author }}
+    @post = (Post.find_by_permalink(params[:id], options) rescue Post.find(params[:id], options))
   end
 
   # GET /posts

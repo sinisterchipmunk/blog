@@ -1,6 +1,6 @@
 module PostsHelper
   def recent_posts
-    Post.find(:all, :limit => 10, :conditions => "NOT (publish_date IS NULL)", :order => 'publish_date DESC')
+    @recent_posts ||= Post.find(:all, :limit => 10, :conditions => "NOT (publish_date IS NULL)", :order => 'publish_date DESC')
   end
 
   def publish_date(post)

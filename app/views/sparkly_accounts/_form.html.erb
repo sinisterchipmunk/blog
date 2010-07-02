@@ -4,22 +4,22 @@
   
     <div style='float:left;'>
       <%=f.label :display_name%><br/>
-      <%=f.text_field :display_name%>
+      <%=f.text_field :display_name, :size => 20%>
     </div>
     <div>
       <%=f.label :username%><br/>
-      <%=f.text_field :username%>
+      <%=f.text_field :username, :size => 20%>
     </div>
     
     <div style='height:2em;'>&nbsp;</div>
 
     <div style='float:left;'>
       <%=f.label :email%><br/>
-      <%=f.text_field :email%>
+      <%=f.text_field :email, :size => 20%>
     </div>
     <div>
       <%=f.label :twitter_name%><br/>
-      <%=f.text_field :twitter_name%>
+      <%=f.text_field :twitter_name, :size => 20%>
     </div>
     
     <div style='height:3em;'>&nbsp;</div>
@@ -27,11 +27,11 @@
 
     <div style='float:left;'>
       <%=f.label :password%><br/>
-      <%=f.password_field :password, :value => ''%>
+      <%=f.password_field :password, :value => '', :size => 20%>
     </div>
     <div>
       <%=f.label :password_confirmation%><br/>
-      <%=f.password_field :password_confirmation, :value => ''%>
+      <%=f.password_field :password_confirmation, :value => '', :size => 20%>
     </div>
 
     <%if permitted_to? :edit, :users%>

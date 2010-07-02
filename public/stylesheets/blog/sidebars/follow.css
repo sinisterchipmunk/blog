@@ -1,0 +1,15 @@
+#follow {
+  padding-left: 3px;
+}
+
+#follow ul {
+  margin-bottom: 0;
+  padding-bottom: 5px;
+}
+
+div#follow-header {
+  font-size: 16pt;
+  text-align:center;
+  color:#93b4ff;
+  padding-bottom:10px;
+}

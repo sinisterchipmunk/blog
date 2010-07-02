@@ -9,13 +9,4 @@
       src="http://www.w3.org/Icons/valid-xhtml10"
       alt="Valid XHTML 1.0 Transitional" />
   </a>
-
-  <br/>
-  
-  <%=link_to image_tag("/images/atom.png", :border => 0, :alt => "ATOM Newsfeed"), atom_feed_path, :class => 'image-link'%>
-  <%=link_to image_tag("/images/rss.png", :border => 0, :alt => "RSS Newsfeed"), rss_feed_path, :class => 'image-link'%>
-  <%if !blog.owner.twitter_name.blank?%>
-    <%=link_to image_tag("/images/twitter.png", :border => 0, :alt => "@#{blog.owner.twitter_name}"),
-               "http://twitter.com/#{blog.owner.twitter_name}", :class => 'image-link', :target => "_blank"%>
-  <%end%>
 </div>

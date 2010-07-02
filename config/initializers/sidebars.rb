@@ -2,6 +2,7 @@
 # in /app/views/sidebars/_#{sidebar_name}.html.erb
 SIDEBARS = %w(
   user_nav
+  follow
   categories
   recent
   tags
