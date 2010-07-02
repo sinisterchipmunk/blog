@@ -25,6 +25,10 @@ class Post < ActiveRecord::Base
   
   option :summary_length, 128
   
+  def pingbacks_should_be_processed?
+    !draft? && !pingbacks_already_processed?
+  end
+  
   def draft?
     publish_date.blank?
   end

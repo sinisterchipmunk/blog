@@ -100,6 +100,7 @@ class PostsController < ApplicationController
     check_for_draft
     respond_to do |format|
       if @post.update_attributes(params[:post])
+        handle_pingbacks
         flash[:notice] = 'Post was successfully updated.'
         format.html { redirect_to(@post) }
         format.xml  { head :ok }
@@ -135,6 +136,7 @@ class PostsController < ApplicationController
 #  
   def handle_pingbacks
     # check for pingbacks
+    return unless @post.pingbacks_should_be_processed?
     parser = Hpricot(@post.body)
     link_tags = parser / :a
     link_tags.each do |link|
