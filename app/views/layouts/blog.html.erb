@@ -7,6 +7,7 @@
     <title><%=blog.name%> - <%=(yield :subtitle) || "Welcome"%></title>
     <link rel="alternate" type="application/atom+xml" title="<%=blog.name%> - ATOM" href="<%=atom_feed_url%>">
     <link rel="alternate" type="application/rss+xml" title="<%=blog.name%> - RSS" href="<%=rss_feed_url%>" />
+    <%=defined?(pingback_link_tag) ? pingback_link_tag : ''%>
     <%=stylesheet_link_tag 'blog/layout'%>
     <%=stylesheet_link_tag 'blog/sidebars'%>
     <%=stylesheet_link_tag 'blog/syntax_highlighting'%>

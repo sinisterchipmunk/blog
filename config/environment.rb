@@ -27,6 +27,7 @@ Rails::Initializer.run do |config|
   #config.gem 'rack-openid', :lib => 'rack/openid'
   config.gem "gravatar-ultimate", :version => "1.0.1"
   config.gem "bot-away"
+  config.gem 'xmlparser'
   # Specify gems that this application depends on and have them installed with rake gems:install
   # config.gem "bj"
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
@@ -42,7 +43,7 @@ Rails::Initializer.run do |config|
   # config.frameworks -= [ :active_record, :active_resource, :action_mailer ]
 
   # Activate observers that should always be running
-  config.active_record.observers = :comment_observer
+  config.active_record.observers = :comment_observer, :post_observer, :ping_observer
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.

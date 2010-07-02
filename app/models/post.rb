@@ -8,6 +8,7 @@ class Post < ActiveRecord::Base
   has_many :tags, :through => :post_tags
   has_many :revisions, :dependent => :destroy
   has_many :comments, :dependent => :destroy, :order => "created_at DESC"
+  has_many :pingbacks, :class_name => "Ping"
   has_one :current_revision, :class_name => 'Revision'
   delegate :body, :to => :current_revision
   accepts_nested_attributes_for :current_revision

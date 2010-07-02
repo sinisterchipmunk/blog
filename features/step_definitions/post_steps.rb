@@ -4,7 +4,7 @@ end
 
 When /^I enter post information$/ do
   fill_in "Title", :with => "Post Title"
-  fill_in "Body", :with => "Post Body"
+  fill_in "Body", :with => "Post Body. And here's a link: <a href='http://www.example.com/bogus.html' />"
   click_button "post_submit"
 end
 

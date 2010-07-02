@@ -1,9 +1,12 @@
-<%=@comment.post.author.name%>,
-
-A comment has been left regarding your blog article:
-
-<%=link_to @comment.post.title, post_url(@comment.post)%>
-
-Sincerely,
-Thoughts in Computation Blogging Engine
-(automatic)
+<p><%=@comment.post.author.name%>,</p>
+<p>
+  A comment has been left regarding your blog article:
+</p>
+<p>
+  <%=link_to @comment.post.title, post_url(@comment.post)%>
+</p>
+<p>
+  Sincerely,<br/>
+  Thoughts in Computation Blogging Engine<br/>
+  (automatic)
+</p>

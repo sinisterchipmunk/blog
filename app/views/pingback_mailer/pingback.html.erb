@@ -1,0 +1,26 @@
+<p><%=@pingback.post.author.name%>,</p>
+<p>
+  A pingback has been received on your blog article:
+</p>
+<p>
+  <strong>Title:</strong> <%=h @pingback.title%><br/>
+  <strong>URL:</strong> <%=link_to @pingback.url, @pingback.url%><br/>
+  <strong>Content:</strong><br/>
+  <%=h @pingback.content%>
+</p>
+<p>
+  Article: <%=link_to @pingback.post.title, post_url(@pingback.post)%>
+</p>
+<p>
+  However, the ability to actually display the pingback has not yet been implemented. When available,
+  this pingback will automatically be made visible.
+</p>
+<p>
+  If you believe this pingback to be spam, you can (permanently) delete it by 
+  <%=link_to "clicking here", post_url(@pingback.post), :method => :delete%>.
+</p>
+<p>
+  Sincerely,<br/>
+  Thoughts in Computation Blogging Engine<br/>
+  (automatic)
+</p>

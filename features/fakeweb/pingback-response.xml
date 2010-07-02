@@ -1,0 +1,19 @@
+HTTP/1.1 200 OK
+Date: Fri, 02 Jul 2010 14:09:18 GMT
+Server: Apache/2.2.15 (Unix) mod_ssl/2.2.15 OpenSSL/0.9.7a mod_fcgid/2.3.5 Phusion_Passenger/2.2.11 mod_auth_passthrough/2.1 mod_bwlimited/1.4 FrontPage/5.0.2.2635
+X-Powered-By: Phusion Passenger (mod_rails/mod_rack) 2.2.11
+ETag: "37d5a90d4a065cce5fd078a72dd3ade0"
+X-Runtime: 665
+Status: 200
+Content-Type: text/xml
+
+<?xml version="1.0" ?>
+<methodResponse>
+  <params>
+    <param>
+      <value>
+        <i4>16</i4>
+      </value>
+    </param>
+  </params>
+</methodResponse>

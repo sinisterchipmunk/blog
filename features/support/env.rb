@@ -14,11 +14,18 @@ require 'cucumber/web/tableish'
 
 require 'webrat'
 require 'webrat/core/matchers'
+require 'fakeweb'
 
 Webrat.configure do |config|
   config.mode = :rails
   config.open_error_files = false # Set to true if you want error pages to pop up in the browser
 end
+
+FakeWeb.allow_net_connect = false
+FakeWeb.register_uri(:post, "http://localhost:3000/pingback/xml",
+                     :response => File.read(File.join(File.dirname(__FILE__), "../fakeweb/pingback-response.xml")))
+FakeWeb.register_uri(:get, "http://www.example.com/bogus.html",
+                     :response => File.read(File.join(File.dirname(__FILE__), "../fakeweb/blog-post.html")))
 
 
 # If you set this to false, any error raised from within your app will bubble 

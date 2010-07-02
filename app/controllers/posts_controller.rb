@@ -1,5 +1,26 @@
 class PostsController < ApplicationController
   filter_resource_access :load_method => :load_post
+  include PingbackHelper
+  helper :pingback
+  
+  Pingback.save_callback do |pingback|
+    ping = Ping.new
+    ping.title       = pingback.title
+    ping.url         = pingback.source_uri
+    ping.content     = pingback.content
+
+    referenced_article = Article.find_by_url(pingback.target_uri)
+
+    if referenced_article
+      referenced_article.pingbacks << ping
+      referenced_article.save
+
+      pingback.reply_ok # report success.
+    else
+      # report error:
+      pingback.reply_target_uri_does_not_accept_posts
+    end
+  end
 
   def load_post
     options = { :include => { :comments => :author }}
@@ -31,6 +52,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.xml
   def show
+    set_xpingback_header
     @post.attributes = params[:post] if params[:post]
     respond_to do |format|
       format.html # show.html.erb
@@ -59,6 +81,7 @@ class PostsController < ApplicationController
     @post.current_revision.user = current_user
     respond_to do |format|
       if @post.save
+        handle_pingbacks
         flash[:notice] = 'Post was successfully created.'
         format.html { redirect_to(@post) }
         format.xml  { render :xml => @post, :status => :created, :location => @post }
@@ -99,6 +122,46 @@ class PostsController < ApplicationController
   end
 
   private
+#  class XMLRPC::Client
+#    alias _do_rpc do_rpc
+#    
+#    def do_rpc(request, async=false)
+#      returning _do_rpc(request, async) do |t|
+#        puts t.inspect
+#      end
+#    end
+#  end
+#  
+#  
+  def handle_pingbacks
+    # check for pingbacks
+    parser = Hpricot(@post.body)
+    link_tags = parser / :a
+    link_tags.each do |link|
+      href = link['href']
+      response = Net::HTTP.get_response(URI.parse(href))
+      pingback_url = response['X-Pingback']
+      if pingback_url.nil?
+        # try for a link tag
+        parser = Hpricot(response.body)
+        link_tags = parser / "link"
+        pingback_tag = link_tags.select { |t| t['rel'].downcase.strip == 'pingback' }.shift
+        pingback_url = pingback_tag['href'] if pingback_tag
+      end
+      
+      if pingback_url
+        server = XMLRPC::Client.new2(pingback_url)
+        ok, param = server.call2("pingback.ping", post_url(@post), href)
+  
+        if ok then
+          Rails.logger.info "Pingback response: #{param}"
+        else
+          Rails.logger.error "Pingback error: #{param.faultCode} (#{param.faultString})"
+        end
+      end
+    end
+  end
+  
   def check_for_draft
     params[:post][:category_ids] ||= []
     if params[:post][:publish_date].blank?

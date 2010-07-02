@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100617221114) do
+ActiveRecord::Schema.define(:version => 20100702133528) do
 
   create_table "blogs", :force => true do |t|
     t.string   "name"
@@ -57,6 +57,15 @@ ActiveRecord::Schema.define(:version => 20100617221114) do
     t.string   "perishable_token"
     t.integer  "authenticatable_id"
     t.string   "authenticatable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pings", :force => true do |t|
+    t.string   "title"
+    t.string   "url"
+    t.text     "content"
+    t.integer  "post_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

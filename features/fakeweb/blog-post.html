@@ -1,0 +1,450 @@
+HTTP/1.1 200 OK
+Date: Fri, 02 Jul 2010 14:09:18 GMT
+Server: Apache/2.2.15 (Unix) mod_ssl/2.2.15 OpenSSL/0.9.7a mod_fcgid/2.3.5 Phusion_Passenger/2.2.11 mod_auth_passthrough/2.1 mod_bwlimited/1.4 FrontPage/5.0.2.2635
+X-Powered-By: Phusion Passenger (mod_rails/mod_rack) 2.2.11
+ETag: "37d5a90d4a065cce5fd078a72dd3ade0"
+X-Runtime: 665
+Cache-Control: private, max-age=0, must-revalidate
+Set-Cookie: _blog_session=BAh7BjoPc2Vzc2lvbl9pZCIlZDg5NzUxYWRhMTEwYTk5NTY5NjIwZTU1MDc4ZTg5Zjk%3D--abccdf7238edb65af8942a62d0ab02aa949458f9; path=/; HttpOnly
+Content-Length: 23335
+Status: 200
+Content-Type: text/html; charset=utf-8
+X-Pingback: http://localhost:3000/pingback/xml
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title>Thoughts in Computation - 
+  Coding Gems for Rails 3 (Part 1)
+</title>
+    <link rel="alternate" type="application/atom+xml" title="Thoughts in Computation - ATOM" href="http://www.thoughtsincomputation.com/atom">
+    <link rel="alternate" type="application/rss+xml" title="Thoughts in Computation - RSS" href="http://www.thoughtsincomputation.com/rss" />
+    <link rel="pingback" href="http://localhost:3000/pingback/xml" />
+    <link href="/stylesheets/blog/layout.css?1278049607" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/blog/sidebars.css?1278049607" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/blog/syntax_highlighting.css?1278049607" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/boastful.css?1278049607" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/tiny_mce/tiny_mce.js?1278049607" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+tinyMCE.init({"plugins":"style,layer,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras","theme_advanced_buttons1":"save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect","theme_advanced_buttons2":"cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor","theme_advanced_toolbar_location":"top","theme_advanced_resizing":true,"theme":"advanced","theme_advanced_buttons3":"tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen","mode":"textareas","theme_advanced_buttons4":"insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak","disk_cache":true,"theme_advanced_statusbar_location":"bottom","theme_advanced_toolbar_align":"left","languages":"en","debug":false,"editor_selector":"tiny_mce"});
+//]]>
+</script>
+    <script src="/javascripts/prototype.js?1278049607" type="text/javascript"></script>
+<script src="/javascripts/effects.js?1278049607" type="text/javascript"></script>
+<script src="/javascripts/dragdrop.js?1278049607" type="text/javascript"></script>
+<script src="/javascripts/controls.js?1278049607" type="text/javascript"></script>
+<script src="/javascripts/application.js?1278049607" type="text/javascript"></script>
+    <script src="/javascripts/jquery.min.js?1278049607" type="text/javascript"></script>
+    <script src="/javascripts/jquery.boastful.js?1278049607" type="text/javascript"></script>
+    <script src="/javascripts/calendar_date_select/calendar_date_select.js?1278049607" type="text/javascript"></script>
+<link href="/stylesheets/calendar_date_select/blue.css?1278049607" media="screen" rel="stylesheet" type="text/css" />
+
+            <link href="/stylesheets/blog/sidebars/follow.css?1278049607" media="screen" rel="stylesheet" type="text/css" />
+            <link href="/stylesheets/blog/sidebars/categories.css?1278049607" media="screen" rel="stylesheet" type="text/css" />
+            <link href="/stylesheets/blog/sidebars/recent.css?1278049607" media="screen" rel="stylesheet" type="text/css" />
+            <link href="/stylesheets/blog/sidebars/tags.css?1278049607" media="screen" rel="stylesheet" type="text/css" />
+            <link href="/stylesheets/blog/sidebars/archive.css?1278049607" media="screen" rel="stylesheet" type="text/css" />
+    
+    <script>
+      jQuery.noConflict();
+      jQuery(document).ready(function() { jQuery('#boastful').boastful({limit: 50}); });
+    </script>
+    
+  </head>
+
+  <body>
+    <div id="titlebar-container">
+      <div class="caption-container">
+        <div class="caption-left"><img src="/images/subtitle-bar-left.png" /></div>
+        <div class="caption-center" id="titlebar">
+          <span id="blog_name_link">
+            <a href="/">Thoughts in Computation</a>
+            
+          </span>
+          
+        </div>
+        <div class="caption-right"><img src="/images/subtitle-bar-right.png" /></div>
+      </div>
+    </div>
+    
+    <div id="content">
+      <div id="sidebar">
+        
+          <div class='sidebar_item'>
+            <div class='top'></div>
+            <div class='content'>
+              <div id="user_nav">
+                
+  <a href="/user/new">Register</a> |
+  <a href="/login">Log In</a>
+
+<br/>
+
+
+              </div>
+            </div>
+            <div class='bottom'></div>
+          </div>
+        
+          <div class='sidebar_item'>
+            <div class='top'></div>
+            <div class='content'>
+              <div id="follow">
+                <!--<div id="follow-header">Follow</div>-->
+<div style='margin-left:5px;padding-top:3px;white-space:nowrap;text-align:center;'>
+  <a href="/atom" class="image-link"><img alt="ATOM Newsfeed" border="0" src="/images/atom.png?1278049607" /></a>
+  <a href="/rss" class="image-link"><img alt="RSS Newsfeed" border="0" src="/images/rss.png?1278049607" /></a>
+  
+    <a href="http://twitter.com/sinisterchipmnk" class="image-link" target="_blank"><img alt="@sinisterchipmnk" border="0" src="/images/twitter.png?1278049607" /></a>
+  
+</div>
+
+              </div>
+            </div>
+            <div class='bottom'></div>
+          </div>
+        
+          <div class='sidebar_item'>
+            <div class='top'></div>
+            <div class='content'>
+              <div id="categories">
+                <div id="categories-header">Categories</div>
+<ul>
+  <a href="/categories">All Posts</a><br/>
+  
+  <br/>
+      
+      <li><a href="/categories/coding-gems-for-rails-3-tutorials">Coding Gems for Rails 3 (Tutorials)</a></li>
+    
+      
+      <li><a href="/categories/eve-online">EVE Online</a></li>
+    
+      
+      <li><a href="/categories/installation-compilation-woes">Installation / Compilation Woes</a></li>
+    
+      
+      <li><a href="/categories/metaprogramming">Metaprogramming</a></li>
+    
+      
+      <li><a href="/categories/rails-plugins">Rails Plugins</a></li>
+    
+      
+      <li><a href="/categories/ruby-gems">Ruby Gems</a></li>
+    
+      
+      <li><a href="/categories/ruby-on-rails">Ruby on Rails</a></li>
+    
+      
+      <li><a href="/categories/rubytml">RubyTML</a></li>
+    
+      
+      <li><a href="/categories/this-blog">This Blog</a></li>
+    
+      
+      <li><a href="/categories/ubuntu-linux">Ubuntu Linux</a></li>
+    
+      
+      
+  </ul>
+
+              </div>
+            </div>
+            <div class='bottom'></div>
+          </div>
+        
+          <div class='sidebar_item'>
+            <div class='top'></div>
+            <div class='content'>
+              <div id="recent">
+                <div id="recent-posts-header">Recent Posts</div>
+<ul style='margin-bottom:0;padding-bottom:5px;'>
+  
+    <li><a href="/posts/coding-gems-for-rails-3-part-1">Coding Gems for Rails 3 (Part 1)</a></li>
+  
+    <li><a href="/posts/ruby-c-extensions-c-and-weird-crashing-on-rb_raise">Ruby C extensions, C++ and weird crashing on rb_raise</a></li>
+  
+    <li><a href="/posts/wrong-argument-type-x-expected-struct">Wrong argument type X (expected Struct)</a></li>
+  
+    <li><a href="/posts/genspec-testing-rails-generators-with-rspec">Genspec: Testing Rails generators with RSpec</a></li>
+  
+    <li><a href="/posts/my-departure-from-authlogic">My Departure from Authlogic</a></li>
+  
+    <li><a href="/posts/new-release">New Release!</a></li>
+  
+    <li><a href="/posts/making-gravatar-work-part-2-gravatar-ultimate">Making Gravatar Work, Part 2: Gravatar Ultimate!</a></li>
+  
+    <li><a href="/posts/making-gravatar-work">Making Gravatar Work</a></li>
+  
+    <li><a href="/posts/woah-a-word-to-the-wise-about-configurations">Woah! A word to the wise about configurations...</a></li>
+  
+    <li><a href="/posts/cucumber-undefined-method-body-for-nilnilclass">Cucumber: undefined method `body' for nil:NilClass</a></li>
+  
+</ul>
+
+              </div>
+            </div>
+            <div class='bottom'></div>
+          </div>
+        
+          <div class='sidebar_item'>
+            <div class='top'></div>
+            <div class='content'>
+              <div id="tags">
+                
+<span style='font-size:0.104761904761905in;'><a href="/tags/authentication">authentication</a></span> <span style='font-size:0.114285714285714in;'><a href="/tags/blog">blog</a></span> <span style='font-size:0.104761904761905in;'><a href="/tags/cc">C/C++</a></span> <span style='font-size:0.104761904761905in;'><a href="/tags/coderay">CodeRay</a></span> <span style='font-size:0.10952380952381in;'><a href="/tags/css">CSS</a></span> <span style='font-size:0.114285714285714in;'><a href="/tags/cucumber">cucumber</a></span> <span style='font-size:0.104761904761905in;'><a href="/tags/emv">emv</a></span> <span style='font-size:0.128571428571429in;'><a href="/tags/errors">errors</a></span> <span style='font-size:0.10952380952381in;'><a href="/tags/eve">eve</a></span> <span style='font-size:0.166666666666667in;'><a href="/tags/gems">gems</a></span> <span style='font-size:0.10952380952381in;'><a href="/tags/gravatar">gravatar</a></span> <span style='font-size:0.104761904761905in;'><a href="/tags/linux">linux</a></span> <span style='font-size:0.10952380952381in;'><a href="/tags/metaprogramming">metaprogramming</a></span> <span style='font-size:0.10952380952381in;'><a href="/tags/nested-forms">nested forms</a></span> <span style='font-size:0.104761904761905in;'><a href="/tags/plugins">plugins</a></span> <span style='font-size:0.104761904761905in;'><a href="/tags/profiling">profiling</a></span> <span style='font-size:0.157142857142857in;'><a href="/tags/rails">rails</a></span> <span style='font-size:0.123809523809524in;'><a href="/tags/rspec">rspec</a></span> <span style='font-size:0.114285714285714in;'><a href="/tags/rtml">rtml</a></span> <span style='font-size:0.180952380952381in;'><a href="/tags/ruby">ruby</a></span> <span style='font-size:0.104761904761905in;'><a href="/tags/ruby-prof">ruby-prof</a></span> <span style='font-size:0.10952380952381in;'><a href="/tags/rvm">rvm</a></span> <span style='font-size:0.104761904761905in;'><a href="/tags/webrat">webrat</a></span>
+
+              </div>
+            </div>
+            <div class='bottom'></div>
+          </div>
+        
+          <div class='sidebar_item'>
+            <div class='top'></div>
+            <div class='content'>
+              <div id="archive">
+                <div class="archive-header">
+  <a href="/archive">Archive</a>
+</div>
+
+<ul style='margin-bottom:0;'>
+  
+    <li><a href="#" onclick="Effect.toggle(&quot;archive_year_2010&quot;,'slide',{duration:0.35});; return false;">2010</a>
+      <ul id="archive_year_2010">
+        
+          <li>
+            <a href="/archive/2010/07">July</a>
+          </li>
+        
+          <li>
+            <a href="/archive/2010/06">June</a>
+          </li>
+        
+          <li>
+            <a href="/archive/2010/04">April</a>
+          </li>
+        
+          <li>
+            <a href="/archive/2010/03">March</a>
+          </li>
+        
+          <li>
+            <a href="/archive/2010/01">January</a>
+          </li>
+        
+      </ul>
+    </li>
+    <script type="text/javascript">
+//<![CDATA[
+$('archive_year_2010').style.display = 'none';
+//]]>
+</script>
+  
+    <li><a href="#" onclick="Effect.toggle(&quot;archive_year_2009&quot;,'slide',{duration:0.35});; return false;">2009</a>
+      <ul id="archive_year_2009">
+        
+          <li>
+            <a href="/archive/2010/07">July</a>
+          </li>
+        
+          <li>
+            <a href="/archive/2010/06">June</a>
+          </li>
+        
+          <li>
+            <a href="/archive/2010/04">April</a>
+          </li>
+        
+          <li>
+            <a href="/archive/2010/03">March</a>
+          </li>
+        
+          <li>
+            <a href="/archive/2010/01">January</a>
+          </li>
+        
+      </ul>
+    </li>
+    <script type="text/javascript">
+//<![CDATA[
+$('archive_year_2009').style.display = 'none';
+//]]>
+</script>
+  
+</ul>
+
+              </div>
+            </div>
+            <div class='bottom'></div>
+          </div>
+        
+          <div class='sidebar_item'>
+            <div class='top'></div>
+            <div class='content'>
+              <div id="meta">
+                <div style='margin-left:5px;padding-top:3px;white-space:nowrap;text-align:center;'>
+  <a href="http://jigsaw.w3.org/css-validator/check/referer" class='image-link'>
+    <img style="border:0;width:88px;height:31px"
+        src="http://jigsaw.w3.org/css-validator/images/vcss"
+        alt="Valid CSS" />
+  </a>
+  <a href="http://validator.w3.org/check?uri=referer" class='image-link'>
+    <img style="border:0;width:88px;height:31px;"
+      src="http://www.w3.org/Icons/valid-xhtml10"
+      alt="Valid XHTML 1.0 Transitional" />
+  </a>
+</div>
+
+              </div>
+            </div>
+            <div class='bottom'></div>
+          </div>
+        
+      </div>
+
+      <div id="inner-top-background">
+        <div id="inner-top">
+          <div id="post-info">
+            
+              <div id="subtitle-container">
+                <div class="caption-container">
+                  <div class="caption-left"><img src="/images/subtitle-bar-left.png" /></div>
+                  <div class="caption-center" id="subtitle">
+                    
+  Coding Gems for Rails 3 (Part 1)
+
+                  </div>
+                  <div class="caption-right"><img src="/images/subtitle-bar-right.png" /></div>
+                </div>
+              </div>
+            
+            
+              <div id="extra-info-container">
+                <div id="extra-info">
+                  
+  
+  Published by Colin MacKenzie IV on Thu, Jul 01, 2010
+
+
+<!--<br/>
+Last updated 2010-07-01 16:19:08 UTC-->
+
+
+
+                </div>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+      <div id="inner-content">
+        <div id="spacer">&nbsp;</div>
+
+        <div id="flash">
+          
+        </div>
+
+        <div id="main">
+          
+
+
+<h3>Learning To Fly</h3>
+<p>I essentially had to teach myself how to code plugins and make them work with Rails 2. The information was out there, sure, but most of what I found at the time (in the 2.1 era) was left over from late 1.x or early 2.0, and was largely impertinent. It provided some helpful clues, but little else. In the end, it wasn't all that difficult, but there were some large gaps that could only be filled by literally reading the Rails source code. There were a lot of undocumented methods in there at the time, believe you me, and it took a while to figure out what some of them did.</p>
+<p>This process began again when I went to write my first Ruby gem -- and<em> again</em> when I wanted to use the gem within Rails. These days, I consider myself to be an advanced Ruby developer. "Expert" is a word that carries a lot of weight and means a lot of things to a lot of people, so I won't use that word to describe myself -- but suffice to say that I have a firm understanding of the concepts behind Ruby, Rails, Gems and Plugins -- and I'm even beginning to (finally) understand significant portions of the C code that makes up the Ruby virtual machine and garbage collector.</p>
+<p>That's why I've been trying to decide for a while now whether to dump what I've learned somewhere in the form of a tutorial series. Maybe that way, other developers would be able to use it as a stepping stone to their own advancement.</p>
+<p>Since Rails-based gems seem to be the latest "in" thing (not to mention they're capable of doing Really Cool Stuff!), that's what this series will focus on. We'll start with something akin to "Hello, World" and culminate with a full-featured gem complete with generators, Rake tasks, migrations, models, controllers -- the works.</p>
+<p>A word of warning first, though. Some decisions have to be made that are largely stylistic in nature. For instance, you have to choose a test framework. I like RSpec, so that's what I use. Since that's what I use, that's what this tutorial series will use. If you hate RSpec, (blasphemy!), then feel free to use whatever you want but accept that the tutorial won't match what you type. If you're at all uncertain, just use what I use. There'll be plenty of time to decide your own preferences later on.</p>
+<h3>Setting Up</h3>
+<p>For now, let's work on getting your development environment in order. Ideally, you should use a Linux or Mac machine (<a href="http://www.ubuntu.com/desktop/get-ubuntu/download" target="_blank">Ubuntu</a> has come a long way these past few years...), but this is all quite possible on a Windows machine. It just takes a bit more setup.</p>
+<p><strong>Note:</strong> The only part that isn't particularly Windows-friendly is RVM. Unfortunately, that's sort of a critical piece. Luckily, someone has decided to fill this gap with <a href="http://github.com/vertiginous/pik" target="_blank">Pik, an RVM for Windows</a>. It's up to you to figure out how to use it, however, because I do my development exclusively on UNIX-based machines. You'll need to use Pik commands wherever I use their RVM counterparts -- hopefully that won't be so bad.</p>
+<h4>Step 0: Git</h4>
+<p>Make sure you've got <a href="http://git-scm.com/" target="_blank">Git SCM</a> installed. Git is a source code management (SCM) tool. It's fairly useful even if you don't have a remote repository to make use of (but really, if you don't have a repository -- open up a <a href="http://github.com" target="_blank">Github</a> account and start one).</p>
+<p>Even if you don't intend to use Git directly, it's important to have the software because it helps with the next few steps.</p>
+<h4>Step 1: RVM and Ruby</h4>
+<p>The next thing you should do is get the <a href="http://rvm.beginrescueend.com/rvm/install/" target="_blank">Ruby Version Manager (RVM)</a> installed. This is critical because it's important to test your work across a variety of installations, and simply installing Ruby to your machine's root is not going to do that. RVM lets you test on multiple versions of Ruby (for now you should focus on 1.8.7 and 1.9.2), and allows you the peace-of-mind of totally blowing away a Ruby installation so that you can make sure your gem's installation and its dependencies all go off without a hitch.</p>
+<p>If you don't want to read all of the installation instructions, the easiest way to install on most machines is:</p>
+<pre>bash &lt; &lt;( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
+</pre>
+<p>This uses Git (told ya!) to check out the RVM code and install it that way.</p>
+<p>With RVM installed, things get easier:</p>
+<pre>rvm install 1.9.2
+rvm use 1.9.2
+</pre>
+<p>This will first install Ruby v1.9.2, and then set it as the active version of Ruby.</p>
+<p><strong>Caveat</strong>: You'll only need to "rvm install" once (per version), but you'll need to "rvm use" every time you start a new terminal, because the changes to the environment aren't saved to your profile. To avoid this, type "rvm --default [version]". This will use the same version by default every time.</p>
+<p>After you've installed Ruby, it's best to create a gemset using RVM, which is essentially a named set of Ruby Gems. This way you can easily switch between different gemsets for testing:</p>
+<pre>rvm gemset create rails3
+rvm gemset use rails3
+</pre>
+<h4>Step 2: Gems</h4>
+<p>With Ruby ready to go, let's get Rails installed:</p>
+<pre>gem install rails --pre
+</pre>
+<p>Note the "--pre" option. This is to get the latest BETA release of Rails 3. After Rails 3 has been released, you won't need that flag any more.</p>
+<p>Note also that we don't have to <em>sudo</em>. RVM stores all of everything in your home directory and avoids using root wherever possible.</p>
+<p>We're going to be testing our framework with RSpec in this series. If you want to use a different test framework, then by all means, go ahead! But you'll have to fill in the blanks yourself. That said, here's how to get RSpec installed:</p>
+<pre>gem install rspec rspec-rails --pre
+</pre>
+<p>Once again, we're getting the RSpec 2.0 BETA gem here, as well as its 2.0 BETA Rails adapter. RSpec 1 hasn't been updated (and I don't know if it will be) to work with Rails 3, so we have to use the latest. As with Rails itself, once RSpec 2 is out of BETA you can omit the --pre flag.</p>
+<p>We also have a few more gem dependencies to worry about:</p>
+<pre>gem install jeweler sqlite3-ruby
+</pre>
+<p>Jeweler is a sort of development framework that helps get your gem ready for packaging.</p>
+<p>SQLite3 is a lightweight SQL engine, and is the default for Rails (so it's the one we'll be using for this series). This gem apparently comes with the relevant binaries these days, so you shouldn't need to do anything else. But if it complains about native dependencies or whatever, you may need to <a href="http://www.sqlite.org/download.html" target="_blank">go get them</a>.</p>
+<p><strong>Did you make a mistake?</strong> My most common mistakes happen in this phase -- usually, I leave the "--pre" option off of the Rails gem install command. Luckily, RVM makes it easy:</p>
+<pre>rvm gemset empty
+</pre>
+<p>...and now you're ready to try it again. Feel free to do this as many times as you need to do. In fact, we'll be doing it again as we near our gem's first release -- just to make sure the gem installs and runs without a hitch for new users. In development, it's very easy to wind up using dependencies without even knowing it. Clearing the gemset lets us do one last sanity check before releasing our gem into the wild -- but more on that later.</p>
+<h4>Step 3: Get Started</h4>
+<p>Congratulations! At this point, you're ready to start developing your first Rails 3 gem. But as this article is getting rather long, I'm going to go ahead and stop here. I'll link directly to the next article when it's ready, or you can just check the "Coding Gems for Rails 3 (Tutorials)" link on the left-hand side of this page under the "Categories" sidebar.</p>
+
+<div id="back-to-index">
+  
+  <a href="/posts">Back</a>
+</div>
+
+<div id="previous-or-next">
+  &nbsp;
+  
+    <a href="/posts/ruby-c-extensions-c-and-weird-crashing-on-rb_raise">Previous Post</a>
+  
+  
+</div>
+
+
+
+
+
+
+          
+          
+          <div id="post-comments">
+            
+  <div>
+    0 comments
+  </div>
+  
+  
+
+          </div>
+          
+          <div id="post-comments-form">
+            
+  
+    <div style='clear:right;text-align:center;border-top:1px solid #000;padding-top:1em;margin-top:2em;'>
+      Please <a href="/login">log in</a> if you wish to leave a comment.
+    </div>
+  
+  
+  <div style='clear:both;'>&nbsp;</div>
+
+          </div>
+        </div>
+      </div>
+      <div id="inner-bottom"></div>
+    </div>
+  </body>
+</html>
