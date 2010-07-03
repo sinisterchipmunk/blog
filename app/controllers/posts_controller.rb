@@ -141,6 +141,7 @@ class PostsController < ApplicationController
     link_tags = parser / :a
     link_tags.each do |link|
       href = link['href']
+      next unless href =~ /^https?/ # because relative or unrecognized URIs raise errors
       response = Net::HTTP.get_response(URI.parse(href))
       pingback_url = response['X-Pingback']
       if pingback_url.nil?
