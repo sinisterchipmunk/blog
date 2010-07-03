@@ -10,7 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :categories
   #map.resources :user_sessions
   #map.resources :users
-  map.resources :posts, :has_many => :comments
+  map.resources :posts, :has_many => :comments, :member => { :delete_pingback => :get }
   
   map.root :controller => 'posts'
   map.atom_feed '/atom', :controller => 'posts', :action => 'index', :format => 'atom'

@@ -9,11 +9,15 @@ class PostsController < ApplicationController
     ping.url         = pingback.source_uri
     ping.content     = pingback.content
 
-    referenced_article = Article.find_by_url(pingback.target_uri)
+    domain = ActionMailer::Base.default_url_options[:host].gsub(/^.*\./, '') # strip www. or staging. so it matches both
+    path = pingback.target_uri.gsub(/.*?#{Regexp::escape domain}/, '')
+    path = "/#{path}" unless path[0] == ?/
+    req = ActionController::Routing::Routes.recognize_path(path)
+    referenced_article = (Post.find_by_permalink(req[:id]) rescue Post.find(req[:id]))
 
     if referenced_article
-      referenced_article.pingbacks << ping
-      referenced_article.save
+      ping.post = referenced_article
+      ping.save!
 
       pingback.reply_ok # report success.
     else
@@ -25,6 +29,24 @@ class PostsController < ApplicationController
   def load_post
     options = { :include => { :comments => :author }}
     @post = (Post.find_by_permalink(params[:id], options) rescue Post.find(params[:id], options))
+  end
+  
+  def delete_pingback
+    password = Password.find_by_single_access_token(params[:single_access_token])
+    user = password ? user = password.authenticatable : nil
+
+    if user && user.permitted_to?(:destroy, :pingbacks)
+      if pingback = @post ? @post.pingbacks.find(params[:pingback_id]) : nil
+        pingback.destroy
+        flash[:notice] = "Pingback has been deleted."
+      else
+        flash[:error] = "Could not find the requested Pingback."
+      end
+    else
+      flash[:error] = "You are not permitted to do that."
+    end
+    redirect_to root_path
+    
   end
 
   # GET /posts
@@ -141,7 +163,9 @@ class PostsController < ApplicationController
     link_tags = parser / :a
     link_tags.each do |link|
       href = link['href']
+      href = "#{request.protocol}#{request.host}:#{request.port}#{href}" if href[0] == ?/
       next unless href =~ /^https?/ # because relative or unrecognized URIs raise errors
+      Rails.logger.info("Attempting to send pingback for #{href}")
       response = Net::HTTP.get_response(URI.parse(href))
       pingback_url = response['X-Pingback']
       if pingback_url.nil?
@@ -163,6 +187,7 @@ class PostsController < ApplicationController
         end
       end
     end
+    @post.update_attribute(:pingbacks_already_processed, true)
   end
   
   def check_for_draft
