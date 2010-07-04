@@ -8,7 +8,13 @@ class PingbackController < ApplicationController
     xmlrpc = XMLRPC::BasicServer.new
     
     xmlrpc.add_handler("pingback.ping") do |source_uri, target_uri|
-      Pingback.new(source_uri, target_uri).receive_ping
+      begin
+        Pingback.new(source_uri, target_uri, request).receive_ping
+      rescue
+        Rails.logger.error $!.message
+        Rails.logger.error $!.backtrace
+        raise $!
+      end
     end
     
     xml_response = xmlrpc.process(request.body.read)

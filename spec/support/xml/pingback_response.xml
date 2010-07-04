@@ -1,0 +1,16 @@
+HTTP/1.1 200 OK
+Content-type: text/xml
+
+<?xml version="1.0" ?>
+<methodResponse>
+  <params>
+    <param>
+      <value>
+        <string>
+          Ping from http://test.host/posts/a-title to http://www.thoughtsincomputation.com/posts/1 registered. Thanks
+          for linking to us.
+        </string>
+      </value>
+    </param>
+  </params>
+</methodResponse>

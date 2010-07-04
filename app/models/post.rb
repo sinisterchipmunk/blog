@@ -15,6 +15,7 @@ class Post < ActiveRecord::Base
   accepts_nested_attributes_for :post_categories, :allow_destroy => true
   accepts_nested_attributes_for :post_tags, :allow_destroy => true
   validates_presence_of :title
+  serialize :pingback_history, Array
   
   class << self
     def option(name, default = nil)
@@ -25,16 +26,30 @@ class Post < ActiveRecord::Base
   
   option :summary_length, 128
   
+  def pingback_history
+    h = super
+    return h if h
+    self.pingback_history = []
+  end
+  
   def pingbacks_should_be_processed?
-    !draft? && !pingbacks_already_processed?
+    !draft?
   end
   
   def draft?
     publish_date.blank?
   end
-
-  def after_initialize
-    self.current_revision ||= revisions.last || Revision.new(:number => 1)
+  
+  # there should always be a current revision.
+  alias _current_revision current_revision
+  def current_revision
+    if _current_revision
+      _current_revision.number ||= 1
+      return _current_revision
+    end
+    
+    self.current_revision = revisions.last || Revision.new(:number => 1)
+    _current_revision
   end
   
   def before_save

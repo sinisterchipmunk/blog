@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100702151411) do
+ActiveRecord::Schema.define(:version => 20100704180533) do
 
   create_table "blogs", :force => true do |t|
     t.string   "name"
@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(:version => 20100702151411) do
     t.integer  "author_id"
     t.integer  "post_id"
     t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "images", :force => true do |t|
+    t.binary   "data"
+    t.string   "name"
+    t.string   "content_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -93,7 +101,7 @@ ActiveRecord::Schema.define(:version => 20100702151411) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "publish_date"
-    t.boolean  "pingbacks_already_processed"
+    t.text     "pingback_history"
   end
 
   create_table "revisions", :force => true do |t|

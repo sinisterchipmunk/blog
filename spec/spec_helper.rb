@@ -4,6 +4,18 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path(File.join(File.dirname(__FILE__),'..','config','environment'))
 require 'spec/autorun'
 require 'spec/rails'
+require 'fakeweb'
+
+FakeWeb.allow_net_connect = false
+FakeWeb.register_uri(:get, "http://www.thoughtsincomputation.com/posts/1",
+                     :response => File.read(File.join(File.dirname(__FILE__), "support/html/post.html")))
+FakeWeb.register_uri(:post, "http://www.thoughtsincomputation.com/pingbacks",
+                     :response => File.read(File.join(File.dirname(__FILE__), "support/xml/pingback_response.xml")))
+FakeWeb.register_uri(:get, "http://test.host/posts/a-title",
+                     :response => File.read(File.join(File.dirname(__FILE__), "support/html/pingback_source.html")))
+FakeWeb.register_uri(:get, "http://www.thoughtsincomputation.com/posts/2",
+                     :response => File.read(File.join(File.dirname(__FILE__), "support/html/post.html")))
+
 
 # Uncomment the next line to use webrat's matchers
 #require 'webrat/integrations/rspec-rails'

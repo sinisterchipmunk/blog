@@ -1,0 +1,523 @@
+HTTP/1.1 200 OK
+Date: Sun, 04 Jul 2010 18:16:46 GMT
+Server: Apache/2.2.15 (Unix) mod_ssl/2.2.15 OpenSSL/0.9.7a mod_fcgid/2.3.5 Phusion_Passenger/2.2.11 mod_auth_passthrough/2.1 mod_bwlimited/1.4 FrontPage/5.0.2.2635
+X-Powered-By: Phusion Passenger (mod_rails/mod_rack) 2.2.11
+ETag: "acda92e8b6cb16603fc754cb0ad2f507"
+X-Runtime: 1178
+Cache-Control: private, max-age=0, must-revalidate
+Set-Cookie: _blog_session=BAh7BjoPc2Vzc2lvbl9pZCIlYjc0NDM2NTgxODNjNjM3MjdhMjhhMjJjMmNkODA1YzA%3D--54809f6976d548971f793251a385be2b9c6efb88; path=/; HttpOnly
+Content-Length: 30676
+Status: 200
+X-Pingback: http://www.thoughtsincomputation.com/pingbacks
+Content-Type: text/html; charset=utf-8
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title>Thoughts in Computation - 
+  CGfR3: Part 2 - Generating the Bare Bones
+</title>
+    <link rel="alternate" type="application/atom+xml" title="Thoughts in Computation - ATOM" href="http://www.thoughtsincomputation.com/atom">
+    <link rel="alternate" type="application/rss+xml" title="Thoughts in Computation - RSS" href="http://www.thoughtsincomputation.com/rss" />
+    <link href="/stylesheets/blog/layout.css?1278049607" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/blog/sidebars.css?1278049607" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/blog/syntax_highlighting.css?1278049607" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/boastful.css?1278049607" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/tiny_mce/tiny_mce.js?1278049607" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+tinyMCE.init({"plugins":"style,layer,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras","theme_advanced_buttons1":"save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect","remove_script_host":false,"theme_advanced_buttons2":"cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor","theme_advanced_toolbar_location":"top","theme_advanced_resizing":true,"theme":"advanced","theme_advanced_buttons3":"tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen","mode":"textareas","relative_urls":false,"theme_advanced_buttons4":"insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak","disk_cache":true,"theme_advanced_statusbar_location":"bottom","theme_advanced_toolbar_align":"left","languages":"en","debug":false,"editor_selector":"tiny_mce"});
+//]]>
+</script>
+    <script src="/javascripts/prototype.js?1278049607" type="text/javascript"></script>
+<script src="/javascripts/effects.js?1278049607" type="text/javascript"></script>
+<script src="/javascripts/dragdrop.js?1278049607" type="text/javascript"></script>
+<script src="/javascripts/controls.js?1278049607" type="text/javascript"></script>
+<script src="/javascripts/application.js?1278049607" type="text/javascript"></script>
+    <script src="/javascripts/jquery.min.js?1278049607" type="text/javascript"></script>
+    <script src="/javascripts/jquery.boastful.js?1278049607" type="text/javascript"></script>
+    <script src="/javascripts/calendar_date_select/calendar_date_select.js?1278049607" type="text/javascript"></script>
+<link href="/stylesheets/calendar_date_select/blue.css?1278049607" media="screen" rel="stylesheet" type="text/css" />
+
+            <link href="/stylesheets/blog/sidebars/follow.css?1278049607" media="screen" rel="stylesheet" type="text/css" />
+            <link href="/stylesheets/blog/sidebars/categories.css?1278049607" media="screen" rel="stylesheet" type="text/css" />
+            <link href="/stylesheets/blog/sidebars/recent.css?1278049607" media="screen" rel="stylesheet" type="text/css" />
+            <link href="/stylesheets/blog/sidebars/tags.css?1278049607" media="screen" rel="stylesheet" type="text/css" />
+            <link href="/stylesheets/blog/sidebars/archive.css?1278049607" media="screen" rel="stylesheet" type="text/css" />
+    
+    <script>
+      jQuery.noConflict();
+      jQuery(document).ready(function() { jQuery('#boastful').boastful({limit: 50}); });
+    </script>
+    
+  </head>
+
+  <body>
+    <div id="titlebar-container">
+      <div class="caption-container">
+        <div class="caption-left"><img src="/images/subtitle-bar-left.png" /></div>
+        <div class="caption-center" id="titlebar">
+          <span id="blog_name_link">
+            <a href="/">Thoughts in Computation</a>
+            
+          </span>
+          
+        </div>
+        <div class="caption-right"><img src="/images/subtitle-bar-right.png" /></div>
+      </div>
+    </div>
+    
+    <div id="content">
+      <div id="sidebar">
+        
+          <div class='sidebar_item'>
+            <div class='top'></div>
+            <div class='content'>
+              <div id="user_nav">
+                
+  <a href="/user/new">Register</a> |
+  <a href="/login">Log In</a>
+
+<br/>
+
+
+              </div>
+            </div>
+            <div class='bottom'></div>
+          </div>
+        
+          <div class='sidebar_item'>
+            <div class='top'></div>
+            <div class='content'>
+              <div id="follow">
+                <!--<div id="follow-header">Follow</div>-->
+<div style='margin-left:5px;padding-top:3px;white-space:nowrap;text-align:center;'>
+  <a href="/atom" class="image-link"><img alt="ATOM Newsfeed" border="0" src="/images/atom.png?1278049607" /></a>
+  <a href="/rss" class="image-link"><img alt="RSS Newsfeed" border="0" src="/images/rss.png?1278049607" /></a>
+  
+    <a href="http://twitter.com/sinisterchipmnk" class="image-link" target="_blank"><img alt="@sinisterchipmnk" border="0" src="/images/twitter.png?1278049607" /></a>
+  
+</div>
+
+              </div>
+            </div>
+            <div class='bottom'></div>
+          </div>
+        
+          <div class='sidebar_item'>
+            <div class='top'></div>
+            <div class='content'>
+              <div id="categories">
+                <div id="categories-header">Categories</div>
+<ul>
+  <a href="/categories">All Posts</a><br/>
+  
+  <br/>
+      
+      <li><a href="/categories/coding-gems-for-rails-3-tutorials">Coding Gems for Rails 3 (Tutorials)</a></li>
+    
+      
+      <li><a href="/categories/eve-online">EVE Online</a></li>
+    
+      
+      <li><a href="/categories/installation-compilation-woes">Installation / Compilation Woes</a></li>
+    
+      
+      <li><a href="/categories/metaprogramming">Metaprogramming</a></li>
+    
+      
+      <li><a href="/categories/rails-plugins">Rails Plugins</a></li>
+    
+      
+      <li><a href="/categories/ruby-gems">Ruby Gems</a></li>
+    
+      
+      <li><a href="/categories/ruby-on-rails">Ruby on Rails</a></li>
+    
+      
+      <li><a href="/categories/rubytml">RubyTML</a></li>
+    
+      
+      <li><a href="/categories/this-blog">This Blog</a></li>
+    
+      
+      <li><a href="/categories/ubuntu-linux">Ubuntu Linux</a></li>
+    
+      
+      
+  </ul>
+
+              </div>
+            </div>
+            <div class='bottom'></div>
+          </div>
+        
+          <div class='sidebar_item'>
+            <div class='top'></div>
+            <div class='content'>
+              <div id="recent">
+                <div id="recent-posts-header">Recent Posts</div>
+<ul style='margin-bottom:0;padding-bottom:5px;'>
+  
+    <li><a href="/posts/cgfr3-part-2-generating-the-bare-bones">CGfR3: Part 2 - Generating the Bare Bones</a></li>
+  
+    <li><a href="/posts/coding-gems-for-rails-3-part-1">Coding Gems for Rails 3 (Part 1)</a></li>
+  
+    <li><a href="/posts/ruby-c-extensions-c-and-weird-crashing-on-rb_raise">Ruby C extensions, C++ and weird crashing on rb_raise</a></li>
+  
+    <li><a href="/posts/wrong-argument-type-x-expected-struct">Wrong argument type X (expected Struct)</a></li>
+  
+    <li><a href="/posts/genspec-testing-rails-generators-with-rspec">Genspec: Testing Rails generators with RSpec</a></li>
+  
+    <li><a href="/posts/new-release">New Release!</a></li>
+  
+    <li><a href="/posts/my-departure-from-authlogic">My Departure from Authlogic</a></li>
+  
+    <li><a href="/posts/making-gravatar-work-part-2-gravatar-ultimate">Making Gravatar Work, Part 2: Gravatar Ultimate!</a></li>
+  
+    <li><a href="/posts/making-gravatar-work">Making Gravatar Work</a></li>
+  
+    <li><a href="/posts/woah-a-word-to-the-wise-about-configurations">Woah! A word to the wise about configurations...</a></li>
+  
+</ul>
+
+              </div>
+            </div>
+            <div class='bottom'></div>
+          </div>
+        
+          <div class='sidebar_item'>
+            <div class='top'></div>
+            <div class='content'>
+              <div id="tags">
+                
+<span style='font-size:0.104545454545455in;'><a href="/tags/authentication">authentication</a></span> <span style='font-size:0.113636363636364in;'><a href="/tags/blog">blog</a></span> <span style='font-size:0.104545454545455in;'><a href="/tags/cc">C/C++</a></span> <span style='font-size:0.104545454545455in;'><a href="/tags/coderay">CodeRay</a></span> <span style='font-size:0.109090909090909in;'><a href="/tags/css">CSS</a></span> <span style='font-size:0.113636363636364in;'><a href="/tags/cucumber">cucumber</a></span> <span style='font-size:0.104545454545455in;'><a href="/tags/emv">emv</a></span> <span style='font-size:0.127272727272727in;'><a href="/tags/errors">errors</a></span> <span style='font-size:0.109090909090909in;'><a href="/tags/eve">eve</a></span> <span style='font-size:0.168181818181818in;'><a href="/tags/gems">gems</a></span> <span style='font-size:0.109090909090909in;'><a href="/tags/gravatar">gravatar</a></span> <span style='font-size:0.104545454545455in;'><a href="/tags/linux">linux</a></span> <span style='font-size:0.109090909090909in;'><a href="/tags/metaprogramming">metaprogramming</a></span> <span style='font-size:0.109090909090909in;'><a href="/tags/nested-forms">nested forms</a></span> <span style='font-size:0.104545454545455in;'><a href="/tags/plugins">plugins</a></span> <span style='font-size:0.104545454545455in;'><a href="/tags/profiling">profiling</a></span> <span style='font-size:0.159090909090909in;'><a href="/tags/rails">rails</a></span> <span style='font-size:0.127272727272727in;'><a href="/tags/rspec">rspec</a></span> <span style='font-size:0.113636363636364in;'><a href="/tags/rtml">rtml</a></span> <span style='font-size:0.181818181818182in;'><a href="/tags/ruby">ruby</a></span> <span style='font-size:0.104545454545455in;'><a href="/tags/ruby-prof">ruby-prof</a></span> <span style='font-size:0.109090909090909in;'><a href="/tags/rvm">rvm</a></span> <span style='font-size:0.104545454545455in;'><a href="/tags/webrat">webrat</a></span>
+
+              </div>
+            </div>
+            <div class='bottom'></div>
+          </div>
+        
+          <div class='sidebar_item'>
+            <div class='top'></div>
+            <div class='content'>
+              <div id="archive">
+                <div class="archive-header">
+  <a href="/archive">Archive</a>
+</div>
+
+<ul style='margin-bottom:0;'>
+  
+    <li><a href="#" onclick="Effect.toggle(&quot;archive_year_2010&quot;,'slide',{duration:0.35});; return false;">2010</a>
+      <ul id="archive_year_2010">
+        
+          <li>
+            <a href="/archive/2010/07">July</a>
+          </li>
+        
+          <li>
+            <a href="/archive/2010/06">June</a>
+          </li>
+        
+          <li>
+            <a href="/archive/2010/04">April</a>
+          </li>
+        
+          <li>
+            <a href="/archive/2010/03">March</a>
+          </li>
+        
+          <li>
+            <a href="/archive/2010/01">January</a>
+          </li>
+        
+      </ul>
+    </li>
+    <script type="text/javascript">
+//<![CDATA[
+$('archive_year_2010').style.display = 'none';
+//]]>
+</script>
+  
+    <li><a href="#" onclick="Effect.toggle(&quot;archive_year_2009&quot;,'slide',{duration:0.35});; return false;">2009</a>
+      <ul id="archive_year_2009">
+        
+          <li>
+            <a href="/archive/2010/07">July</a>
+          </li>
+        
+          <li>
+            <a href="/archive/2010/06">June</a>
+          </li>
+        
+          <li>
+            <a href="/archive/2010/04">April</a>
+          </li>
+        
+          <li>
+            <a href="/archive/2010/03">March</a>
+          </li>
+        
+          <li>
+            <a href="/archive/2010/01">January</a>
+          </li>
+        
+      </ul>
+    </li>
+    <script type="text/javascript">
+//<![CDATA[
+$('archive_year_2009').style.display = 'none';
+//]]>
+</script>
+  
+</ul>
+
+              </div>
+            </div>
+            <div class='bottom'></div>
+          </div>
+        
+          <div class='sidebar_item'>
+            <div class='top'></div>
+            <div class='content'>
+              <div id="meta">
+                <div style='margin-left:5px;padding-top:3px;white-space:nowrap;text-align:center;'>
+  <a href="http://jigsaw.w3.org/css-validator/check/referer" class='image-link'>
+    <img style="border:0;width:88px;height:31px"
+        src="http://jigsaw.w3.org/css-validator/images/vcss"
+        alt="Valid CSS" />
+  </a>
+  <a href="http://validator.w3.org/check?uri=referer" class='image-link'>
+    <img style="border:0;width:88px;height:31px;"
+      src="http://www.w3.org/Icons/valid-xhtml10"
+      alt="Valid XHTML 1.0 Transitional" />
+  </a>
+</div>
+
+              </div>
+            </div>
+            <div class='bottom'></div>
+          </div>
+        
+      </div>
+
+      <div id="inner-top-background">
+        <div id="inner-top">
+          <div id="post-info">
+            
+              <div id="subtitle-container">
+                <div class="caption-container">
+                  <div class="caption-left"><img src="/images/subtitle-bar-left.png" /></div>
+                  <div class="caption-center" id="subtitle">
+                    
+  CGfR3: Part 2 - Generating the Bare Bones
+
+                  </div>
+                  <div class="caption-right"><img src="/images/subtitle-bar-right.png" /></div>
+                </div>
+              </div>
+            
+            
+              <div id="extra-info-container">
+                <div id="extra-info">
+                  
+  
+  Published by Colin MacKenzie IV on Sun, Jul 04, 2010
+
+
+<!--<br/>
+Last updated 2010-07-04 06:21:44 UTC-->
+
+
+
+                </div>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+      <div id="inner-content">
+        <div id="spacer">&nbsp;</div>
+
+        <div id="flash">
+          
+        </div>
+
+        <div id="main">
+          
+
+
+<p>CGfR3: Coding Gems for Rails 3! I decided to use the acronym in the title because I wanted to leave room for exactly what it is this part covers: Generating the Bare Bones!</p>
+<p>This is a follow-up to a previous article. To read the original article, see <a href="../posts/coding-gems-for-rails-3-part-1" target="_blank">Coding Gems for Rails 3, Part 1</a>.</p>
+<p>Also, keep in mind that you can always <a href="http://github.com/sinisterchipmunk/pingbacks/tree/p2-generating-the-bare-bones" target="_blank">see a snapshot</a> of the progress of this tutorial on the <a href="http://github.com/sinisterchipmunk/pingbacks/tree/p2-generating-the-bare-bones" target="_blank">Github repository</a>. Every article will have a different snapshot, so you can always see exactly what your project should look like at any given part of the point in the tutorial.</p>
+<p>Now that our development environment has been set up, we're ready to start building a project.</p>
+<p>The first step is, of course, to figure out exactly what it is we're trying to accomplish with said project. I put out a <a href="http://twitter.com/sinisterchipmnk/status/17621209320" target="_blank">tweet</a> asking that very question, because I wanted to make sure we were creating something fun and interesting. In the end, we decided to put together a gem that adds Pingback support to any Rails 3 application.</p>
+<h3>Theory</h3>
+<p>So, what are Pingbacks? At their core, Pingbacks provide a notification system and they work a little something like this: say (for example) you are a blogger, and you just happen to be reading one of my articles. You decide it's really interesting, and that you have more to add to the discussion. So on your own blog, you add a link to the original article and then continue the conversation. Now, here's where Pingbacks come into the scene: your blogging software picks up on the link, and sends my blog a notification (called, obviously, a Pingback) that it's been mentioned somewhere. My blogging software notifies me, and now I know where to read your story at.</p>
+<p>Pingbacks make the Web a less confusing place by bringing the parties to a conversation closer together and making it easier for them to have that discussion. In the past, it might have been weeks, months or forever before I figured out that anyone was talking about my stuff.</p>
+<h3>Down to Business</h3>
+<p>So, how can we go about writing such a system? It's actually not all that complicated, though it can be a bit confusing the first time you read the Pingback spec <a href="http://hixie.ch/specs/pingback/pingback-1.0" target="_blank">(found here)</a>.</p>
+<p>Our next move after defining the general direction of the project is to actually generate the basic components of it. There are a lot of approaches to integration environments, and I've tried a lot of them out. The most efficient way to write Rails-based gems that I've found (so far) is to do so wrapped by a bare-bones Rails environment, so that we can be constantly testing our project against that very environment.</p>
+<p>So, let's generate the Rails environment:</p>
+<pre>  $ rails new pingback-env
+       create . . .<span style="white-space: normal;">
+</span></pre>
+<p>After we have the Rails test project, we need to build our actual gem. This is where Jeweler comes in.</p>
+<p>Jeweler is a tool that assists you in building and maintaining Ruby gems. You can get more information about it <a href="http://technicalpickles.com/posts/craft-the-perfect-gem-with-jeweler/" target="_blank">at this location</a>. If you followed the last article, then you installed it as part of your set-up process.</p>
+<h3>The Real Project</h3>
+<p>With that, let's dive into Jeweler. I prefer to have the gem source located under the Rails-generated vendor/ directory, because that's a place that still basically makes sense but is NOT specifically in the default Rails autoload path. That last is important to me because when a gem under development is in a Rails autoload path, it gets really easy to start forgetting <strong>require</strong>s. The app still works because Rails autoloads the files, and then you end up deploying a broken gem, everybody laughs at you, and just it kind of sucks all around 'cause it feels like a "noob" mistake.</p>
+<p>As mentioned, <em>vendor/</em> is not exactly within the Rails autoload path, and it's still in a reasonable directory to have source code in that it isn't directly a component of the Rails project itself -- the Rails project is merely an integration tool to make sure your gem will load, and so is technically a different entity from the gem itself.</p>
+<p>As you'll see in the next few articles, we do actually use the Rails project for higher-level things like Cucumber tests and invoking our Pingback generators. But we're not there yet -- let's not get too far ahead of ourselves. For now, let's just generate the Pingbacks gem:</p>
+<pre>  $ cd pingback-env/vendor
+  $ jeweler pingbacks --rspec
+       create . . .
+</pre>
+<p>Notice we used the "<em>--rspec</em>" flag. This tells Jeweler not to generate a bunch of Test::Unit or Shoulda stuff -- we want to use RSpec to test this project. (If you'll remember from the last article, I actually did warn you about this sort of stylistic choice: you can absolutely feel free to use Shoulda or Test::Unit, but you'll be diverging from this tutorial a bit to do so. That's not a bad thing at all; it's purely down to style.)</p>
+<p>Unfortunately, Jeweler (as of this writing) does not yet generate an RSpec 2.0-compatible test environment, so we need to change the generated RSpec code just a tiny bit.</p>
+<p>Also, this is one of the first instances I've found where something is actually <strong>more</strong> difficult in Rails 3, but even so, it's not that much more so. See, in Rails 2, you could build your gem in <em>vendor/gems/*</em>, add them to the Rails environment file, and treat your gem indentically to the unpacked, vendored gem that you'd normally use in production. In Rails 3, we have to mock up that same process with a few extra steps. Here's how to do that (while also activating RSpec 2.0 BETA):</p>
+<ol>
+<li>Rename <em>spec.opts</em> in <em>vendor/pingbacks/spec</em> to <em>rspec.opts</em> (because the former is deprecated).</li>
+<li>Edit <em>vendor/pingbacks/spec/spec_helper.rb</em> and make it look like this:
+
+<table class="CodeRay"><tr>
+  <td class="line_numbers" title="click to toggle" onclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>1<tt>
+</tt>2<tt>
+</tt>3<tt>
+</tt>4<tt>
+</tt>5<tt>
+</tt></pre></td>
+  <td class="code"><pre ondblclick="with (this.style) { overflow = (overflow == 'auto' || overflow == '') ? 'visible' : 'auto' }"><span class="gv">$LOAD_PATH</span>.unshift(<span class="co">File</span>.join(<span class="co">File</span>.dirname(<span class="pc">__FILE__</span>), <span class="s"><span class="dl">'</span><span class="k">..</span><span class="dl">'</span></span>, <span class="s"><span class="dl">'</span><span class="k">lib</span><span class="dl">'</span></span>))<tt>
+</tt>require <span class="co">File</span>.join(<span class="co">File</span>.dirname(<span class="pc">__FILE__</span>), <span class="s"><span class="dl">'</span><span class="k">../../../config/environment.rb</span><span class="dl">'</span></span>)<tt>
+</tt>require <span class="co">File</span>.join(<span class="co">File</span>.dirname(<span class="pc">__FILE__</span>), <span class="s"><span class="dl">'</span><span class="k">../lib/pingbacks</span><span class="dl">'</span></span>)<tt>
+</tt><tt>
+</tt><span class="co">Dir</span>[<span class="co">File</span>.join(<span class="co">File</span>.dirname(<span class="pc">__FILE__</span>), <span class="s"><span class="dl">'</span><span class="k">support/**/*.rb</span><span class="dl">'</span></span>)].each { |f| require f }</pre></td>
+</tr></table>
+
+</li>
+</ol>
+<p>If you're familiar with RSpec then you already know that the <em>spec_helper.rb</em> file is the key to our tests. What we're doing with it in this case is...</p>
+<ol>
+<li>Add the '<em>lib</em>' directory of the Pingbacks project to the global load path. This is what happens when you load a Ruby Gem, so it makes sense to do this programmatically because our gem isn't technically a gem yet.</li>
+<li>Load the Rails environment for our test project. This is crucial because we need to make sure that everything is compatible with a Rails environment. I can't tell you how many times skipping this step has cost me dearly.</li>
+<li>Load the '<em>pingbacks</em>' code, which will kick off loading of our gem. This, also, is normally handled for us by Rails for a standard gem.</li>
+<li>With our Rails environment loaded and our gem initialized, load up any support files used specifically for testing with RSpec. We haven't created any of these yet, so don't worry -- you haven't missed anything.</li>
+</ol>
+<p>There are a few more steps before we're ready to start on some hot, hard-core development action. First, create a directory in<em> vendor/pingbacks/spec/lib</em> and move your pingbacks_spec.rb file into it. Then edit that very file and replace the first relatively-complicated line with simply:</p>
+<table class="CodeRay"><tr>
+  <td class="line_numbers" title="click to toggle" onclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><tt>
+</tt></pre></td>
+  <td class="code"><pre ondblclick="with (this.style) { overflow = (overflow == 'auto' || overflow == '') ? 'visible' : 'auto' }">require <span class="s"><span class="dl">'</span><span class="k">spec_helper</span><span class="dl">'</span></span></pre></td>
+</tr></table>
+
+<p>Then you need to add rspec and rspec-rails to the Rails project's Gemfile:</p>
+<table class="CodeRay"><tr>
+  <td class="line_numbers" title="click to toggle" onclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>1<tt>
+</tt>2<tt>
+</tt></pre></td>
+  <td class="code"><pre ondblclick="with (this.style) { overflow = (overflow == 'auto' || overflow == '') ? 'visible' : 'auto' }">gem <span class="s"><span class="dl">&quot;</span><span class="k">rspec</span><span class="dl">&quot;</span></span>, <span class="s"><span class="dl">&quot;</span><span class="k">&gt;= 2.0.0.beta.15</span><span class="dl">&quot;</span></span>       <span class="c"># or whatever version you're using</span><tt>
+</tt>gem <span class="s"><span class="dl">&quot;</span><span class="k">rspec-rails</span><span class="dl">&quot;</span></span>, <span class="s"><span class="dl">&quot;</span><span class="k">&gt;= 2.0.0.beta.15</span><span class="dl">&quot;</span></span></pre></td>
+</tr></table>
+
+<p>At this point you should be able to run...</p>
+<pre>$ rspec spec -c
+</pre>
+<p>...and see a failure telling you to write some Real Code<sup>TM</sup>. Notice another anomaly about the above command: we're running the specs with the "<em>rspec</em>" command instead of the "<em>spec</em>" command. This is another RSpec 2.0 thing.</p>
+<p>So the specs are running, now. They're failing, but they're running, and that's great news because it means we've successfully mocked up the load procedure for our gem. Don't get too excited just yet, however. We're going to want to update our Rakefile which is, once again, generated based on RSpec 1.x. So hop into <em>vendor/pingbacks/Rakefile</em> and make the following changes...</p>
+<ol>
+<li>On line 3, add:
+<table class="CodeRay"><tr>
+  <td class="line_numbers" title="click to toggle" onclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>1<tt>
+</tt>2<tt>
+</tt>3<tt>
+</tt>4<tt>
+</tt>5<tt>
+</tt></pre></td>
+  <td class="code"><pre ondblclick="with (this.style) { overflow = (overflow == 'auto' || overflow == '') ? 'visible' : 'auto' }"><span class="r">begin</span><tt>
+</tt>  require <span class="s"><span class="dl">'</span><span class="k">rspec/core/rake_task</span><span class="dl">'</span></span><tt>
+</tt><span class="r">rescue</span> <span class="co">MissingSourceFile</span><tt>
+</tt>  raise <span class="s"><span class="dl">&quot;</span><span class="k">You need RSpec 2.0 or better for development on this gem.</span><span class="dl">&quot;</span></span><tt>
+</tt><span class="r">end</span></pre></td>
+</tr></table>
+
+</li>
+<li>Change the rspec development dependency version to &gt;= 2.0.0.beta.15 (or whichever version you're using) on line 18.</li>
+<li>Delete the require on line 24.</li>
+<li>Change all references to Spec::Rake::RakeTask to RSpec::Core::RakeTask.</li>
+<li>Change
+<table class="CodeRay"><tr>
+  <td class="line_numbers" title="click to toggle" onclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><tt>
+</tt></pre></td>
+  <td class="code"><pre ondblclick="with (this.style) { overflow = (overflow == 'auto' || overflow == '') ? 'visible' : 'auto' }">spec.spec_files = <span class="co">FileList</span>[<span class="s"><span class="dl">'</span><span class="k">spec/**/*_spec.rb</span><span class="dl">'</span></span>]</pre></td>
+</tr></table>
+
+to
+<table class="CodeRay"><tr>
+  <td class="line_numbers" title="click to toggle" onclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><tt>
+</tt></pre></td>
+  <td class="code"><pre ondblclick="with (this.style) { overflow = (overflow == 'auto' || overflow == '') ? 'visible' : 'auto' }">spec.pattern = <span class="s"><span class="dl">'</span><span class="k">spec/**/*_spec.rb</span><span class="dl">'</span></span></pre></td>
+</tr></table>
+
+</li>
+<li>Delete all references to spec.libs.</li>
+</ol>
+<p>Now you should be able to run the same failing test by simply typing "<em>rake</em>". Make sure you're in your project's vendor/pingbacks directory first!</p>
+<p>Bear in mind that "rake" and "rspec spec -c" should both produce virtually identical results right now. I'll use the two commands interchangeably, because they mean the same thing: run all of the tests and report the results. The reason we took the extra step of touching up our Rakefile is not specifically for the specs; it's actually in order to avoid some hardships later on, when we try to generate our gemspec file and test the installation. It's just easier to get these details worked out as early as possible. Occasionally, it's also a good idea to try out both of the fore-mentioned commands, just to make sure you haven't broken them at some point along the way. Best to keep everything in sync.</p>
+<p>I'm going to stop here because once again, this article is getting rather long and I'd prefer to keep them easy to navigate so that you can quickly jump to a specific section if the need arises. Even though it may seem like we haven't made much headway, look at what we've accomplished:</p>
+<ul>
+<li>We've got an extremely flexible development environment to do our work in</li>
+<li>We've established an effective integration environment through which to test our code</li>
+<li>We've created the bare bones of our gem</li>
+<li>We've set up the test dependencies which will drive the development direction of our gem</li>
+</ul>
+<div>In all, we've accomplished quite a bit in a very short amount of time. In the next article we'll be putting all of this to work -- so stay tuned!</div>
+
+<div id="back-to-index">
+  
+  <a href="/posts">Back</a>
+</div>
+
+<div id="previous-or-next">
+  &nbsp;
+  
+    <a href="/posts/coding-gems-for-rails-3-part-1">Previous Post</a>
+  
+  
+</div>
+
+
+
+
+
+
+          
+          
+          <div id="post-comments">
+            
+  <div>
+    0 comments
+  </div>
+  
+  
+
+          </div>
+          
+          <div id="post-comments-form">
+            
+  
+    <div style='clear:right;text-align:center;border-top:1px solid #000;padding-top:1em;margin-top:2em;'>
+      Please <a href="/login">log in</a> if you wish to leave a comment.
+    </div>
+  
+  
+  <div style='clear:both;'>&nbsp;</div>
+
+          </div>
+        </div>
+      </div>
+      <div id="inner-bottom"></div>
+    </div>
+  </body>
+</html>

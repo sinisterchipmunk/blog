@@ -22,6 +22,8 @@ Webrat.configure do |config|
 end
 
 FakeWeb.allow_net_connect = false
+FakeWeb.register_uri(:get, "http://www.google.com/goldberg10-hp-sprite.png",
+                     :response => File.read(File.join(File.dirname(__FILE__), "../fakeweb/google-goldberg10-hp-sprite.png")))
 FakeWeb.register_uri(:post, "http://localhost:3000/pingback/xml",
                      :response => File.read(File.join(File.dirname(__FILE__), "../fakeweb/pingback-response.xml")))
 FakeWeb.register_uri(:get, "http://www.example.com/bogus.html",

@@ -6,15 +6,16 @@ require 'open-uri'
 class Pingback
   
   attr_reader :parser
-  attr_reader :title, :time, :source_uri, :target_uri, :linking_node, :excerpt
+  attr_reader :title, :time, :source_uri, :target_uri, :linking_node, :excerpt, :request
   
   @@excerpt_length = 40
   cattr_accessor :excerpt_length
   
   
-  def initialize(source_uri, target_uri)
+  def initialize(source_uri, target_uri, request)
     @source_uri = source_uri
     @target_uri = target_uri
+    @request = request
   end
   
   ### FIXME: 2BRM.
@@ -75,10 +76,10 @@ class Pingback
     link_i  = parent.children.index(link_node)
     before  = parent.children[link_i-1]
     after   = parent.children[link_i+1]
-        
-    trim_before_text_for(before)+
+    
+    trim_before_text_for(before).to_s+
       link_node.to_s+
-      trim_after_text_for(after)
+      trim_after_text_for(after).to_s
   end
   
   def trim_before_text_for(text)

@@ -9,11 +9,14 @@ class PostsController < ApplicationController
     ping.url         = pingback.source_uri
     ping.content     = pingback.content
 
-    domain = ActionMailer::Base.default_url_options[:host].gsub(/^.*\./, '') # strip www. or staging. so it matches both
-    path = pingback.target_uri.gsub(/.*?#{Regexp::escape domain}/, '')
-    path = "/#{path}" unless path[0] == ?/
+    domain = pingback.request.host
+    path = pingback.target_uri.gsub(/^.*?#{Regexp::escape domain}/, '')
+    path = "/#{path}" unless path[0] == ?/ || path['http']
+
     req = ActionController::Routing::Routes.recognize_path(path)
-    referenced_article = (Post.find_by_permalink(req[:id]) rescue Post.find(req[:id]))
+    # Really not sure why I have to do this...
+    req[:id] = req[:action] if req[:id].nil?
+    referenced_article = (Post.find_by_permalink(req[:id]) || Post.find(req[:id]))
 
     if referenced_article
       ping.post = referenced_article
@@ -101,6 +104,7 @@ class PostsController < ApplicationController
   def create
     @post.author = current_user
     @post.current_revision.user = current_user
+    handle_images
     respond_to do |format|
       if @post.save
         handle_pingbacks
@@ -156,6 +160,25 @@ class PostsController < ApplicationController
 #  end
 #  
 #  
+  def handle_images
+    parser = Hpricot(@post.body)
+    image_tags = (parser / :img).uniq
+    image_tags.each do |image_tag|
+      url_to_image = image_tag['src']
+      next if url_to_image =~ /#{Regexp::escape(ActionMailer::Base.default_url_options[:host])}/
+      
+      response = Net::HTTP.get_response(URI.parse(url_to_image) )
+      image_name = url_to_image.gsub(/^.*\/([^\/]+)$/, '\1')
+      image_name = image_name[0...image_name.index(?.)] if image_name['.'] # lose the extension, if any
+      image_name = 'no-name' if image_name.blank?
+      image = Image.new(:name => image_name, :data => response.body, :content_type => response['Content-type'])
+      if image.save
+        # if it can't be saved then just failover to the remote image.
+        @post.body.gsub! /#{Regexp::escape url_to_image}/, image_url(image.to_param)
+      end
+    end
+  end
+  
   def handle_pingbacks
     # check for pingbacks
     return unless @post.pingbacks_should_be_processed?
@@ -164,7 +187,8 @@ class PostsController < ApplicationController
     link_tags.each do |link|
       href = link['href']
       href = "#{request.protocol}#{request.host}:#{request.port}#{href}" if href[0] == ?/
-      next unless href =~ /^https?/ # because relative or unrecognized URIs raise errors
+      next unless href =~ /^https?/                 # because relative or unrecognized URIs raise errors
+      next if @post.pingback_history.include?(href) # skip pingbacks to locations we've already processed
       Rails.logger.info("Attempting to send pingback for #{href}")
       response = Net::HTTP.get_response(URI.parse(href))
       pingback_url = response['X-Pingback']
@@ -175,19 +199,21 @@ class PostsController < ApplicationController
         pingback_tag = link_tags.select { |t| t['rel'].downcase.strip == 'pingback' }.shift
         pingback_url = pingback_tag['href'] if pingback_tag
       end
+      Rails.logger.debug("Destination #{href} does not support pingbacks.") if pingback_url.nil?
       
       if pingback_url
         server = XMLRPC::Client.new2(pingback_url)
         ok, param = server.call2("pingback.ping", post_url(@post), href)
   
         if ok then
+          @post.update_attribute(:pingback_history, @post.pingback_history + [href])
           Rails.logger.info "Pingback response: #{param}"
         else
           Rails.logger.error "Pingback error: #{param.faultCode} (#{param.faultString})"
         end
       end
     end
-    @post.update_attribute(:pingbacks_already_processed, true)
+    #@post.update_attribute(:pingbacks_already_processed, true)
   end
   
   def check_for_draft

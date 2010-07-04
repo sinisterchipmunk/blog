@@ -1,0 +1,10 @@
+Content-type: text/xml
+
+<?xml version="1.0" ?>
+<methodCall>
+  <methodName>pingback.ping</methodName>
+  <params>
+    <param><value><string>http://test.host/posts/a-title</string></value></param>
+    <param><value><string>http://test.host/posts/a-title</string></value></param>
+  </params>
+</methodCall>

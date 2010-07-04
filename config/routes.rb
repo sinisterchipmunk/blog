@@ -15,6 +15,8 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'posts'
   map.atom_feed '/atom', :controller => 'posts', :action => 'index', :format => 'atom'
   map.rss_feed  '/rss',  :controller => 'posts', :action => 'index', :format => 'rss'
+  
+  map.resources :images, :member => { :gravatar => :get }
 
   # The priority is based upon order of creation: first created -> highest priority.
 
