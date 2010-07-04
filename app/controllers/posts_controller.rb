@@ -35,10 +35,7 @@ class PostsController < ApplicationController
   end
   
   def delete_pingback
-    password = Password.find_by_single_access_token(params[:single_access_token])
-    user = password ? user = password.authenticatable : nil
-
-    if user && user.permitted_to?(:destroy, :pingbacks)
+    if permitted_to?(:destroy, :pingbacks)
       if pingback = @post ? @post.pingbacks.find(params[:pingback_id]) : nil
         pingback.destroy
         flash[:notice] = "Pingback has been deleted."

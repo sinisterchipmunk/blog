@@ -1,7 +1,7 @@
 authorization do
   role :admin do
     has_permission_on [:posts, :comments, :categories, :tags, :users, :blogs, :pingbacks],
-                      :to => [:index, :show, :new, :create, :edit, :update, :destroy]
+                      :to => [:index, :show, :new, :create, :edit, :update, :destroy, :delete_pingback]
   end
 
   role :guest do
@@ -22,7 +22,7 @@ authorization do
     has_permission_on [:posts, :categories, :tags], :to => [:edit, :update] do
       if_attribute :user => is { current_user }
     end
-    has_permission_on [:pingbacks], :to => [:destroy] do
+    has_permission_on [:pingbacks], :to => [:destroy, :delete_pingback] do
       if_attribute :user => is { current_user }
     end
   end

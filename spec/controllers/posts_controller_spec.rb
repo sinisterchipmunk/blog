@@ -30,6 +30,46 @@ describe PostsController do
     blog.save!
   end
   
+  context "with a post that has a pingback" do
+    before(:each) do
+      post = Post.new(:title => "a title", :author => User.first)
+      post.save!
+      
+      Pingback.new("http://test.host/posts/a-title", "http://test.host/posts/a-title", request).receive_ping
+    end
+    
+    it "should allow pingback to be deleted" do
+      email = mailbox_for(Blog.first.owner.email).last
+      links = (Hpricot(email.body) / :a)
+      link = links[-1]
+      
+      path = link['href'].gsub(/^.*?#{Regexp::escape request.host}/, '')
+      path = "/#{path}" unless path[0] == ?/
+      params = {}
+      if path['?']
+        query = path[(path.index('?')+1)..-1]
+        path = path[0...path.index('?')]
+        params = ActionController::Routing::Routes.recognize_path(path)
+
+        values = query.split(/\&/)
+        params.merge!(values.inject({}) do |hash, v|
+          k, v = v.split(/=/)
+          hash[k] = v
+          hash
+        end)
+      end
+      
+      # What's the deal with named routes? Routing doesn't recognize them properly?
+      params[:id], params[:action] = params[:action], params[:id]
+      params = params.with_indifferent_access
+      
+      get params.delete(:action), params
+      
+      flash[:error].should be_nil # just so I can see the error message...
+      Ping.count.should == 0
+    end
+  end
+  
   context "new" do
     context "draft" do
       it "should not process pingbacks" do

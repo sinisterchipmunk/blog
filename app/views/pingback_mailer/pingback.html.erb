@@ -17,7 +17,8 @@
 </p>
 <p>
   If you believe this pingback to be spam, you can (permanently) delete it by 
-  <%=link_to "clicking here", url_for(:controller => "posts", :action => "delete_pingback",
+  <%=link_to "clicking here", url_for(:only_path => true,
+                                      :controller => "posts", :action => "delete_pingback",
                                       :single_access_token => @pingback.post.author.single_access_token,
                                       :id => @pingback.post.id, :pingback_id => @pingback.id)%>.
 </p>
