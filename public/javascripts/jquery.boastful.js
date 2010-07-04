@@ -15,7 +15,7 @@
       formatted = ''
       formatted += '<div class="boastful">'
       formatted += '<a href="'+tweetback.permalink_url+'">'
-      formatted += '<img src="'+tweetback.author.photo_url+'" />'
+      formatted += '<img width="48" height="48" src="'+tweetback.author.photo_url+'" />'
       formatted += '</a>'
       formatted += '<div class="boastful_pointer"></div>'
       formatted += '<div class="boastful_tweet" style="display: none">'

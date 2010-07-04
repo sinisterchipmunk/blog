@@ -24,6 +24,10 @@ describe PostsController do
     u.password = u.password_confirmation = "Generic12"
     u.save!
     u.roles << Role.create(:name => "admin")
+
+    blog = Blog.new :name => "My Blog"
+    blog.owner = u
+    blog.save!
   end
   
   context "new" do
@@ -111,6 +115,9 @@ describe PostsController do
       raise "XMLRPC fault raised. Code: #{ret[1].faultCode}: Message: #{ret[1].faultString}" unless ret[0]
   
       Post.first.pingbacks.should_not be_empty
+      
+      # We also want it to send an email notification to the blog owner.
+      mailbox_for(Blog.first.owner.email).size.should == 1
     end
   end
 end
