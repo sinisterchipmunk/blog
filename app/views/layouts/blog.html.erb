@@ -22,7 +22,11 @@
     <%end }%>
     <script>
       jQuery.noConflict();
-      jQuery(document).ready(function() { jQuery('#boastful').boastful({limit: 50}); });
+      jQuery(document).ready(function() {
+        jQuery('#boastful').boastful({limit: 25, empty_message:""});
+        if (location.href.toString().indexOf("www.") != -1)
+          jQuery('#boastful2').boastful({limit: 25, location:location.href.toString().gsub("www.", ""), empty_message:""});
+      });
     </script>
     <%=yield :head%>
   </head>
@@ -104,8 +108,9 @@
 
           <%if tweetbacks?%>
             <div id="boastful-container">
-              <h3>Tweets about this page:</h3>
+              <%#<h3>Tweets about this page:</h3>%>
               <div id="boastful"></div>
+              <div id="boastful2"></div>
             </div>
           <%end%>
           

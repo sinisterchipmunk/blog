@@ -4,7 +4,8 @@ module ArchivesHelper
   end
   
   def archive_months(year)
-    @archive_months ||= Post.one_per_month.select { |p| p.publish_date.year == year }.collect { |p| p.publish_date }
+    @archive_months ||= {}
+    @archive_months[year] ||= Post.one_per_month.select { |p| p.publish_date.year == year }.collect { |p| p.publish_date }
   end
   
   # Splits Post.one_per_month into a set of arrays -- one array per year. Each year contains a date representing
