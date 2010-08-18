@@ -18,4 +18,4 @@ user.password = user.password_confirmation = 'Admin01'
 user.roles << admin << moderator << author
 user.save!
 
-Blog.create!(:name => 'My Blog', :owner => user)
+Blog.create!(:name => 'My Blog', :owner => user) unless Blog.count > 0

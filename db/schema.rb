@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100704180533) do
+ActiveRecord::Schema.define(:version => 20100818164049) do
 
   create_table "blogs", :force => true do |t|
     t.string   "name"
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20100704180533) do
     t.datetime "updated_at"
     t.datetime "publish_date"
     t.text     "pingback_history"
+    t.string   "format",           :default => "html"
   end
 
   create_table "revisions", :force => true do |t|

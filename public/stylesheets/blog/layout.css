@@ -7,6 +7,12 @@ textarea.comment {
   width:7.9in;
 }
 
+textarea.post-body {
+  width:7.9in;
+  height:3in;
+  font-family: monospace;
+}
+
 body {
   background-color: #ccc;
   color: #333;
@@ -39,6 +45,7 @@ div#post-title { /* in /posts/_form */
 div#post-publish_date { /* in /posts/_form */
   /* margin-left: auto; */
   vertical-align: top;
+  text-align:right;
   width: 50%;
   border: 0 solid #0ff;
   display: table-cell;

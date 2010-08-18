@@ -1,1 +1,1 @@
-
+features/add_images_to_post.feature:6:12 features/create_comment.feature:6:19 features/create_post.feature:6:13:20 features/log_in.feature:10 features/update_profile.feature:6:19 features/view_all_posts.feature:6 features/view_post.feature:9

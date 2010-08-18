@@ -45,7 +45,7 @@
                 end%>]
             <%end%>
           </div>
-          <%=comment.body%>
+          <%=Sanitize.clean(comment.body, Sanitize::Config::BASIC)%>
         </div>
         <div id="edit_comment_<%=comment.id%>_div" style='display:none;'>
           <%form_for comment, :url => post_comment_path(@post, comment) do |f|%>

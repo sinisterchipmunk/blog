@@ -16,6 +16,12 @@
             <%=f.text_field :title%>
           </h3>
         </div>
+        <div id="post-format">
+          <h3>
+            <%=f.label :format%><br/>
+            <%=f.select :format, {"RDoc" => 'rdoc', "TinyMCE" => 'html'}, {:value => @post.new_record? ? "rdoc" : @post.format}%>
+          </h3>
+        </div>        
         <div id="post-publish_date">
           <h3>
             <%=f.label :publish_date%><br/>
@@ -30,7 +36,7 @@
         <h3>
           <%=i.label :body%>
         </h3>
-        <%=i.text_area :body, :class => "tiny_mce"%>
+        <%=i.text_area :body, :id => 'post_body', :class => (!@post.new_record? && @post.format == "html" ? "tiny_mce" : "post-body")%>
         <%=i.hidden_field :number%>
       <%end%>
     </div>

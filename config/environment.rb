@@ -19,7 +19,9 @@ Rails::Initializer.run do |config|
 
 #  config.gem 'authlogic'
 #  config.gem 'authlogic-oid', :lib => 'authlogic_openid'
-  config.gem 'sparkly-auth', :version => '0.1.0'
+  config.gem 'sparkly-auth', :version => '>= 1.1.0'
+  config.gem 'github-markup', :version => '>= 0.5.0', :lib => "github/markup"
+  config.gem 'sanitize', :version => ">= 1.2.1"
   config.gem 'declarative_authorization'
   #config.gem "ruby-openid", :lib => "openid"
   config.gem "calendar_date_select"

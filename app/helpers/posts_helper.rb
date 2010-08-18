@@ -7,18 +7,37 @@ module PostsHelper
     post.published? ? post.publish_date : "(Draft)"
   end
 
-  # sets up any syntax highlighting and returns the result
+  # sets up any markup and/or syntax highlighting and returns the result
   def post_body(post, options = { :line_numbers => :table, :css => :class, :brief => false })
-    p = post.body.to_s
+    if post.format == "html"
+      body = post.body.to_s
+    else
+      body = case post.format
+        when 'rdoc' then
+          GitHub::Markup.render("#{post.permalink}.rdoc", post.body.to_s)
+          
+        else post.body.to_s
+      end
+    end
+    body = colorize(body, options)
+    options[:brief] ? brief_post_body(post, body) : body
+  end
+  
+  def colorize(body, options)
+    p = body.dup
     # do some stuff with <br>'s when they should just be newlines
     rx = /(<pre>.*?)<br\s*\/>(.*?<\/pre>)/m
     p.gsub!(rx, "\\1\n\\2") while p =~ rx
-    body = post.body.to_s.gsub(/<pre>\s*\[([^\s\[]+)\]\s*(.*?)\s*\[\/\1\]\s*<\/pre>/m) do |match|
+    body.gsub(/<pre>\s*\[([^\s\[]+)\](\n|)(.*?)\s*\[\/\1\]\s*<\/pre>/m) do |match|
       lang = $~[1]
-      code = CGI::unescapeHTML($~[2]).gsub(/\&nbsp;/m, ' ').gsub(/<br[\s\t\n]*\/[\s\t\n]*>/m, "\n").strip
+      code = $~[3]
+      # remove preceding indentation, if any
+      indentation = code =~ /[^\s]/
+      code.gsub!(/^#{Regexp::escape " "*indentation}/, '')
+      # remove forced line breaks, which are inserted by tiny_mce.
+      code = CGI::unescapeHTML(code).gsub(/\&nbsp;/m, ' ').gsub(/<br[\s\t\n]*\/[\s\t\n]*>/m, "\n")#.strip
       CodeRay.scan(code, lang).div(options)
     end
-    options[:brief] ? brief_post_body(post, body) : body
   end
   
   # You can use the body argument to override the post's body. Useful if you've applied syntax highlighting, etc.
