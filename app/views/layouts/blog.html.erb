@@ -30,6 +30,27 @@
       });
       
       /*
+         the effects used here can cause the sidebar to be positioned with +left+
+         instead of +right+, which causes issues if a user resizes window afterward.
+         So all we do here is recalculate the proper value for +left+ and let
+         the browser do its thing.
+             
+         I tried to force usage of +right+ and it worked fine under Firefox, but
+         it croaked under Chrome. I decided it was better to go this route in the end,
+         even though it makes the stylesheets a little more confusing (since they assign
+         +right+ to begin with) and adds a small amount of JS overhead. Using +left+
+         at the outset isn't an option because we don't initially know the bounds of
+         the +content+ div.
+       */
+      function recalculate_sidebar_bounds()
+      {
+//        $('sidebar').style.right = "5px";
+//        $('sidebar').style.left = "auto";
+        $('sidebar').style.left = ($('content').getDimensions().width+10)+"px";
+        $('sidebar').style.right = 'auto';
+      }
+      
+      /*
         When called, this function will cause the sidebar to collapse or expand, thus
         moving it out of the way to reduce clutter and recalling it when needed.
        */
@@ -37,23 +58,15 @@
       {
         if (toggleSidebar.collapsed)
         {
-          new Effect.Grow('sidebar', { direction: 'top-right', afterFinish: function() {
-            $('sidebar').style.right = '5px';
-            $('sidebar').style.left = 'auto';
-          } });
+          new Effect.Grow('sidebar', { direction: 'top-right', afterFinish: recalculate_sidebar_bounds });
           new Effect.Morph('content', { style: 'right:205px;' });
           new Effect.Morph('collapse-sidebar', { style: 'right:205px;' });
           toggleSidebar.collapsed = false;
-          /*
-             the effects above can cause the sidebar to be positioned with +left+
-             instead of +right+, which causes issues if a user resizes window afterward.
-             So all we do here is force usage of +right+.
-           */
-          $('sidebar').style.right = '5px';
         }
         else
         {
-          new Effect.DropOut('sidebar', { });
+          recalculate_sidebar_bounds();
+          new Effect.DropOut('sidebar');//, { afterFinish: recalculate_sidebar_bounds });
           new Effect.Morph('content', { style: 'right:5px;' });
           new Effect.Morph('collapse-sidebar', { style: 'right:5px;' });
           toggleSidebar.collapsed = true;
@@ -90,6 +103,7 @@
 
         $('sidebar').style.top = sidebar_top+"px";
         $('sidebar-scroll-mirror').style.height = sidebar_height+"px";
+        recalculate_sidebar_bounds();
       }
       
       Event.observe(window, 'scroll', window_scrolled);
