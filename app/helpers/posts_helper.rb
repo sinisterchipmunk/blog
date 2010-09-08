@@ -9,13 +9,12 @@ module PostsHelper
 
   # sets up any markup and/or syntax highlighting and returns the result
   def post_body(post, options = { :line_numbers => :table, :css => :class, :brief => false })
-    if post.format == "html"
+    if post.post_format == "html"
       body = post.body.to_s
     else
-      body = case post.format
+      body = case post.post_format
         when 'rdoc' then
           GitHub::Markup.render("#{post.permalink}.rdoc", post.body.to_s)
-          
         else post.body.to_s
       end
     end

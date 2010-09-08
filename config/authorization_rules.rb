@@ -9,6 +9,7 @@ authorization do
     # We already validate that the user is logged in. I don't really care who leaves a message, as long
     # as they have an account.
     has_permission_on :comments, :to => [:edit, :update, :new, :create]
+    has_permission_on :blogs, :to => :author
   end
 
   role :moderator do

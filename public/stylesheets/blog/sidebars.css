@@ -2,7 +2,10 @@ div#sidebar {
   margin-left:0;
   padding-left:0;
   padding-right:0;
-  float:left;
+  right:5px;
+  top:5px;
+  position:fixed;
+  /*float:right;*/
 }
 
 div.sidebar_item {

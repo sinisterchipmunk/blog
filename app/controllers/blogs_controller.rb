@@ -1,8 +1,13 @@
 class BlogsController < ApplicationController
-  filter_resource_access :load_method => :load_blog
+  filter_resource_access :load_method => :load_blog, :new => [ :new, :create, :author ]
 
   def load_blog
     @blog = (Blog.find(params[:id]))
+  end
+  
+  def author
+    @blog = Blog.first
+    @author = @blog.owner
   end
 
   def update

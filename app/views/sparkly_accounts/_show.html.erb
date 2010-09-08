@@ -1,0 +1,21 @@
+<div id="author-vitals">
+  <h2>The Vitals:</h2>
+  <p>
+    Name: <%=model.name%>
+  </p>
+  <%if model.twitter_name%>
+    <p>
+      Twitter: <a href="http://twitter.com/<%=model.twitter_name%>"><%=model.twitter_name%></a>
+    </p>
+  <%end%>
+  <p>
+    Email:
+    <%=obfuscated_mail_to(model.email, model.email, :encode => :hex)%>
+  </p>
+</div>
+
+<%if model.bio%>
+  <div id="author-bio">
+    <%=GitHub::Markup.render("#{model.name}.rdoc", model.bio.to_s)%>
+  </div>
+<%end%>

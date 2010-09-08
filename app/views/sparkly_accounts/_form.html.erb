@@ -22,7 +22,6 @@
       <%=f.text_field :twitter_name, :size => 20%>
     </div>
     
-    <div style='height:3em;'>&nbsp;</div>
     <div style='height:2em;'>&nbsp;</div>
 
     <div style='float:left;'>
@@ -32,6 +31,14 @@
     <div>
       <%=f.label :password_confirmation%><br/>
       <%=f.password_field :password_confirmation, :value => '', :size => 20%>
+    </div>
+    
+    <div>
+      <p>
+        <%=f.label :bio%><br/>
+        <%=f.text_area :bio%><br/>
+        (format: <strong>rdoc</strong>)
+      </p>
     </div>
 
     <%if permitted_to? :edit, :users%>

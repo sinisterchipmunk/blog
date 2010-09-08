@@ -1,21 +1,4 @@
-div#extra-info-container {
-  /*
-  position:absolute;
-  left:2.275in;
-  width:4in;
-  */
-}
-
-div#extra-info {
-  overflow:hidden;
-  background: url("/images/extra-info-bar.png") no-repeat;
-  /*width:4in;*/
-  width: 400px;
-  height: 35px;
-  vertical-align: middle;
+div#caption {
   font-size:10px;
-  line-height:12px;
-  margin-left: auto;
-  margin-right: auto;
 }
 

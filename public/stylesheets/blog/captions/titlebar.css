@@ -1,30 +1,24 @@
-div#titlebar-container {
-  width:10.75in;
-  /*width: 1020px;*/
-  margin-bottom:0.1in;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 div#titlebar {
-  /* 19px on each side out of 1020 leaves 988, right? */
-  /*width:988px;*/
-  width:10.25in;
+  /*width:10.25in;*/
   text-align:center;
   min-height:42px;
   padding-top: 10px;
   font-size:28px;
-  color: #bbb !important;
+/*  color: #bbb !important; */
 }
 
 div#titlebar form.edit_blog input {
   /* the text box that appears when editing the title. This is for blog owner / admin only. */
   height:40px;
-  width:900px;
   text-align:center;
   font-size:28px;
+  z-index:1;
 }
 
-div#titlebar a { color: #bbb !important; }
-div#titlebar a { background-color: transparent; }
+div#titlebar form.edit_blog input[type=text] {
+  width:75%;
+}
 
+
+/*div#titlebar a { color: inherit !important; }*/
+/*div#titlebar a { background-color: transparent; }*/

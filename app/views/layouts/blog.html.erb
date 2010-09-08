@@ -22,39 +22,84 @@
     <%end }%>
     <script>
       jQuery.noConflict();
+      /* tweetbacks, w00t. Called twice to check for the omission of "www." since Topsy is just that picky. */
       jQuery(document).ready(function() {
         jQuery('#boastful').boastful({limit: 25, empty_message:""});
         if (location.href.toString().indexOf("www.") != -1)
           jQuery('#boastful2').boastful({limit: 25, location:location.href.toString().gsub("www.", ""), empty_message:""});
       });
+      
+      /*
+        When called, this function will cause the sidebar to collapse or expand, thus
+        moving it out of the way to reduce clutter and recalling it when needed.
+       */
+      function toggleSidebar()
+      {
+        if (toggleSidebar.collapsed)
+        {
+          new Effect.Grow('sidebar', { direction: 'top-right', afterFinish: function() {
+            $('sidebar').style.right = '5px';
+            $('sidebar').style.left = 'auto';
+          } });
+          new Effect.Morph('content', { style: 'right:205px;' });
+          new Effect.Morph('collapse-sidebar', { style: 'right:205px;' });
+          toggleSidebar.collapsed = false;
+          /*
+             the effects above can cause the sidebar to be positioned with +left+
+             instead of +right+, which causes issues if a user resizes window afterward.
+             So all we do here is force usage of +right+.
+           */
+          $('sidebar').style.right = '5px';
+        }
+        else
+        {
+          new Effect.DropOut('sidebar', { });
+          new Effect.Morph('content', { style: 'right:5px;' });
+          new Effect.Morph('collapse-sidebar', { style: 'right:5px;' });
+          toggleSidebar.collapsed = true;
+        }
+      }
+      
+      /*
+        This function calculates the height and top position of the sidebar,
+        compares that to the size and scroll offsets of the window, and
+        repositions the sidebar accordingly. This is because, since the sidebar
+        is positioned using position:fixed, it is impossible for the user to
+        scroll down within the sidebar if it's too long for the window. Rather
+        than add a nested div with overflow:auto, which is ugly, I decided to
+        go this route. This way the user can scroll down but won't ever scroll
+        past the end of the sidebar. This reduces the amount of wasted space and
+        prevents the user from having to scroll back up to use the sidebar.
+       */
+      var window_scrolled = function(evt)
+      {
+        var window_height = (document.viewport.getDimensions().height);
+        var sidebar_height = ($('sidebar').getHeight());
+        var sidebar_top = $('sidebar').cumulativeOffset().top;
+        var origin = 5;
+        var scroll = document.viewport.getScrollOffsets().top;
+        
+        sidebar_top = origin;
+        if (window_height < sidebar_height)
+        {
+          sidebar_top -= scroll;
+          
+          if (window_height - sidebar_top > sidebar_height)
+            sidebar_top = -(sidebar_height - window_height);
+        }
+
+        $('sidebar').style.top = sidebar_top+"px";
+        $('sidebar-scroll-mirror').style.height = sidebar_height+"px";
+      }
+      
+      Event.observe(window, 'scroll', window_scrolled);
+      Event.observe(window, 'resize', window_scrolled);
+      Event.observe(window, 'load',   window_scrolled); // mostly just to populate $("sidebar-scroll-mirror")
     </script>
     <%=yield :head%>
   </head>
 
   <body>
-    <div id="titlebar-container">
-      <div class="caption-container">
-        <div class="caption-left"><img src="/images/subtitle-bar-left.png" /></div>
-        <div class="caption-center" id="titlebar">
-          <span id="blog_name_link">
-            <%=link_to blog.name, root_path%>
-            <%if permitted_to? :edit, :blogs%>
-              [<%=link_to_function "edit", "Element.toggle('blog_name_link');Element.toggle('blog_name_form');"%>]
-            <%end%>
-          </span>
-          <%if permitted_to? :edit, :blogs%>
-            <span id="blog_name_form" style='display:none;'>
-              <%form_for blog do |f|%>
-                <%=f.text_field :name%>
-                <%=f.submit%>
-              <%end%>
-            </span>
-          <%end%>
-        </div>
-        <div class="caption-right"><img src="/images/subtitle-bar-right.png" /></div>
-      </div>
-    </div>
-    
     <div id="content">
       <div id="sidebar">
         <%SIDEBARS.each do |sidebar|%>
@@ -70,31 +115,54 @@
         <%end%>
       </div>
 
-      <div id="inner-top-background">
-        <div id="inner-top">
+      <div id="border-top-left">&nbsp;</div>
+      <div id="border-top-right">&nbsp;</div>
+      <div id="border-top-middle">&nbsp;</div>
+      
+      <div id="collapse-sidebar" onclick="toggleSidebar();"></div>
+      
+      <div id="inner-content">
+        <div id="inner-top-content">
           <div id="post-info">
+            <div id="titlebar">
+              <%if title = yield(:title)%>
+                <span id="gohome">
+                  <a href='/'>TiC</a>
+                </span>
+                <%=title%>
+              <%else%>
+                <span id="blog_name_link">
+                  <%=link_to blog.name, root_path%>
+                  <%if permitted_to? :edit, :blogs%>
+                    [<%=link_to_function "edit", "Element.toggle('blog_name_link');Element.toggle('blog_name_form');"%>]
+                  <%end%>
+                </span>
+                <span id="blog_owner">
+                  with <%=link_to blog.owner.name, author_path%>
+                </span>
+                <%if permitted_to? :edit, :blogs%>
+                  <span id="blog_name_form" style='display:none;'>
+                    <%form_for blog do |f|%>
+                      <%=f.text_field :name%>
+                      <%=f.submit%>
+                    <%end%>
+                  </span>
+                <%end%>
+              <%end%>
+            </div>
             <%if content_given?(:subtitle)%>
-              <div id="subtitle-container">
-                <div class="caption-container">
-                  <div class="caption-left"><img src="/images/subtitle-bar-left.png" /></div>
-                  <div class="caption-center" id="subtitle">
-                    <%=yield :subtitle%>
-                  </div>
-                  <div class="caption-right"><img src="/images/subtitle-bar-right.png" /></div>
-                </div>
+              <div id="subtitle">
+                <%=yield :subtitle%>
               </div>
             <%end%>
             <%if content_given?(:extra_info)%>
-              <div id="extra-info-container">
-                <div id="extra-info">
-                  <%=yield :extra_info%>
-                </div>
+              <div id="caption">
+                <%=yield :extra_info%>
               </div>
             <%end%>
           </div>
         </div>
-      </div>
-      <div id="inner-content">
+        
         <%if content_given?(:extra_info)%><div id="spacer">&nbsp;</div><%end%>
 
         <div id="flash">
@@ -108,10 +176,10 @@
 
           <%if tweetbacks?%>
             <div id="boastful-container">
-              <%#<h3>Tweets about this page:</h3>%>
-              <div id="boastful"></div>
+              <div id="boastful" style="float:left;"></div>
               <div id="boastful2"></div>
             </div>
+            <div style='clear:both;'></div>
           <%end%>
           
           <div id="post-comments">
@@ -123,7 +191,18 @@
           </div>
         </div>
       </div>
-      <div id="inner-bottom"></div>
+      
+      <div id="border-bottom-left">&nbsp;</div>
+      <div id="border-bottom-right">&nbsp;</div>
+      <div id="border-bottom-middle">&nbsp;</div>
+      <div id="fake-bottom"></div>
+    </div>
+  
+    <div style='position:absolute;z-index:-1;top:5px;opacity:0;' id="sidebar-scroll-mirror">
+      &nbsp;
+      <%# This is because if the sidebar is longer than the main content, we don't get
+          scrollbars using position:fixed. So we mirror it with a position:absolute
+          of equal height in the background. %>
     </div>
   </body>
 </html>

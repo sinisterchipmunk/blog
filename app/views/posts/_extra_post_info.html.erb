@@ -1,5 +1,5 @@
 <%if post.publish_date%>
-  Published by <%=h post.author.display_name%> on <%=h post.publish_date.strftime("%a, %b %d, %Y")%>
+  Published by <%=link_to post.author.display_name, author_path%> on <%=h post.publish_date.strftime("%a, %b %d, %Y")%>
 <%else%>
   <span style='font-weight:800;'>(Draft)</span>
 <%end%>

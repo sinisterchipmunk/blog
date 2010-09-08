@@ -1,10 +1,12 @@
-<h2><%=link_to post.title, post%></h2>
-<div>
-  <%=render :partial => 'posts/extra_post_info.html.erb', :locals => { :post => post }%>
-</div>
-<div class="post_body">
-  <%=post_body(post, :brief => (defined?(brief) && brief))%>
-  <%if permitted_to?(:edit, :posts)%>
-    [<%= link_to 'Edit', edit_post_path(post) %>]
-  <%end%>
+<div class="post">
+  <h2><%=link_to post.title, post%></h2>
+  <div>
+    <%=render :partial => 'posts/extra_post_info.html.erb', :locals => { :post => post }%>
+  </div>
+  <div class="post_body">
+    <%=post_body(post, :brief => (defined?(brief) && brief))%>
+    <%if permitted_to?(:edit, :posts)%>
+      [<%= link_to 'Edit', edit_post_path(post) %>]
+    <%end%>
+  </div>
 </div>

@@ -26,12 +26,9 @@ class Post < ActiveRecord::Base
   
   option :summary_length, 128
   
-  def format
-    new_record? || attributes['format'].blank? ? 'rdoc' : attributes['format']
-  end
-  
-  def format=(a)
-    attributes['format'] = a
+  def post_format
+    x = super
+    new_record? || x.blank? ? 'rdoc' : x
   end
   
   def pingback_history

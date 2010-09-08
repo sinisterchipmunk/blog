@@ -1,0 +1,97 @@
+div#post { /* in /posts/_form */
+  margin-left: 0;
+  margin-right: 0;
+}
+
+div.post { /* a single post in a list of one or more posts, used in both #show and #list */
+  border-bottom: 2px dashed #ff9900;
+  padding-bottom: 2em;
+  margin-bottom: 2em;
+}
+
+div.post-container {
+  display: table;
+  width: 100%;
+}
+
+div#post-title { /* in /posts/_form */
+  /* float: left; */
+  vertical-align: top;
+  border: 0 solid #00f;
+  display: table-cell;
+}
+
+div#post-publish_date { /* in /posts/_form */
+  /* margin-left: auto; */
+  vertical-align: top;
+  text-align:right;
+  width: 50%;
+  border: 0 solid #0ff;
+  display: table-cell;
+}
+
+div#post-row1 {
+  display: table-row;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+div#post-row2 {
+  display: table-row;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+div#post-categories { /* in /posts/_form */
+  /* float: left; */
+  vertical-align: top;
+  border: 0 solid #f00;
+  display: table-cell;
+}
+
+div#post-tags { /* in /posts/_form */
+  vertical-align: top;
+  border: 0 solid #0f0;
+  display: table-cell;
+  width: 50%;
+}
+
+div#post-revision { /* in /posts/_form */
+  margin-left: 0;
+  margin-right: 0;
+  vertical-align: top;
+  text-align: left;
+  border: 0 solid #000;
+  display: table-row;
+}
+
+div#back-to-index { /* in /posts/show */
+  float:left;
+}
+
+div#previous-or-next { /* in /posts/show */
+  margin-left:auto;
+  text-align:right;
+}
+
+div#post-info {
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align:center;
+  vertical-align:middle;
+  min-height: 70px;
+  position:relative;
+}
+
+textarea.post-body {
+  border-bottom: 2px dashed #fcc;
+  width:7.9in;
+  height:3in;
+  font-family: monospace;
+}
+
+textarea.comment {
+  width:7.9in;
+}
+

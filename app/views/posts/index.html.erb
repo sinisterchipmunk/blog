@@ -1,5 +1,4 @@
 <%content_for :subtitle do%>
-  Recent Posts
   <%if permitted_to? :create, :posts%>
     [<%= link_to 'Create', new_post_path %>]
   <%end%>

@@ -2,16 +2,7 @@
 @import url("/stylesheets/blog/captions/subtitle.css");
 @import url("/stylesheets/blog/captions/titlebar.css");
 @import url("/stylesheets/blog/captions/extra-info.css");
-
-textarea.comment {
-  width:7.9in;
-}
-
-textarea.post-body {
-  width:7.9in;
-  height:3in;
-  font-family: monospace;
-}
+@import url("/stylesheets/blog/posts.css");
 
 body {
   background-color: #ccc;
@@ -25,140 +16,97 @@ body, p, ol, ul, td {
   /*line-height: 18px;*/
 }
 
-div#post { /* in /posts/_form */
-  margin-left: 0;
-  margin-right: 0;
-}
-
-div.post-container {
-  display: table;
-  width: 100%;
-}
-
-div#post-title { /* in /posts/_form */
-  /* float: left; */
-  vertical-align: top;
-  border: 0 solid #00f;
-  display: table-cell;
-}
-
-div#post-publish_date { /* in /posts/_form */
-  /* margin-left: auto; */
-  vertical-align: top;
-  text-align:right;
-  width: 50%;
-  border: 0 solid #0ff;
-  display: table-cell;
-}
-
-div#post-row1 {
-  display: table-row;
-  margin-left: 0;
-  margin-right: 0;
-}
-
-div#post-row2 {
-  display: table-row;
-  margin-left: 0;
-  margin-right: 0;
-}
-
-div#post-categories { /* in /posts/_form */
-  /* float: left; */
-  vertical-align: top;
-  border: 0 solid #f00;
-  display: table-cell;
-}
-
-div#post-tags { /* in /posts/_form */
-  vertical-align: top;
-  border: 0 solid #0f0;
-  display: table-cell;
-  width: 50%;
-}
-
-div#post-revision { /* in /posts/_form */
-  margin-left: 0;
-  margin-right: 0;
-  vertical-align: top;
-  text-align: left;
-  border: 0 solid #000;
-  display: table-row;
-}
-
-div#back-to-index { /* in /posts/show */
+span#gohome {
   float:left;
+  margin-left:2em;
+  font-variant:small-caps;
+  color:#00f;
 }
 
-div#previous-or-next { /* in /posts/show */
-  margin-left:auto;
-  text-align:right;
+span#blog_name_link {
 }
 
+span#blog_name_link a { color: #000; text-decoration:none; }
+
+
+span#blog_owner {
+  display:block;
+  font-style:italic;
+  font-size: 75%;
+}
+
+div#collapse-sidebar {
+  background-image: url("/images/arrow-darkgreen.png");
+  width: 14px;
+  height:40px;
+  position:fixed;
+  top:12em;
+  right:205px;
+  z-index:3;
+  cursor: pointer;
+}
 
 div#content {
-  margin-left: auto;
-  margin-right: auto;
-  /*width:1020px;*/
-  width:10.75in;
+  position:absolute;
+  right:205px;
+  left:5px;
+  top: 5px;
+  margin-bottom: 5px;
 }
 
-div#inner-top-background {
-  background: url(/images/bg-trans-top.png) no-repeat;
-  width: 8.55in;
-  /*
-  width:820px;
-  */
-  padding: 0;
-  margin-left: auto;
-  padding-top: 2px;
-/*  height: 90px !important; */
+div#border-top-left {
+  overflow:hidden;
+  width:8px;
+  height:8px;
+  float:left;
+  background-image: url("/images/white-corner-tl.png");
 }
 
-div#inner-top {
-  background: url(/images/bg-top-offset.png) repeat-x;
-  background-position:0px 88px;
-  width: 8.55in;
-  min-height:90px !important;
-  /*
-  width:820px;
-  */
-  padding: 0;
-  margin-left: auto;
-  padding-top: 2px;
-/*  height: 90px !important; */
+div#border-top-middle {
+  background-color: #fff;
+  height:8px;
+  overflow:hidden;
+}
+
+div#border-top-right {
+  overflow:hidden;
+  width:8px;
+  height:8px;
+  float:right;
+  background-image: url("/images/white-corner-tr.png");
+}
+
+div#inner-top-content {
+  padding-bottom:2em;
+  border-bottom: 2px dashed #ff9900;
 }
 
 div#inner-content {
-  background: url(/images/bg-trans-middle.png) no-repeat;
-  width: 8.55in;
-  /*width:820px;*/
-  padding: 0;
-  margin-left: auto;
-  min-height: 5in;
   background-color: #fff;
-}
-
-
-div#post-info {
-  color: #bbb;
-  margin-top: 10px;
-  margin-bottom: 0;
-  margin-left: auto;
-  margin-right: auto;
-  text-align:center;
-  vertical-align:middle;
-  min-height: 70px;
-  position:relative;
-}
-
-div#inner-bottom {
-  height: 8px;
-  width: 8.55in;
-  /*width:820px;*/
   padding: 0;
-  margin-left: auto;
-  background: url(/images/bg-trans-bottom.png) no-repeat;
+  min-height: 5in;
+}
+
+div#border-bottom-left {
+  width:8px;
+  height:8px;
+  float:left;
+  background-image: url("/images/white-corner-bl.png");
+  overflow:hidden;
+}
+
+div#border-bottom-middle {
+  background-color: #fff;
+  height:8px;
+  overflow:hidden;
+}
+
+div#border-bottom-right {
+  overflow:hidden;
+  float:right;
+  width:8px;
+  height:8px;
+  background-image: url("/images/white-corner-br.png");
 }
 
 .image-link {
@@ -195,8 +143,8 @@ div#main {
   padding: 0.05in;
   margin-right:auto;
   margin-left: auto;
-  width: 8in;
-  /*width: 780px;*/
+  padding-left: 0.5in;
+  padding-right: 0.5in;
   text-align: justify;
 }
 
@@ -214,9 +162,10 @@ pre {
   font-size: 11px;
 }
 
-a { color: #003366; text-decoration:none; }
-a:visited { color: #003366; }
-a:hover { color: #fff; background-color:#003366; }
+a { color: #00a; text-decoration:none; }
+a:visited { color: #00a; }
+/*a:hover { color: #fff; background-color:#003366; }*/
+a:hover { color:#00f; }
 
 .fieldWithErrors {
   padding: 2px;
@@ -261,4 +210,13 @@ input#user_openid_identifier, input#user_session_openid_identifier {
   background-position: 0 50%;
   color: #000;
   padding-left: 18px;
+}
+
+
+div#fake-bottom {
+  /* I'm anal about the 5 pixel border, so sue me.
+     This is placed at the bottom (but INSIDE) of the #content div. Since #content is absolutely positioned,
+     the browser will try to chop off the 5px space. So we just put an empty div there that's 5 pixels high
+     to take up some space. Yay. */
+  height:5px;
 }

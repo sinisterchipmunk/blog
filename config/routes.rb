@@ -4,6 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.login  "login",  :controller => 'sparkly_sessions', :action => 'new'
   map.logout "logout", :controller => 'sparkly_sessions', :action => 'destroy'
 
+  map.author '/author', :controller => 'blogs', :action => 'author'
   map.resources :blogs
   map.resources :tags
   #map.resources :comments
