@@ -56,12 +56,21 @@ var window_scrolled = function(evt)
   // return early if the sidebar is hidden so we don't conflict with scriptaculous
   if ($('sidebar').style.display == "none") return;
   
+  // This is nitpicky, but there's about a 15px offset at the top of the page.
+  // I like the offset for #content but hate it for the #sidebar because it seems
+  // like too much once the user scrolls down. So we'll calculate an offset, which
+  // becomes smaller as the user scrolls down, and offset the sidebar by that amount.
+  // (Hey, it's my site -- I'll do what I want.) :)
+  var scroll = document.viewport.getScrollOffsets().top;
+  var offset = $("outer").cumulativeOffset().top;
+  offset -= scroll;
+  if (offset < 0) offset = 0;
+  
   var window_height = (document.viewport.getDimensions().height);
   var sidebar_height = ($('sidebar').getHeight());
-  var sidebar_top = $('sidebar').cumulativeOffset().top;
+  var sidebar_top = $('sidebar').cumulativeOffset().top - $("outer").cumulativeOffset().top;
   window_scrolled.origin = window_scrolled.origin || sidebar_top;
   var origin = window_scrolled.origin;
-  var scroll = document.viewport.getScrollOffsets().top;
   
   sidebar_top = origin;
   if (window_height < sidebar_height)
@@ -71,11 +80,14 @@ var window_scrolled = function(evt)
     if (window_height - sidebar_top > sidebar_height)
       sidebar_top = -(sidebar_height - window_height);
   }
-
+  sidebar_top += offset;
+  
   $('sidebar').style.top = sidebar_top+"px";
   $('sidebar-scroll-mirror').style.top = sidebar_top+"px";
   $('sidebar-scroll-mirror').style.height = sidebar_height+"px";
-  $('border-center').style.minHeight = (sidebar_top+sidebar_height)+"px";
+  // we need a buffer of some sort to prevent jittering in FF. Pretty sure this has to do with offset
+  // but adding offset doesn't solve the problem.
+  $('border-center').style.minHeight = (sidebar_top+sidebar_height+30)+"px";
   recalculate_sidebar_bounds();
 }
 
@@ -83,12 +95,3 @@ Event.observe(window, 'scroll', window_scrolled);
 Event.observe(window, 'resize', window_scrolled);
 Event.observe(window, 'load',   window_scrolled); // mostly just to populate $("sidebar-scroll-mirror")
 
-Event.observe(window, 'load', function() {
-  /* tweetbacks, w00t. Called twice to check for the omission of "www." since Topsy is just that picky. */
-  jQuery.noConflict();
-  jQuery(document).ready(function() {
-    jQuery('#boastful').boastful({limit: 25, empty_message:""});
-    if (location.href.toString().indexOf("www.") != -1)
-      jQuery('#boastful2').boastful({limit: 25, location:location.href.toString().gsub("www.", ""), empty_message:""});
-  });
-});

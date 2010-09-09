@@ -14,6 +14,6 @@
         <%end%>
       </ul>
     </li>
-    <%=javascript_tag("$('archive_year_#{year}').style.display = 'none';")%>
+    <%=javascript_tag("document.getElementById('archive_year_#{year}').style.display = 'none';")%>
   <%end%>
 </ul>
