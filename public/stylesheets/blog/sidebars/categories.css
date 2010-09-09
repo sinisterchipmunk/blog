@@ -18,3 +18,8 @@ div#categories-header {
   color: #003399;
   padding-bottom:10px;
 }
+
+div#categories-all {
+  text-align:center;
+  font-size:125%;
+}
