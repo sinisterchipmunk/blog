@@ -13,7 +13,6 @@ body {
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size:   13px;
-  /*line-height: 18px;*/
 }
 
 span#gohome {
@@ -47,9 +46,6 @@ div#collapse-sidebar {
 }
 
 div#outer {
-  /*width: 80%;*/
-  /*margin-left: auto;*/
-  /*margin-right: auto;*/
   position:absolute;
   left:35px;
   right:35px;
@@ -61,8 +57,6 @@ div#border-center {
 }
 
 div#content {
-  /*display:inline;*/
-  /*position:absolute;*/
   margin-right:205px;
   left:0;
   top: 5px;
@@ -148,7 +142,6 @@ div#flash_notice, div#flash_message {
   background-color:#040;
 }
 
-/* makes room for #extra-info so that it isn't clashing with #flash or #main */
 div#spacer {
   height:6px;
 }
@@ -178,7 +171,6 @@ pre {
 
 a { color: #00a; text-decoration:none; }
 a:visited { color: #00a; }
-/*a:hover { color: #fff; background-color:#003366; }*/
 a:hover { color:#00f; }
 
 .fieldWithErrors {

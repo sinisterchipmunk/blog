@@ -84,6 +84,9 @@
        */
       var window_scrolled = function(evt)
       {
+        // return early if the sidebar is hidden so we don't conflict with scriptaculous
+        if ($('sidebar').style.display == "none") return;
+        
         var window_height = (document.viewport.getDimensions().height);
         var sidebar_height = ($('sidebar').getHeight());
         var sidebar_top = $('sidebar').cumulativeOffset().top;
