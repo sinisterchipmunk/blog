@@ -14,6 +14,7 @@
 div#categories-header {
   font-size: 16pt;
   text-align:center;
-  color:#93b4ff;
+  /*color:#93b4ff;*/
+  color: #003399;
   padding-bottom:10px;
 }

@@ -41,17 +41,37 @@ div#collapse-sidebar {
   height:40px;
   position:fixed;
   top:12em;
-  right:205px;
+  right:238px;
   z-index:3;
   cursor: pointer;
 }
 
-div#content {
+div#outer {
+  /*width: 80%;*/
+  /*margin-left: auto;*/
+  /*margin-right: auto;*/
   position:absolute;
-  right:205px;
-  left:5px;
+  left:35px;
+  right:35px;
+  top:15px;
+}
+
+div#border-center {
+  background-color:#fff;
+}
+
+div#content {
+  /*display:inline;*/
+  /*position:absolute;*/
+  margin-right:205px;
+  left:0;
   top: 5px;
-  margin-bottom: 5px;
+}
+
+div#inner-content {
+  background-color: #fff;
+  padding: 0;
+  min-height: 5in;
 }
 
 div#border-top-left {
@@ -79,12 +99,6 @@ div#border-top-right {
 div#inner-top-content {
   padding-bottom:2em;
   border-bottom: 2px dashed #ff9900;
-}
-
-div#inner-content {
-  background-color: #fff;
-  padding: 0;
-  min-height: 5in;
 }
 
 div#border-bottom-left {
@@ -214,9 +228,9 @@ input#user_openid_identifier, input#user_session_openid_identifier {
 
 
 div#fake-bottom {
-  /* I'm anal about the 5 pixel border, so sue me.
+  /* I'm anal about the several-pixel border, so sue me.
      This is placed at the bottom (but INSIDE) of the #content div. Since #content is absolutely positioned,
      the browser will try to chop off the 5px space. So we just put an empty div there that's 5 pixels high
      to take up some space. Yay. */
-  height:5px;
+  height:15px;
 }
