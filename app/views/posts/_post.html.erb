@@ -1,12 +1,21 @@
 <div class="post">
-  <h2><%=link_to post.title, post%></h2>
-  <div>
-    <%=render :partial => 'posts/extra_post_info.html.erb', :locals => { :post => post }%>
+  <div class="info">
+    <%=render :partial => 'extra_post_info', :locals => { :post => post }%>
+    <h2><%=render :partial => 'title', :locals => { :post => post, :link => true }%></h2>
+    <div class="spacer"></div>
   </div>
+  
   <div class="post_body">
     <%=post_body(post, :brief => (defined?(brief) && brief))%>
     <%if permitted_to?(:edit, :posts)%>
       [<%= link_to 'Edit', edit_post_path(post) %>]
     <%end%>
   </div>
+  
+  <%if !defined?(brief) || !brief%>
+    <div class="sharethis-low">
+      <%# if the entire post was displayed, display the controls a second time, since my posts are usually pretty long %>
+      <span class="st_sharethis_button" st_title="<%=blog_title(h post.title)%>" st_url="<%=url_for post%>" displayText="ShareThis"></span>
+    </div>
+  <%end%>
 </div>

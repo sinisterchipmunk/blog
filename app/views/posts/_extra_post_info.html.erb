@@ -1,13 +1,14 @@
-<%if post.publish_date%>
-  Published by <%=link_to post.author.display_name, author_path%> on <%=h post.publish_date.strftime("%a, %b %d, %Y")%>
-<%else%>
-  <span style='font-weight:800;'>(Draft)</span>
-<%end%>
-<%if permitted_to? :destroy, :posts%>
-  [<%=link_to "Delete", post_path(post), :method => :delete, :confirm => 'Are you sure you wish to permanently remove this post?'%>]
-<%end%>
-<!--<br/>
-Last updated <%=h post.updated_at%>-->
-<%if permitted_to? :edit, :posts %>
-  [<%=link_to "Edit", edit_post_path(post)%>]
-<%end%>
+<div class="extra">
+
+  <div class="publish_date">
+    <%if post.publish_date%>
+      <%=h post.publish_date.strftime("%a, %b %d, %Y")%>
+    <%else%>
+      <span style='font-weight:800;'>(Draft)</span>
+    <%end%>
+  </div>
+
+  <div class="sharethis-high">
+    <span class="st_sharethis_button" st_title="<%=blog_title(h post.title)%>" st_url="<%=url_for post%>" displayText="ShareThis"></span>
+  </div>
+</div>

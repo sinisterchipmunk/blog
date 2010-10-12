@@ -146,17 +146,6 @@ class PostsController < ApplicationController
   end
 
   private
-#  class XMLRPC::Client
-#    alias _do_rpc do_rpc
-#    
-#    def do_rpc(request, async=false)
-#      returning _do_rpc(request, async) do |t|
-#        puts t.inspect
-#      end
-#    end
-#  end
-#  
-#  
   def handle_images
     parser = Hpricot(@post.body)
     image_tags = (parser / :img).uniq
@@ -179,7 +168,7 @@ class PostsController < ApplicationController
   def handle_pingbacks
     # check for pingbacks
     return unless @post.pingbacks_should_be_processed?
-    parser = Hpricot(@post.body)
+    parser = Hpricot(@post.to_html)
     link_tags = parser / :a
     link_tags.each do |link|
       href = link['href']

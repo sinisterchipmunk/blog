@@ -53,34 +53,32 @@ function toggleSidebar()
  */
 var window_scrolled = function(evt)
 {
-  /* Seemed like a great idea until it hit production. Should have used more real data.
-     Problem is, on long pages, user still has to scroll to top. Defeats the purpose of
-     this script. So we need to change the scroll offset so that scrolling up from the
-     bottom causes an immediate change in sidebar. If that didn't make sense, just
-     open this page.
-   */
 
   // return early if the sidebar is hidden so we don't conflict with scriptaculous
   if ($('sidebar').style.display == "none") return;
   
+  var scroll = document.viewport.getScrollOffsets().top;
+
+  // Seemed like a great idea until it hit production. Should have used more real data.
+  // Problem is, on long pages, user still has to scroll to top. Defeats the purpose of
+  // this script. So we need to change the scroll offset so that scrolling up from the
+  // bottom causes an immediate change in sidebar. If that didn't make sense, just
+  // open this page.
+  window_scrolled.scroll_offset = window_scrolled.scroll_offset || 0;
+  window_scrolled.sidebar_scroll = (window_scrolled.sidebar_scroll || 0) + (scroll-window_scrolled.scroll_offset);
+  window_scrolled.scroll_offset = scroll;
+  
+  var window_height = (document.viewport.getDimensions().height);
+  var sidebar_height = ($('sidebar').getHeight());
+  var sidebar_top = $('sidebar').cumulativeOffset().top - $("outer").cumulativeOffset().top;
+
   // This is nitpicky, but there's about a 15px offset at the top of the page.
   // I like the offset for #content but hate it for the #sidebar because it seems
   // like too much once the user scrolls down. So we'll calculate an offset, which
   // becomes smaller as the user scrolls down, and offset the sidebar by that amount.
   // (Hey, it's my site -- I'll do what I want.) :)
-  var scroll = document.viewport.getScrollOffsets().top;
-
-  window_scrolled.scroll_offset = window_scrolled.scroll_offset || 0;
-  window_scrolled.sidebar_scroll = (window_scrolled.sidebar_scroll || 0) + (scroll-window_scrolled.scroll_offset);
-//  if (window_scrolled.scroll_offset > scroll) ;
-    
-  window_scrolled.scroll_offset = scroll;
-  
-  // some checks and balances
-  var window_height = (document.viewport.getDimensions().height);
-  var sidebar_height = ($('sidebar').getHeight());
-  var sidebar_top = $('sidebar').cumulativeOffset().top - $("outer").cumulativeOffset().top;
   var offset = $("outer").cumulativeOffset().top;
+
   // it's conditional because we want it to scroll naturally with the document for the first 15 pixels or so
   // it only begins to be offset after that initial distance has been covered.
   if (scroll > offset)
@@ -91,19 +89,21 @@ var window_scrolled = function(evt)
     if (offset < 0) offset = 0;
   }
 
+  // some checks and balances
   var maxh = sidebar_height - window_height - offset;
   if (window_scrolled.sidebar_scroll < 0) window_scrolled.sidebar_scroll = 0;
   if (window_scrolled.sidebar_scroll > maxh) window_scrolled.sidebar_scroll = maxh;
   
   scroll = window_scrolled.sidebar_scroll;
   
-  $('debug').update("scroll_offset: "+window_scrolled.scroll_offset+"<br/>"+
-                    "difference: "+(scroll-window_scrolled.scroll_offset)+"<br/>"+
-                    "sidebar_scroll: "+window_scrolled.sidebar_scroll+"<br/>"+
-                    "scroll: "+scroll+"<br/>"+
-                    "maxh: "+maxh
-          +"<br/><br/>");
+//  $('debug').update("scroll_offset: "+window_scrolled.scroll_offset+"<br/>"+
+//                    "difference: "+(scroll-window_scrolled.scroll_offset)+"<br/>"+
+//                    "sidebar_scroll: "+window_scrolled.sidebar_scroll+"<br/>"+
+//                    "scroll: "+scroll+"<br/>"+
+//                    "maxh: "+maxh
+//          +"<br/><br/>");
   
+  // finally, the meat of the function. TODO: can this function be refactored into something a little nicer?
   window_scrolled.origin = window_scrolled.origin || sidebar_top;
   var origin = window_scrolled.origin;
   
@@ -117,13 +117,17 @@ var window_scrolled = function(evt)
   }
   sidebar_top += offset;
   
-  
-  
+  // apply the transformations to #sidebar as well as #sidebar-scroll-mirror, which is used to force
+  // #content to accommodate the sidebar. Since sidebar is fixed position, it is outside the flow of #content,
+  // causing it to display outside the bounds of #content on short pages. This looks bad. #sidebar-scroll-mirror
+  // is invisible but is within the flow of #content, thus forcing #content to be roughly the right size.
   $('sidebar').style.top = sidebar_top+"px";
   $('sidebar-scroll-mirror').style.top = sidebar_top+"px";
   $('sidebar-scroll-mirror').style.height = sidebar_height+"px";
+  
+  // just in case sidebar-scroll-mirror doesn't work, we'll set the minHeight property as well.
   // we need a buffer of some sort to prevent jittering in FF. Pretty sure this has to do with offset
-  // but adding offset doesn't solve the problem, so I used 30 because it's double the (initial) offset.
+  // but adding offset doesn't solve the problem, so I used 30 because it's 2x the maximum offset.
   $('border-center').style.minHeight = (sidebar_top+sidebar_height+30)+"px";
   recalculate_sidebar_bounds();
 }

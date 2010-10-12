@@ -7,6 +7,7 @@ class SparklyAccountsController < SparklyController
 
   # POST model_url
   def create
+    model.display_name = model.username if model.display_name.blank?
     if model.save
       login! model
       redirect_back_or_default Auth.default_destination, Auth.account_created_message

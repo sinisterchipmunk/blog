@@ -1,3 +1,39 @@
+div.post .title {
+  float: left;
+}
+
+div.post div.info {
+  display:block;
+  clear:both;
+  background-color: #eee;
+  padding:4px;
+  padding-left:10px;
+  padding-right:10px;
+}
+
+div.extra {
+  font-size:10pt;
+  border-left:1px solid #ccc;
+  text-align:right;
+  float:right;
+  width:12em;
+  line-height:2.5em;
+}
+
+div.controls {
+  font-size:10pt;
+  font-weight:400;
+  display: inline;
+}
+
+div.post div.info div.publish_date {
+  display: block;
+}
+
+div.post div.info div.spacer {
+  clear:both;
+}
+
 div#post { /* in /posts/_form */
   margin-left: 0;
   margin-right: 0;

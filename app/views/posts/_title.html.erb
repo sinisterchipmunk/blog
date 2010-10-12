@@ -1,0 +1,16 @@
+<div class="title">
+  <%if defined?(link) && link == true%>
+    <%=link_to post.title, post%>
+  <%else%>
+    <%=h post.title%>
+  <%end%>
+  <div class="controls">
+    <br/>
+    <%if permitted_to? :destroy, :posts%>
+      [<%=link_to "Delete", post_path(post), :method => :delete, :confirm => 'Are you sure you wish to permanently remove this post?'%>]
+    <%end%>
+    <%if permitted_to? :edit, :posts %>
+      [<%=link_to "Edit", edit_post_path(post)%>]
+    <%end%>
+  </div>
+</div>

@@ -1,9 +1,13 @@
 <%content_for :title do%>
   <%=h @post.title%>
 <%end%>
-<%content_for :extra_info do%>
+
+<%content_for :header do%>
   <%=render :partial => 'extra_post_info', :locals => { :post => @post }%>
+  <%=render :partial => 'title', :locals => { :post => @post }%>
+  <div class="spacer"></div>
 <%end%>
+  
 
 <%=post_body(@post)%>
 

@@ -31,6 +31,7 @@ Rails::Initializer.run do |config|
   config.gem "bot-away"
   config.gem 'xmlparser'
   config.gem 'hpricot'
+  config.gem 'google-blogsearch-pings', :version => ">= 1.0.0"
   # Specify gems that this application depends on and have them installed with rake gems:install
   # config.gem "bj"
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"

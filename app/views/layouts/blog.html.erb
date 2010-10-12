@@ -4,16 +4,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <title><%=blog.name%> - <%=(yield(:subtitle) || yield(:title) || "Welcome").gsub(/<.*>/, '')%></title>
+    <title><%=blog_title(yield(:subtitle) || yield(:title))%></title>
     <%=javascript_include_tag :defaults%>
     <%=javascript_include_tag 'jquery.min.js'%>
     <%=javascript_include_tag 'jquery.boastful.js'%>
     <link rel="alternate" type="application/atom+xml" title="<%=blog.name%> - ATOM" href="<%=atom_feed_url%>" />
     <link rel="alternate" type="application/rss+xml" title="<%=blog.name%> - RSS" href="<%=rss_feed_url%>" />
     <%=defined?(pingback_link_tag) ? pingback_link_tag : ''%>
+    <%=stylesheet_link_tag 'blog/external'%>
     <%=stylesheet_link_tag 'blog/layout'%>
     <%=stylesheet_link_tag 'blog/sidebars'%>
     <%=stylesheet_link_tag 'blog/syntax_highlighting'%>
+    <%=stylesheet_link_tag 'blog/posts'%>
     <%=stylesheet_link_tag 'boastful'%>
     <%=tiny_mce :editor_selector => "tiny_mce", :relative_urls => false, :remove_script_host => false%>
     <%=calendar_date_select_includes "blue"%>
@@ -30,11 +32,31 @@
         });
       end_javascript
     %>
+    
+    <!-- Google analytics stuff. -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-19048799-1']);
+      _gaq.push(['_setDomainName', '.thoughtsincomputation.com']);
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <!-- End Google analytics stuff. -->
+    
+    <!-- ShareThis stuff. -->
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options({publisher:'277e6d01-789b-4fb8-96f8-6e9bdd3bd748'});</script>
+    <!-- End ShareThis stuff. -->
   </head>
 
   <body>
-    <div id="debug" style="position:fixed;left:0;bottom:0;background-color:white;width:300px;min-height:50px;z-index:100;"></div>
-  
+    <!--<div id="debug" style="display:none;position:fixed;left:0;bottom:0;background-color:white;width:300px;min-height:50px;z-index:100;"></div>-->
+
     <div id="outer">
       <div id="border-top-left">&nbsp;</div>
       <div id="border-top-right">&nbsp;</div>
@@ -60,7 +82,7 @@
             <div id="inner-top-content">
               <div id="post-info">
                 <div id="titlebar">
-                  <%if title = yield(:title)%>
+                  <%if title = yield(:header) || yield(:title)%>
                     <span id="gohome">
                       <a href='/'>TiC</a>
                     </span>
