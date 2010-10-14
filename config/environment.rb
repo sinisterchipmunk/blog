@@ -28,7 +28,7 @@ Rails::Initializer.run do |config|
   config.gem "coderay"
   #config.gem 'rack-openid', :lib => 'rack/openid'
   config.gem "gravatar-ultimate", :version => "1.0.1"
-  config.gem "bot-away"
+  config.gem "bot-away", :version => ">= 1.2.0"
   config.gem 'xmlparser'
   config.gem 'hpricot'
   config.gem 'google-blogsearch-pings', :version => ">= 1.0.0"

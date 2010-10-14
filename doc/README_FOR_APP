@@ -2,3 +2,13 @@ Setting Up:
   Run rake db:migrate
   Run rake db:seed
   Log in with 'admin', password 'adminpw'
+
+Embedding content:
+  Wrap code with [language], [/language] to syntax highlight it.
+  
+  Use [youtube {video_id} {options}] to embed YouTube videos. Options include:
+    width=number
+    height=number
+    allowFullScreen=boolean
+  
+  

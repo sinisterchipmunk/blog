@@ -1,0 +1,29 @@
+<%form_for :image, :url => url_for(:action => 'create'), :html => { :multipart => true } do |f|%>
+  <%if @image && @image.errors%>
+    <span style='color:#a00;'>
+      The following errors were encountered:
+      <ul>
+        <%@image.errors.full_messages.each do |message|%>
+          <li><%=message%></li>
+        <%end%>
+      </ul>
+    </span>
+  <%end%>
+  <p>
+    <%=f.label :url, "Enter a URL:"%>
+    <%=f.text_field :url, :value => "http://"%>
+  </p>
+  <strong>or</strong>
+  <p>
+    <%=f.label :file, "Upload a file:"%>
+    <%=f.file_field :file%>
+  </p>
+  <strong>and</strong>
+  <p>
+    <%=f.label :filename, "Enter a filename:"%>
+    <%=f.text_field :filename, :value => ""%>
+  </p>
+  <p>
+    <%=f.submit "Upload image"%>
+  </p>
+<%end%>

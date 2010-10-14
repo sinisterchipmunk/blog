@@ -89,16 +89,43 @@ class Post < ActiveRecord::Base
   private :sql_for_no_drafts
   
   def to_html(options = { :line_numbers => :table, :css => :class })
+    body = self.body.to_s
+    
     post = self
     if post.post_format == "html"
-      body = post.body.to_s
+      ;
     else
       body = case post.post_format
         when 'rdoc' then
-          GitHub::Markup.render("#{post.permalink}.rdoc", post.body.to_s)
-        else post.body.to_s
+          GitHub::Markup.render("#{post.permalink}.rdoc", body.to_s)
+        else body.to_s
       end
     end
+    
+    # youtube videos
+    body.gsub!(/\[youtube ([^\s]+)([^\]]*)\]/) do |match|
+      video_id = $~[1].strip
+      options = $~[2].strip.split
+      options = options.inject({}) { |hash, option| (k,v) = option.split(/\=/); hash[k.strip] = v.strip; hash }
+      
+      url = "http://www.youtube.com/v/#{video_id}?fs=1&amp;hl=en_US"
+      allowscriptaccess = 'always'
+      allowfullscreen = (options.key?('allowFullScreen')?options['allowFullScreen']:true).to_s
+      width = (options['width'] || 640).to_s
+      height = (options['height'] || 385).to_s
+      
+      "<object width=\"#{width}\" height=\"#{height}\">"+
+        "<param name=\"movie\" value=\"#{url}\"></param>"+
+        "<param name=\"allowFullScreen\" value=\"#{allowfullscreen}\"></param>"+
+        "<param name=\"allowscriptaccess\" value=\"#{allowscriptaccess}\"></param>"+
+        "<embed src=\"#{url}\" "+
+               "type=\"application/x-shockwave-flash\" "+
+               "allowscriptaccess=\"#{allowscriptaccess}\" "+
+               "allowfullscreen=\"#{allowfullscreen}\" "+
+               "width=\"#{width}\" "+
+               "height=\"#{height}\"></embed></object>"
+    end
+    
     colorize(body, options)
   end
   
