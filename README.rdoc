@@ -1,9 +1,7 @@
 == A Blog
 
 Essentially, I've decided to try my hand at writing a blogging engine from the ground-up as a new project. You're free
-to clone this project and use it yourself, if you wish. It's currently a full-fledged Rails application, but I'm hoping
-to turn it into a more modular Rails plugin or gem so that a blog can be easily added to any standard Rails app at some
-point in the future.
+to clone this project and use it yourself, if you wish.
 
 == Setting Up
 
@@ -14,6 +12,15 @@ ground:
     cd myblog
     git submodule init
     git submodule update
-    >> start tweaking <<
+    # edit config/database.yml
+    rake gems:install
+    rake db:migrate
+    rake db:seed
+    # choose sidebars in config/initializers/sidebars.rb
+    # customize the layout in app/views/layouts/blog.html.erb
+    # customize the CSS files in public/stylesheets/**
+     
+    # test everything
+    spec spec && cucumber
 
 Copyright (c) 2010 Colin MacKenzie IV
