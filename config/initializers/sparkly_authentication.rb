@@ -107,4 +107,7 @@ Auth.configure do |config|
   config.account_created_message = "Your account has been created."
   config.account_updated_message = "Your changes have been saved."
   config.account_locked_message = "Account is locked due to too many invalid attempts"
+  
+  config.password_format = /./ # any password complexity -- it's just a blog
+  config.minimum_password_length = 4
 end

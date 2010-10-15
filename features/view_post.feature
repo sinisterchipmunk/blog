@@ -12,8 +12,8 @@ Feature: View post
     Then  I should see "Post Title"
       And I should see "Post Body"
 
-  Scenario: View post while logged in a user
-    Given I am logged in
+  Scenario: View post while logged in as a guest
+    Given I am logged in as a guest
     When  I am on the published post page
     Then  I should see "Post Title"
       And I should see "Post Body"

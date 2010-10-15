@@ -2,7 +2,7 @@ When /^I create a post with an image at "([^"]*)"$/ do |location|
   When 'I go to the new post page'
   When 'I set the publish date to "June 5, 2010"'
   fill_in "Title", :with => "Post Title"
-  fill_in "Body", :with => "here is an image: <img src=\"#{location}\" />"
+  fill_in "post_body", :with => "here is an image: <img src=\"#{location}\" />"
   click_button "post_submit"
   Then 'I should see "Post was successfully created."'
 end

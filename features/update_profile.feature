@@ -4,7 +4,7 @@ Feature: Update user profile
   I want to update my profile
 
   Scenario: Update regular user profile, and then verify changes
-    Given I am logged in as a user
+    Given I am logged in as a guest
       And I am on the homepage
     When I follow "Edit Profile"
       And I fill in "Email" with "generic2@example.com"
@@ -17,7 +17,7 @@ Feature: Update user profile
       And I should see a text field with value "generic2"
 
   Scenario: Update password should not log the user out
-    Given I am logged in as a user
+    Given I am logged in as a guest
       And I am on the homepage
     When I follow "Edit Profile"
       And I fill in "Password" with "genericpw3"

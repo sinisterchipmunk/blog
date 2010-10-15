@@ -5,7 +5,7 @@ Feature: Create comment
   
   Scenario: Add a comment
     Given I have published a post
-      And I am logged in as a user
+      And I am logged in as a guest
       And I am on the published post page
     When  I fill in "Leave a Message" with "This is a comment"
       And I press "Post Comment"
@@ -18,7 +18,7 @@ Feature: Create comment
     
   Scenario: Invalid comment (no body)
     Given I have published a post
-      And I am logged in as a user
+      And I am logged in as a guest
       And I am on the published post page
     When I press "Post Comment"
     Then I should be on the post comments page

@@ -17,9 +17,9 @@ def _post(body = "a body", options = {})
 end
 
 describe PostsController do
-  before(:all) do
+  before(:each) do
     # log in
-    User.destroy_all # why do I have to do this?
+    #User.destroy_all # why do I have to do this?
     u = User.new(:email => "generic@example.com", :display_name => "Generic", :username => "generic")
     u.password = u.password_confirmation = "Generic12"
     u.save!

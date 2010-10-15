@@ -200,6 +200,8 @@ class PostsController < ApplicationController
       end
     end
     #@post.update_attribute(:pingbacks_already_processed, true)
+  rescue
+    Rails.logger.error("Could not send pingbacks for #{@post.to_param}: #{$!}")
   end
   
   def check_for_draft
